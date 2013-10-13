@@ -50,7 +50,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			
 		case R.id.exit_button:
 			Log.d(RA, "Exit");
-//			finish();
+			finish();
 			break;
 		}
 	}

@@ -10,7 +10,14 @@
     <string name="exit">Exit</string>
     <string name="player_vs_ai">Player vs AI</string>
     <string name="player_vs_player">Player vs Player</string>
+    <string name="match_details_title">Match Details</string>
 
+    <string name="win">Win</string>
+    <string name="lose">Lose</string>
+    
+    <string name="default_opponent_name">Joe Bob</string>
+    <string name="default_date">8/20/1991</string>
+    
     <string name="table_row">Table Row</string>
 
 </resources>
