@@ -1,6 +1,7 @@
 package edu.rhit.petitjam_coblebj.roboarena;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +40,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			
 		case R.id.match_history_button:
 			Log.d(RA, "Match History");
+			Intent matchHistoryIntent = new Intent(this, MatchHistoryActivity.class);
+			startActivity(matchHistoryIntent);
 			break;
 			
 		case R.id.settings_button:
