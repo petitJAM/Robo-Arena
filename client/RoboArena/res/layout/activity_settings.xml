@@ -9,8 +9,108 @@
     tools:context=".SettingsActivity" >
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/settings_title"
+        android:textSize="@dimen/title_text_size" />
 
+    <TextView
+        android:id="@+id/glove_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/settings_glove_color" />
+
+    <Spinner
+        android:id="@+id/glove_color_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:id="@+id/sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/glove_color"
+        android:layout_below="@+id/glove_color"
+        android:layout_marginTop="40dp"
+        android:text="@string/settings_sound" />
+
+    <SeekBar
+        android:id="@+id/sound_seekbar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/glove_color_spinner"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:id="@+id/music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/glove_color"
+        android:layout_below="@+id/sound"
+        android:layout_marginTop="40dp"
+        android:text="@string/settings_music" />
+
+    <SeekBar
+        android:id="@+id/music_seekbar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/sound_seekbar"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/glove_color"
+        android:layout_below="@+id/music"
+        android:layout_marginTop="40dp"
+        android:text="@string/settings_username" />
+
+    <EditText
+        android:id="@+id/username_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/music_seekbar"
+        android:layout_marginTop="25dp"
+        android:hint="@string/settings_username_hint" >
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="25dp"
+        style="?android:attr/buttonBarStyle"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/cancel" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/settings_save" />
+    </LinearLayout>
+    
 </RelativeLayout>

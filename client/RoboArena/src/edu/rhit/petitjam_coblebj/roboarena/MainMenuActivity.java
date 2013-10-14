@@ -46,6 +46,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			
 		case R.id.settings_button:
 			Log.d(RA, "Settings");
+			Intent settingsIntent = new Intent(this, SettingsActivity.class);
+			startActivity(settingsIntent);
 			break;
 			
 		case R.id.exit_button:
