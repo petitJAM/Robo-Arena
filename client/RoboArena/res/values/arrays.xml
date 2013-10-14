@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="glove_colors">
+        <item name="red">Red</item>
+        <item name="orange">Orange</item>
+        <item name="yellow">Yellow</item>
+        <item name="green">Green</item>
+        <item name="blue">Blue</item>
+        <item name="purple">Purple</item>
+    </string-array>
+</resources>

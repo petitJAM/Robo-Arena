@@ -2,6 +2,7 @@ package edu.rhit.petitjam_coblebj.roboarena;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +31,8 @@ public class MatchHistoryActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Toast.makeText(MatchHistoryActivity.this, "pressed " + position, Toast.LENGTH_SHORT).show();
+				Intent matchDetailsIntent = new Intent(MatchHistoryActivity.this, MatchDetailsActivity.class);
+				startActivity(matchDetailsIntent);
 			}
 		});
 		
