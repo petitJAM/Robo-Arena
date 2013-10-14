@@ -28,6 +28,8 @@ public final class R {
         public static final int main_menu_button_height=0x7f060002;
         public static final int main_menu_button_text_size=0x7f060004;
         public static final int main_menu_button_width=0x7f060003;
+        public static final int settings_input_marginTop=0x7f060007;
+        public static final int settings_text_marginTop=0x7f060006;
         public static final int title_text_size=0x7f060005;
     }
     public static final class drawable {

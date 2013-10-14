@@ -8,5 +8,7 @@
     <dimen name="main_menu_button_width">150dp</dimen>
     <dimen name="main_menu_button_text_size">15sp</dimen>
     <dimen name="title_text_size">36sp</dimen>
+    <dimen name="settings_text_marginTop">30dp</dimen>
+    <dimen name="settings_input_marginTop">15dp</dimen>
 
 </resources>

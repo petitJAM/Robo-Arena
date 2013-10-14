@@ -25,7 +25,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/title"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/settings_text_marginTop"
         android:text="@string/settings_glove_color" />
 
     <Spinner
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/title"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="@dimen/settings_input_marginTop" />
 
     <TextView
         android:id="@+id/sound"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/glove_color"
         android:layout_below="@+id/glove_color"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/settings_text_marginTop"
         android:text="@string/settings_sound" />
 
     <SeekBar
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/glove_color_spinner"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="@dimen/settings_input_marginTop" />
 
     <TextView
         android:id="@+id/music"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/glove_color"
         android:layout_below="@+id/sound"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/settings_text_marginTop"
         android:text="@string/settings_music" />
 
     <SeekBar
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/sound_seekbar"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="@dimen/settings_input_marginTop" />
 
     <TextView
         android:id="@+id/username"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/glove_color"
         android:layout_below="@+id/music"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/settings_text_marginTop"
         android:text="@string/settings_username" />
 
     <EditText
@@ -85,21 +85,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/music_seekbar"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/settings_input_marginTop"
         android:hint="@string/settings_username_hint" >
     </EditText>
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/username"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        style="?android:attr/buttonBarStyle"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/cancel_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -107,10 +108,11 @@
 
         <Button
             android:id="@+id/save_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/settings_save" />
     </LinearLayout>
-    
+
 </RelativeLayout>
