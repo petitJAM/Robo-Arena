@@ -10,7 +10,7 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.match_details);
+		setContentView(R.layout.activity_match_details);
 		
 		findViewById(R.id.done_button).setOnClickListener(this);
 	}

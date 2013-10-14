@@ -20,7 +20,9 @@
     <string name="default_date">8/20/1991</string>
     <string name="table_row">Table Row</string>
     <string name="done">Done</string>
-    
     <string name="default_score">0</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

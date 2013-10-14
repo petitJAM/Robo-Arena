@@ -31,37 +31,39 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int add_match_button=0x7f08000a;
-        public static final int blocked_hits=0x7f080010;
-        public static final int blocked_hits_line=0x7f08000f;
-        public static final int blocked_hits_value=0x7f080011;
-        public static final int date=0x7f080013;
-        public static final int done_button=0x7f080015;
+        public static final int add_match_button=0x7f080015;
+        public static final int blocked_hits=0x7f08000c;
+        public static final int blocked_hits_line=0x7f08000b;
+        public static final int blocked_hits_value=0x7f08000d;
+        public static final int date=0x7f08000f;
+        public static final int done_button=0x7f080011;
         public static final int exit_button=0x7f080004;
-        public static final int list_view=0x7f080008;
-        public static final int match_details_container=0x7f080009;
+        public static final int list_view=0x7f080013;
+        public static final int match_details_container=0x7f080014;
         public static final int match_history_button=0x7f080002;
-        public static final int match_history_title=0x7f080007;
-        public static final int match_stats_table_layout=0x7f08000b;
+        public static final int match_history_title=0x7f080012;
+        public static final int match_stats_table_layout=0x7f080007;
         public static final int opponent=0x7f080016;
-        public static final int opponent_name=0x7f080012;
-        public static final int outcome=0x7f080014;
+        public static final int opponent_name=0x7f08000e;
+        public static final int outcome=0x7f080010;
         public static final int player_vs_ai_button=0x7f080006;
         public static final int player_vs_player_button=0x7f080005;
         public static final int settings_button=0x7f080003;
         public static final int spectate_button=0x7f080001;
-        public static final int successful_hits=0x7f08000d;
-        public static final int successful_hits_line=0x7f08000c;
-        public static final int successful_hits_value=0x7f08000e;
+        public static final int successful_hits=0x7f080009;
+        public static final int successful_hits_line=0x7f080008;
+        public static final int successful_hits_value=0x7f08000a;
         public static final int title=0x7f080000;
     }
     public static final class layout {
         public static final int activity_main_menu=0x7f030000;
-        public static final int activity_match_history=0x7f030001;
-        public static final int match_details=0x7f030002;
-        public static final int match_history_row_view=0x7f030003;
+        public static final int activity_match_details=0x7f030001;
+        public static final int activity_match_history=0x7f030002;
+        public static final int activity_settings=0x7f030003;
+        public static final int match_history_row_view=0x7f030004;
     }
     public static final class string {
+        public static final int action_settings=0x7f060015;
         public static final int app_name=0x7f060000;
         public static final int blocked_hits=0x7f06000c;
         public static final int default_date=0x7f060010;
@@ -69,6 +71,7 @@ public final class R {
         public static final int default_score=0x7f060013;
         public static final int done=0x7f060012;
         public static final int exit=0x7f060007;
+        public static final int hello_world=0x7f060016;
         public static final int lose=0x7f06000e;
         public static final int main_menu_title=0x7f060003;
         public static final int match_details_title=0x7f06000a;
@@ -81,6 +84,7 @@ public final class R {
         public static final int table_row=0x7f060011;
         public static final int title_activity_match_details=0x7f060002;
         public static final int title_activity_match_history=0x7f060001;
+        public static final int title_activity_settings=0x7f060014;
         public static final int win=0x7f06000d;
     }
     public static final class style {
