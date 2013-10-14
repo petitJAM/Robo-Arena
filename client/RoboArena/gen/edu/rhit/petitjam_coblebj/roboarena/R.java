@@ -32,18 +32,27 @@ public final class R {
     }
     public static final class id {
         public static final int add_match_button=0x7f08000a;
-        public static final int date=0x7f08000d;
+        public static final int blocked_hits=0x7f080010;
+        public static final int blocked_hits_line=0x7f08000f;
+        public static final int blocked_hits_value=0x7f080011;
+        public static final int date=0x7f080013;
+        public static final int done_button=0x7f080015;
         public static final int exit_button=0x7f080004;
         public static final int list_view=0x7f080008;
         public static final int match_details_container=0x7f080009;
         public static final int match_history_button=0x7f080002;
         public static final int match_history_title=0x7f080007;
-        public static final int opponent=0x7f08000c;
-        public static final int outcome=0x7f08000b;
+        public static final int match_stats_table_layout=0x7f08000b;
+        public static final int opponent=0x7f080016;
+        public static final int opponent_name=0x7f080012;
+        public static final int outcome=0x7f080014;
         public static final int player_vs_ai_button=0x7f080006;
         public static final int player_vs_player_button=0x7f080005;
         public static final int settings_button=0x7f080003;
         public static final int spectate_button=0x7f080001;
+        public static final int successful_hits=0x7f08000d;
+        public static final int successful_hits_line=0x7f08000c;
+        public static final int successful_hits_value=0x7f08000e;
         public static final int title=0x7f080000;
     }
     public static final class layout {
@@ -54,20 +63,25 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060000;
-        public static final int default_date=0x7f06000d;
-        public static final int default_opponent_name=0x7f06000c;
-        public static final int exit=0x7f060006;
-        public static final int lose=0x7f06000b;
-        public static final int main_menu_title=0x7f060002;
-        public static final int match_details_title=0x7f060009;
-        public static final int match_history=0x7f060004;
-        public static final int player_vs_ai=0x7f060007;
-        public static final int player_vs_player=0x7f060008;
-        public static final int settings=0x7f060005;
-        public static final int spectate=0x7f060003;
-        public static final int table_row=0x7f06000e;
+        public static final int blocked_hits=0x7f06000c;
+        public static final int default_date=0x7f060010;
+        public static final int default_opponent_name=0x7f06000f;
+        public static final int default_score=0x7f060013;
+        public static final int done=0x7f060012;
+        public static final int exit=0x7f060007;
+        public static final int lose=0x7f06000e;
+        public static final int main_menu_title=0x7f060003;
+        public static final int match_details_title=0x7f06000a;
+        public static final int match_history=0x7f060005;
+        public static final int player_vs_ai=0x7f060008;
+        public static final int player_vs_player=0x7f060009;
+        public static final int settings=0x7f060006;
+        public static final int spectate=0x7f060004;
+        public static final int successful_hits=0x7f06000b;
+        public static final int table_row=0x7f060011;
+        public static final int title_activity_match_details=0x7f060002;
         public static final int title_activity_match_history=0x7f060001;
-        public static final int win=0x7f06000a;
+        public static final int win=0x7f06000d;
     }
     public static final class style {
         /** 

@@ -3,6 +3,7 @@
 
     <string name="app_name">Robo Arena</string>
     <string name="title_activity_match_history">Match History</string>
+    <string name="title_activity_match_details">Match Details</string>
     <string name="main_menu_title">Robo Arena</string>
     <string name="spectate">Spectate</string>
     <string name="match_history">Match History</string>
@@ -11,13 +12,15 @@
     <string name="player_vs_ai">Player vs AI</string>
     <string name="player_vs_player">Player vs Player</string>
     <string name="match_details_title">Match Details</string>
-
+    <string name="successful_hits">Successful Hits</string>
+    <string name="blocked_hits">Blocked Hits</string>
     <string name="win">Win</string>
     <string name="lose">Lose</string>
-    
     <string name="default_opponent_name">Joe Bob</string>
     <string name="default_date">8/20/1991</string>
-    
     <string name="table_row">Table Row</string>
+    <string name="done">Done</string>
+    
+    <string name="default_score">0</string>
 
 </resources>

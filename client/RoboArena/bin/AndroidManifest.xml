@@ -28,6 +28,12 @@
             android:label="@string/title_activity_match_history"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.MatchDetailsActivity"
+            android:label="@string/title_activity_match_details"
+            android:screenOrientation="landscape" >
+        </activity>
+"
     </application>
 
 </manifest>
