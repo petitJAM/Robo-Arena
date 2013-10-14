@@ -11,7 +11,33 @@
     <string name="player_vs_ai">Player vs AI</string>
     <string name="player_vs_player">Player vs Player</string>
     <string name="match_details_title">Match Details</string>
+    
+    <!-- Computer difficulty -->
+    <string name="computer_difficulty_title">Vs. Computer</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="box">Box!</string>
 
+    <!-- Arenas -->
+    <string name="arena_title">Player 1 Vs. Opponent</string>
+    <string name="spectator_arena_title">Player 1 Vs. Player 2</string>
+    
+    <!-- Locker room -->
+    <string name="locker_room">Locker Room</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="spec1">Spectator 1</string>
+    <string name="connected">Connected</string>
+    <string name="ready">Ready</string>
+
+    <!-- Locate matches -->
+    <string name="vs_player">Vs. Player</string>
+    <string name="room_name">Room Name</string>
+    <string name="password">Password</string>
+    <string name="create">Create</string>
+    <string name="join">Join</string>    
+    
     <string name="win">Win</string>
     <string name="lose">Lose</string>
     

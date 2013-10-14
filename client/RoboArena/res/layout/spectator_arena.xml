@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SpectatorArenaActivity" >
+
+    <TextView
+        android:id="@+id/arena_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/spectator_arena_title"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/player2"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/arena_title"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="74dp"
+        android:src="@drawable/opponent_boxer" />
+
+    <ImageView
+        android:id="@+id/player1"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/player2"
+        android:src="@drawable/opponent_boxer" />
+
+</RelativeLayout>

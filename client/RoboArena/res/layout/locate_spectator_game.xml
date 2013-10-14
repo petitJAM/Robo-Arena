@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocateSpectatorActivity" >
+
+    <TextView
+        android:id="@+id/spec_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/spectate"
+        android:textSize="@dimen/title_text_size" />
+
+    <Button
+        android:id="@+id/join_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spec_title"
+        android:layout_toLeftOf="@+id/spec_title"
+        android:text="@string/join" />
+
+    <EditText
+        android:id="@+id/room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/join_button"
+        android:layout_alignLeft="@+id/spec_title"
+        android:ems="10"
+        android:hint="@string/room_name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/room_name"
+        android:layout_below="@+id/room_name"
+        android:ems="10"
+        android:hint="@string/password" />
+
+</RelativeLayout>

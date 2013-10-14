@@ -26,19 +26,25 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.player_vs_ai_button:
+		case R.id.player_vs_ai_button: // Layout and navigation is done, but functionality needs to be added
 			Log.d(RA, "Player vs AI");
+			Intent computerDifficultyIntent = new Intent(this, computerDifficultyActivity.class);
+			startActivity(computerDifficultyIntent);
 			break;
 			
-		case R.id.player_vs_player_button:
+		case R.id.player_vs_player_button: // Layout and navigation is done, but functionality needs to be added
 			Log.d(RA, "Player vs Player");
+			Intent locatePlayerIntent = new Intent(this, LocatePlayerActivity.class);
+			startActivity(locatePlayerIntent);
 			break;
 			
-		case R.id.spectate_button:
+		case R.id.spectate_button: // Layout and navigation is done, but functionality needs to be added
 			Log.d(RA, "Spectate");
+			Intent locateSpectatorIntent = new Intent(this, LocateSpectatorActivity.class);
+			startActivity(locateSpectatorIntent);
 			break;
 			
-		case R.id.match_history_button:
+		case R.id.match_history_button: 
 			Log.d(RA, "Match History");
 			Intent matchHistoryIntent = new Intent(this, MatchHistoryActivity.class);
 			startActivity(matchHistoryIntent);

@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LocatePlayerActivity" >
+
+    <TextView
+        android:id="@+id/arena_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/vs_player"
+        android:textSize="@dimen/title_text_size" />
+
+    <Button
+        android:id="@+id/create_player_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arena_title"
+        android:layout_toLeftOf="@+id/arena_title"
+        android:text="@string/create" />
+
+    <EditText
+        android:id="@+id/create_room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/create_player_game_button"
+        android:layout_alignBottom="@+id/create_player_game_button"
+        android:layout_alignLeft="@+id/arena_title"
+        android:ems="10"
+        android:hint="@string/room_name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/create_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/create_room_name"
+        android:layout_below="@+id/create_player_game_button"
+        android:ems="10"
+        android:hint="@string/password" />
+
+    <EditText
+        android:id="@+id/join_room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_password"
+        android:layout_toRightOf="@+id/create_player_game_button"
+        android:ems="10"
+        android:hint="@string/room_name" />
+
+    <EditText
+        android:id="@+id/join_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/join_room_name"
+        android:layout_below="@+id/join_room_name"
+        android:ems="10"
+        android:hint="@string/password" />
+
+    <Button
+        android:id="@+id/join_player_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/join_room_name"
+        android:layout_toLeftOf="@+id/join_room_name"
+        android:text="@string/join" />
+
+</RelativeLayout>

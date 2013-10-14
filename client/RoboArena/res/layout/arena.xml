@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ArenaActivity" >
+
+    <TextView
+        android:id="@+id/arena_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/arena_title"
+        android:textSize="@dimen/title_text_size" />
+
+    <ImageView
+        android:id="@+id/opponent_boxer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arena_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="103dp"
+        android:src="@drawable/opponent_boxer" />
+
+    <ImageView
+        android:id="@+id/left_glove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/opponent_boxer"
+        android:layout_toLeftOf="@+id/opponent_boxer"
+        android:layout_marginLeft="43dp"
+        android:src="@drawable/boxing_glove_left" />
+    
+    <ImageView
+        android:id="@+id/right_glove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/opponent_boxer"
+        android:layout_toRightOf="@+id/opponent_boxer"
+        android:layout_marginRight="43dp"
+        android:src="@drawable/boxing_glove_right" />
+
+</RelativeLayout>

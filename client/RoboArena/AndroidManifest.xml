@@ -12,7 +12,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         <activity
             android:name="edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity"
             android:label="@string/app_name"
@@ -26,6 +26,36 @@
         <activity
             android:name="edu.rhit.petitjam_coblebj.roboarena.MatchHistoryActivity"
             android:label="@string/title_activity_match_history"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.computerDifficultyActivity"
+            android:label="@string/computer_difficulty_title"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.ArenaActivity"
+            android:label="@string/arena_title"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.LocatePlayerActivity"
+            android:label="@string/vs_player"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.LocateSpectatorActivity"
+            android:label="@string/spectate"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.LockerRoomActivity"
+            android:label="@string/locker_room"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="edu.rhit.petitjam_coblebj.roboarena.SpectatorArenaActivity"
+            android:label="@string/spectate"
             android:screenOrientation="landscape" >
         </activity>
     </application>
