@@ -17,7 +17,7 @@ public abstract class Player {
 	public static final int ACTION_BLOCK = 6;
 
 	public Player() {
-		health = 100;
+		health = 1000;
 		actionsAllowed = true;
 	}
 

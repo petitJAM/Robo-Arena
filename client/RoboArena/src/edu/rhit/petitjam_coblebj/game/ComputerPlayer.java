@@ -9,12 +9,11 @@ public class ComputerPlayer extends RemotePlayer {
 	private BoxerGame mGame;
 	
 	public ComputerPlayer() {
-		
+		super();
 	}
 	
 	public ComputerPlayer(BoxerGame game) {
 		super();
-		
 		mGame = game;
 	}
 
@@ -54,7 +53,7 @@ public class ComputerPlayer extends RemotePlayer {
 	 * Class for dumb AI that just throws random hits
 	 * @author petitjam
 	 */
-	private class ThrowRandomHitsTask extends AsyncTask<Void, Void, Void> {
+	private class ThrowRandomHitsTask extends AsyncTask<Void, Integer, Void> {
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -63,8 +62,13 @@ public class ComputerPlayer extends RemotePlayer {
 			
 			while (true) {
 				int next = gen.nextInt() % NUMBER_OF_ACTIONS; // number of actions
-				doAction(next);
+				publishProgress(new Integer[] { next });
 			}
+		}
+		
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			doAction(values[0]);
 		}
 	}
 }
