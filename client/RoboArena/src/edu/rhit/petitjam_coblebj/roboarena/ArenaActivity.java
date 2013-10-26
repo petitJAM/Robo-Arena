@@ -21,6 +21,8 @@ public class ArenaActivity extends Activity{
 		mGame = new BoxerGame(this);
 		
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
+		
+		mGame.startGame();
 	}
 	
 	@Override

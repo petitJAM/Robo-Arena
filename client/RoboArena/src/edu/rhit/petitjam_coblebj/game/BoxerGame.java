@@ -13,23 +13,11 @@ public class BoxerGame {
 	// private GameView gview;
 	
 	public BoxerGame(Context context) {
-		
+		remote = new ComputerPlayer(this); 
 	}
 
-	public void initialize() {
-		
-	}
-
-	public void newGame() {
-		
-	}
-
-	public void pauseGame() {
-		
-	}
-
-	public void playGame() {
-		
+	public void startGame() {
+		remote.start();
 	}
 	
 	/* LOCAL PLAYER ACTIONS */
