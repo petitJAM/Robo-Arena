@@ -1,7 +1,9 @@
 package edu.rhit.petitjam_coblebj.roboarena;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -14,18 +16,45 @@ public class ArenaActivity extends Activity{
 	private GestureDetector mDetector;
 	private BoxerGame mGame;
 	
-	private static TextView player1_hp_view;
-	private static TextView player2_hp_view;
+	public TextView l_jab;
+	public TextView l_hook;
+	public TextView l_up;
+	public TextView r_jab;
+	public TextView r_hook;
+	public TextView r_up;
+	public TextView block;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.arena);
-		
-		player1_hp_view = (TextView)findViewById(R.id.player1_hp);
-		player2_hp_view = (TextView)findViewById(R.id.player2_hp);		
+		setContentView(R.layout.arena);	
 		
 		mGame = new BoxerGame(this);
+		
+		l_jab = (TextView)findViewById(R.id.l_jab_tv);
+		l_hook = (TextView)findViewById(R.id.l_hook_tv);
+		l_up = (TextView)findViewById(R.id.l_up_tv);
+		r_jab = (TextView)findViewById(R.id.r_jab_tv);
+		r_hook = (TextView)findViewById(R.id.r_hook_tv);
+		r_up = (TextView)findViewById(R.id.r_up_tv);
+//		block = (TextView)findViewById(R.id.);
+		
+		final Handler handler = new Handler();
+		final Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				l_jab.setBackgroundColor(Color.WHITE);
+				l_hook.setBackgroundColor(Color.WHITE);
+				l_up.setBackgroundColor(Color.WHITE);
+				r_jab.setBackgroundColor(Color.WHITE);
+				r_hook.setBackgroundColor(Color.WHITE);
+				r_up.setBackgroundColor(Color.WHITE);
+				
+				handler.postDelayed(this, 2000);
+			}
+		};
+		
+		handler.postDelayed(r, 2000);
 		
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
 		
@@ -90,6 +119,7 @@ public class ArenaActivity extends Activity{
 					
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "right uppercut");
+						mGame.localRightUppercut();
 					} 
 					else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");

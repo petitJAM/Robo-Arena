@@ -1,11 +1,19 @@
 package edu.rhit.petitjam_coblebj.game;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
+import android.widget.TextView;
+import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
+import edu.rhit.petitjam_coblebj.roboarena.R;
 
 public class BoxerGame {
 	
 	private static final String BG = "BG";
+	private static final String BG_L = "BG_L";
+	private static final String BG_R = "BG_R";
+	
+	private ArenaActivity mArena;
 	
 	private LocalPlayer local;
 	private RemotePlayer remote;
@@ -21,8 +29,14 @@ public class BoxerGame {
 	private static final int UPPERCUT_COOLDOWN = 2000;
 	
 	// private GameView gview;
+	private static TextView player1_hp_textview;
+	private static TextView player2_hp_textview;
 	
 	public BoxerGame(Context context) {
+		mArena = (ArenaActivity)context;
+		player1_hp_textview = (TextView)mArena.findViewById(R.id.player1_hp);
+		player2_hp_textview = (TextView)mArena.findViewById(R.id.player2_hp);
+		
 		local = new LocalPlayer();
 		remote = new ComputerPlayer(this);
 	}
@@ -59,31 +73,26 @@ public class BoxerGame {
 	}
 	
 	public void updateHealth(){
-//		int p1hp = mGame.getLocalPlayerHP();
-//		int p2hp = mGame.getRemotePlayerHP();
-//		player1_hp_view.setText(Integer.toString(p1hp));
-//		player2_hp_view.setText(Integer.toString(p2hp));
-	}
-	
-	public int getLocalPlayerHP(){
-		return this.local.getHealth();
-	}
-	
-	public int getRemotePlayerHP(){
-		return this.remote.getHealth();
+		int p1hp = this.local.getHealth();
+		int p2hp = this.remote.getHealth();
+		player1_hp_textview.setText(Integer.toString(p1hp));
+		player2_hp_textview.setText(Integer.toString(p2hp));
 	}	
-	
 	
 	/* LOCAL PLAYER ACTIONS */
 	
 	public void localLeftJab() {
 		 if (local.getActionsAllowed()) {
-				Log.d(BG, "Local Left Jab");
+			Log.d(BG_L, "Local Left Jab");
+				
+			mArena.l_jab.setBackgroundColor(Color.CYAN);
+				
 			 // Tell gameView to update with a Ljab
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(JAB_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(JAB_COOLDOWN);
 		 }
@@ -91,12 +100,16 @@ public class BoxerGame {
 	
 	public void localRightJab() {
 		if (local.getActionsAllowed()) {
-			Log.d(BG, "Local Right Jab");
+			Log.d(BG_L, "Local Right Jab");
+			
+			mArena.r_jab.setBackgroundColor(Color.CYAN);
+			
 			 // Tell gameView to update with a Ljab
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(JAB_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(JAB_COOLDOWN);
 		 }
@@ -104,12 +117,16 @@ public class BoxerGame {
 	
 	public void localLeftHook() {
 		if (local.getActionsAllowed()) {
-			Log.d(BG, "Local Left Hook");
+			Log.d(BG_L, "Local Left Hook");
+			
+			mArena.l_hook.setBackgroundColor(Color.CYAN);
+			
 			 // Tell gameView to update with a Ljab
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(HOOK_COOLDOWN);
 		 }
@@ -117,12 +134,16 @@ public class BoxerGame {
 	
 	public void localRightHook() {
 		if (local.getActionsAllowed()) {
-			Log.d(BG, "Local Right Hook");
+			Log.d(BG_L, "Local Right Hook");
+			
+			mArena.r_hook.setBackgroundColor(Color.CYAN);
+			
 			 // Tell gameView to update with a Ljab
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(HOOK_COOLDOWN);
 		 }
@@ -130,11 +151,16 @@ public class BoxerGame {
 	
 	public void localLeftUppercut() {
 		if (local.getActionsAllowed()) {
-			Log.d(BG, "Local Left Uppercut");
+			Log.d(BG_L, "Local Left Uppercut");
+			
+			mArena.l_up.setBackgroundColor(Color.CYAN);
+			
 			 // Tell gameView to update with a Ljab
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
@@ -142,11 +168,16 @@ public class BoxerGame {
 	
 	public void localRightUppercut() {
 		if (local.getActionsAllowed()) {
-			Log.d(BG, "Local Right Uppercut");
+			Log.d(BG_L, "Local Right Uppercut");
+			
+			mArena.r_up.setBackgroundColor(Color.CYAN);
+			
 			 // Tell gameView to update with a Ljab
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
@@ -154,7 +185,7 @@ public class BoxerGame {
 	
 	public void localBlock() {
 		if (!local.isBlocking()) {
-			Log.d(BG, "Local Block");
+			Log.d(BG_L, "Local Block");
 			local.setBlocking(true);
 			local.startActionDelay(BLOCKING_DELAY);
 		}
@@ -164,85 +195,91 @@ public class BoxerGame {
 	
 	public void remoteLeftJab() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG, "Remote Left Jab");
+			Log.d(BG_R, "Remote Left Jab");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(JAB_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(JAB_COOLDOWN);
 		 }
 	}
 	
 	public void remoteRightJab() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG, "Remote Right Jab");
+			Log.d(BG_R, "Remote Right Jab");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(JAB_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(JAB_COOLDOWN);
 		 }
 	}
 	
 	public void remoteLeftHook() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG, "Remote Left Hook");
+			Log.d(BG_R, "Remote Left Hook");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(HOOK_COOLDOWN);
 		 }
 	} 
 	
 	public void remoteRightHook() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG, "Remote Right Hook");
+			Log.d(BG_R, "Remote Right Hook");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(HOOK_COOLDOWN);
 		 }
 	}
 	
 	public void remoteLeftUppercut() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG, "Remote Left Uppercut");
+			Log.d(BG_R, "Remote Left Uppercut");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
 	}
 	
 	public void remoteRightUppercut() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG, "Remote Righ Uppercut");
+			Log.d(BG_R, "Remote Right Uppercut");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
 	}
 	
 	public void remoteBlock() {
 		if (!remote.isBlocking()) {
-			Log.d(BG, "Remote Block");
+			Log.d(BG_R, "Remote Block");
 			remote.setBlocking(true);
 			remote.startActionDelay(BLOCKING_DELAY);
 		}
