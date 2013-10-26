@@ -3,6 +3,7 @@ package edu.rhit.petitjam_coblebj.game;
 import java.util.Random;
 
 import android.os.AsyncTask;
+import android.os.SystemClock;
 
 public class ComputerPlayer extends RemotePlayer {
 
@@ -63,6 +64,7 @@ public class ComputerPlayer extends RemotePlayer {
 			while (true) {
 				int next = gen.nextInt() % NUMBER_OF_ACTIONS; // number of actions
 				publishProgress(new Integer[] { next });
+				SystemClock.sleep(3000);
 			}
 		}
 		

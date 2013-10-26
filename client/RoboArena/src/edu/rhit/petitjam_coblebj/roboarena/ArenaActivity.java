@@ -31,8 +31,6 @@ public class ArenaActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.arena);	
 		
-		mGame = new BoxerGame(this);
-		
 		l_jab = (TextView)findViewById(R.id.l_jab_tv);
 		l_hook = (TextView)findViewById(R.id.l_hook_tv);
 		l_up = (TextView)findViewById(R.id.l_up_tv);
@@ -44,6 +42,8 @@ public class ArenaActivity extends Activity{
 		player1_hp_textview = (TextView)findViewById(R.id.player1_hp);
 		player2_hp_textview = (TextView)findViewById(R.id.player2_hp);
 		
+		mGame = new BoxerGame(this);
+				
 		final Handler handler = new Handler();
 		final Runnable r = new Runnable() {
 			@Override

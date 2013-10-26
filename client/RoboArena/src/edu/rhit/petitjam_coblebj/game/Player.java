@@ -4,7 +4,8 @@ import android.os.Handler;
 
 public abstract class Player {
 	private int health;
-	private boolean actionsAllowed;
+	private boolean leftActionsAllowed;
+	private boolean rightActionsAllowed;
 	private boolean blocking;
 
 	public static final int NUMBER_OF_ACTIONS = 7;
@@ -18,7 +19,8 @@ public abstract class Player {
 
 	public Player() {
 		health = 1000;
-		actionsAllowed = true;
+		leftActionsAllowed = true;
+		rightActionsAllowed = true;
 	}
 
 	public int getHealth() {
@@ -37,8 +39,12 @@ public abstract class Player {
 		this.health += restoredAmount;
 	}
 
-	public boolean getActionsAllowed() {
-		return actionsAllowed;
+	public boolean getLeftActionsAllowed() {
+		return leftActionsAllowed;
+	}
+	
+	public boolean getRightActionsAllowed() {
+		return rightActionsAllowed;
 	}
 
 	public boolean isBlocking() {
@@ -49,15 +55,30 @@ public abstract class Player {
 		this.blocking = b;
 	}
 
-	public void startActionDelay(int timeInMillis) {
-		actionsAllowed = false;
+	public void startLeftActionDelay(int timeInMillis) {
+		leftActionsAllowed = false;
 
 		final Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				actionsAllowed = true;
+				leftActionsAllowed = true;
+				blocking = false;
+			}
+
+		}, timeInMillis);
+	}
+	
+	public void startRightActionDelay(int timeInMillis) {
+		rightActionsAllowed = false;
+
+		final Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				rightActionsAllowed = true;
 				blocking = false;
 			}
 

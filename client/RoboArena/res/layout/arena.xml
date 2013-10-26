@@ -97,6 +97,8 @@
         android:layout_alignBottom="@+id/l_up_tv"
         android:layout_alignRight="@+id/r_hook_tv"
         android:text="Uppercut" />
+    
+    <!-- HP views -->
 
     <TextView
         android:id="@+id/player1_hp"
