@@ -58,7 +58,7 @@ public class BoxerGame {
 	public void localLeftJab() {
 		Log.d(BG, "Local Left Jab");
 		 if (local.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(JAB_DMG);
 				 // update remote player health bar
@@ -71,7 +71,7 @@ public class BoxerGame {
 	public void localRightJab() {
 		Log.d(BG, "Local Right Jab");
 		if (local.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(JAB_DMG);
 				 // update remote player health bar
@@ -84,7 +84,7 @@ public class BoxerGame {
 	public void localLeftHook() {
 		Log.d(BG, "Local Left Hook");
 		if (local.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
@@ -97,7 +97,7 @@ public class BoxerGame {
 	public void localRightHook() {
 		Log.d(BG, "Local Right Hook");
 		if (local.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
@@ -109,7 +109,7 @@ public class BoxerGame {
 	
 	public void localLeftUppercut() {
 		if (local.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
@@ -141,7 +141,7 @@ public class BoxerGame {
 	
 	public void remoteLeftJab() {
 		if (remote.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!local.isBlocking()){
 				 local.decrementHealth(JAB_DMG);
 				 // update remote player health bar
@@ -154,7 +154,7 @@ public class BoxerGame {
 	
 	public void remoteRightJab() {
 		if (remote.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!local.isBlocking()){
 				 local.decrementHealth(JAB_DMG);
 				 // update remote player health bar
@@ -167,7 +167,7 @@ public class BoxerGame {
 	
 	public void remoteLeftHook() {
 		if (remote.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!local.isBlocking()){
 				 local.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
@@ -180,7 +180,7 @@ public class BoxerGame {
 	
 	public void remoteRightHook() {
 		if (remote.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!local.isBlocking()){
 				 local.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
@@ -193,7 +193,7 @@ public class BoxerGame {
 	
 	public void remoteLeftUppercut() {
 		if (remote.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
@@ -206,7 +206,7 @@ public class BoxerGame {
 	
 	public void remoteRightUppercut() {
 		if (remote.getActionsAllowed()) {
-			 // Tell gameView to update with a Ljab
+			 // Tell gameView to update with a punch
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
