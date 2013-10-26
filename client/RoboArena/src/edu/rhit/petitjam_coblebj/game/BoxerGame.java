@@ -1,5 +1,6 @@
 package edu.rhit.petitjam_coblebj.game;
 
+import android.content.Context;
 import android.util.Log;
 
 public class BoxerGame {
@@ -11,7 +12,7 @@ public class BoxerGame {
 	
 	// private GameView gview;
 	
-	public BoxerGame() {
+	public BoxerGame(Context context) {
 		
 	}
 

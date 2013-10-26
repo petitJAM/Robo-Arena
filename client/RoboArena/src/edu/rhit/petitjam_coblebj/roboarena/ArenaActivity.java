@@ -18,7 +18,7 @@ public class ArenaActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.arena);
 		
-		mGame = new BoxerGame();
+		mGame = new BoxerGame(this);
 		
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
 	}

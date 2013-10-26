@@ -42,4 +42,61 @@
         android:layout_marginRight="43dp"
         android:src="@drawable/boxing_glove_right" />
 
+    <!-- Temp views for hits -->
+    
+    <!-- Left -->
+    
+    <TextView
+        android:id="@+id/l_jab_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/left_glove"
+        android:layout_below="@+id/arena_title"
+        android:text="Jab" />
+    
+    <TextView
+        android:id="@+id/l_hook_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/l_jab_tv"
+        android:layout_below="@+id/l_jab_tv"
+        android:text="Hook" />
+    
+    <TextView
+        android:id="@+id/l_up_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/l_hook_tv"
+        android:layout_below="@+id/l_hook_tv"
+        android:text="Uppercut" />
+
+    <!-- Right -->
+    
+    <TextView
+        android:id="@+id/r_jab_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/right_glove"
+        android:layout_below="@+id/arena_title"
+        android:text="Jab" />
+
+    <TextView
+        android:id="@+id/r_hook_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_hook_tv"
+        android:layout_alignBottom="@+id/l_hook_tv"
+        android:layout_alignRight="@+id/r_jab_tv"
+        android:text="Hook" />
+
+    <TextView
+        android:id="@+id/r_up_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/l_up_tv"
+        android:layout_alignBottom="@+id/l_up_tv"
+        android:layout_alignRight="@+id/r_hook_tv"
+        android:text="Uppercut" />
+
+
 </RelativeLayout>
