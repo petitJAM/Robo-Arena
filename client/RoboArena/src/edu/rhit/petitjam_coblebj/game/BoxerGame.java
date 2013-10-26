@@ -1,9 +1,9 @@
 package edu.rhit.petitjam_coblebj.game;
 
-import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
 
 public class BoxerGame {
 	
@@ -21,7 +21,7 @@ public class BoxerGame {
 	private static final int JAB_DMG = 1;
 	private static final int HOOK_DMG = 2;
 	private static final int UPPERCUT_DMG = 3;
-	private static final int BLOCKING_DELAY = 1000; 
+	private static final int BLOCKING_COOLDOWN = 1000; 
 	private static final int JAB_COOLDOWN = 1000;
 	private static final int HOOK_COOLDOWN = 1200;
 	private static final int UPPERCUT_COOLDOWN = 2000;
@@ -63,7 +63,7 @@ public class BoxerGame {
 	}
 	
 	private void printHealth(){
-		Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
+//		Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
 	}
 	
 	/* LOCAL PLAYER ACTIONS */
@@ -166,7 +166,7 @@ public class BoxerGame {
 		if (!local.isBlocking()) {
 			Log.d(BG_L, "Local Block");
 			local.setBlocking(true);
-			local.startActionDelay(BLOCKING_DELAY);
+			local.startActionDelay(BLOCKING_COOLDOWN);
 		}
 	}
 	
@@ -254,7 +254,7 @@ public class BoxerGame {
 		if (!remote.isBlocking()) {
 			Log.d(BG_R, "Remote Block");
 			remote.setBlocking(true);
-			remote.startActionDelay(BLOCKING_DELAY);
+			remote.startActionDelay(BLOCKING_COOLDOWN);
 		}
 	}
 }

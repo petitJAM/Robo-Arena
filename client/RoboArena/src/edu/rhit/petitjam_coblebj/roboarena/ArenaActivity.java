@@ -123,6 +123,7 @@ public class ArenaActivity extends Activity{
 					} 
 					else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");
+						mGame.localRightHook();
 					} 
 					else {
 						Log.d(PGL, "right nothing");
@@ -132,9 +133,11 @@ public class ArenaActivity extends Activity{
 					
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "left uppercut");
+						mGame.localLeftUppercut();
 					} 
 					else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe r->l
 						Log.d(PGL, "left hook");
+						mGame.localLeftHook();
 					} 
 					else {
 						Log.d(PGL, "left nothing");
