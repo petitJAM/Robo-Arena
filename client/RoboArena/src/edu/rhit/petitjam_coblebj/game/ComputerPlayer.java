@@ -8,6 +8,10 @@ public class ComputerPlayer extends RemotePlayer {
 
 	private BoxerGame mGame;
 	
+	public ComputerPlayer() {
+		
+	}
+	
 	public ComputerPlayer(BoxerGame game) {
 		super();
 		
