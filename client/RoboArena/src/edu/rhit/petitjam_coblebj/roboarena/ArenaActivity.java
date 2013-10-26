@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
 
 public class ArenaActivity extends Activity{
@@ -12,11 +13,17 @@ public class ArenaActivity extends Activity{
 	// Fields
 	private GestureDetector mDetector;
 	private BoxerGame mGame;
+	
+	private static TextView player1_hp_view;
+	private static TextView player2_hp_view;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.arena);
+		
+		player1_hp_view = (TextView)findViewById(R.id.player1_hp);
+		player2_hp_view = (TextView)findViewById(R.id.player2_hp);		
 		
 		mGame = new BoxerGame(this);
 		
@@ -43,7 +50,7 @@ public class ArenaActivity extends Activity{
 		private static final int SWIPE_MIN_VELOCITY = 100;
 		private static final int SWIPE_MAX_OFF_PATH = 100;
 		private static final int SWIPE_MIN_DISTANCE = 100;
-		
+				
 		/*
 		 * Handles Jabs 
 		 */

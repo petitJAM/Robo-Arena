@@ -58,6 +58,22 @@ public class BoxerGame {
 		Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
 	}
 	
+	public void updateHealth(){
+//		int p1hp = mGame.getLocalPlayerHP();
+//		int p2hp = mGame.getRemotePlayerHP();
+//		player1_hp_view.setText(Integer.toString(p1hp));
+//		player2_hp_view.setText(Integer.toString(p2hp));
+	}
+	
+	public int getLocalPlayerHP(){
+		return this.local.getHealth();
+	}
+	
+	public int getRemotePlayerHP(){
+		return this.remote.getHealth();
+	}	
+	
+	
 	/* LOCAL PLAYER ACTIONS */
 	
 	public void localLeftJab() {
