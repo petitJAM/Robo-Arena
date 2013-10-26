@@ -1,10 +1,13 @@
 package edu.rhit.petitjam_coblebj.roboarena;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
 
 public class ArenaActivity extends Activity{
@@ -12,6 +15,14 @@ public class ArenaActivity extends Activity{
 	// Fields
 	private GestureDetector mDetector;
 	private BoxerGame mGame;
+	
+	public TextView l_jab;
+	public TextView l_hook;
+	public TextView l_up;
+	public TextView r_jab;
+	public TextView r_hook;
+	public TextView r_up;
+	public TextView block;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -19,6 +30,31 @@ public class ArenaActivity extends Activity{
 		setContentView(R.layout.arena);
 		
 		mGame = new BoxerGame(this);
+		
+		l_jab = (TextView)findViewById(R.id.l_jab_tv);
+		l_hook = (TextView)findViewById(R.id.l_hook_tv);
+		l_up = (TextView)findViewById(R.id.l_up_tv);
+		r_jab = (TextView)findViewById(R.id.r_jab_tv);
+		r_hook = (TextView)findViewById(R.id.r_hook_tv);
+		r_up = (TextView)findViewById(R.id.r_up_tv);
+//		block = (TextView)findViewById(R.id.);
+		
+		final Handler handler = new Handler();
+		final Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				l_jab.setBackgroundColor(Color.WHITE);
+				l_hook.setBackgroundColor(Color.WHITE);
+				l_up.setBackgroundColor(Color.WHITE);
+				r_jab.setBackgroundColor(Color.WHITE);
+				r_hook.setBackgroundColor(Color.WHITE);
+				r_up.setBackgroundColor(Color.WHITE);
+				
+				handler.postDelayed(this, 2000);
+			}
+		};
+		
+		handler.postDelayed(r, 2000);
 		
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
 		
