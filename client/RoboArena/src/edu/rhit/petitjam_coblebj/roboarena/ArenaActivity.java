@@ -119,6 +119,7 @@ public class ArenaActivity extends Activity{
 					
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "right uppercut");
+						mGame.localRightUppercut();
 					} 
 					else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");

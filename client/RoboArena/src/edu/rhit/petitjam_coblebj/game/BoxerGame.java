@@ -239,7 +239,7 @@ public class BoxerGame {
 	
 	public void remoteRightUppercut() {
 		if (remote.getActionsAllowed()) {
-			Log.d(BG_R, "Remote Righ Uppercut");
+			Log.d(BG_R, "Remote Right Uppercut");
 			 // Tell gameView to update with a Ljab
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
