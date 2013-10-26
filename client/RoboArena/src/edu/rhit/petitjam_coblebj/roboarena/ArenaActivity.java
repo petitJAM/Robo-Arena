@@ -23,11 +23,13 @@ public class ArenaActivity extends Activity{
 	public TextView r_hook;
 	public TextView r_up;
 	public TextView block;
+	public TextView player1_hp_textview;
+	public TextView player2_hp_textview;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.arena);
+		setContentView(R.layout.arena);	
 		
 		mGame = new BoxerGame(this);
 		
@@ -38,6 +40,9 @@ public class ArenaActivity extends Activity{
 		r_hook = (TextView)findViewById(R.id.r_hook_tv);
 		r_up = (TextView)findViewById(R.id.r_up_tv);
 //		block = (TextView)findViewById(R.id.);
+		
+		player1_hp_textview = (TextView)findViewById(R.id.player1_hp);
+		player2_hp_textview = (TextView)findViewById(R.id.player2_hp);
 		
 		final Handler handler = new Handler();
 		final Runnable r = new Runnable() {
@@ -79,7 +84,7 @@ public class ArenaActivity extends Activity{
 		private static final int SWIPE_MIN_VELOCITY = 100;
 		private static final int SWIPE_MAX_OFF_PATH = 100;
 		private static final int SWIPE_MIN_DISTANCE = 100;
-		
+				
 		/*
 		 * Handles Jabs 
 		 */

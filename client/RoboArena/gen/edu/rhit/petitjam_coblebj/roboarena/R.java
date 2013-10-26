@@ -46,60 +46,62 @@ public final class R {
         public static final int blocked_hits_line=0x7f09000b;
         public static final int blocked_hits_value=0x7f09000d;
         public static final int cancel_button=0x7f09001e;
-        public static final int create_password=0x7f090031;
-        public static final int create_player_game_button=0x7f09002f;
-        public static final int create_room_name=0x7f090030;
+        public static final int create_password=0x7f090033;
+        public static final int create_player_game_button=0x7f090031;
+        public static final int create_room_name=0x7f090032;
         public static final int date=0x7f09000f;
-        public static final int difficulty_bar=0x7f09002b;
+        public static final int difficulty_bar=0x7f09002d;
         public static final int done_button=0x7f090011;
-        public static final int easy_text=0x7f09002d;
+        public static final int easy_text=0x7f09002f;
         public static final int exit_button=0x7f090004;
         public static final int glove_color=0x7f090016;
         public static final int glove_color_spinner=0x7f090017;
-        public static final int hard_text=0x7f09002e;
-        public static final int join_button=0x7f090036;
-        public static final int join_password=0x7f090033;
-        public static final int join_player_game_button=0x7f090034;
-        public static final int join_room_name=0x7f090032;
+        public static final int hard_text=0x7f090030;
+        public static final int join_button=0x7f090038;
+        public static final int join_password=0x7f090035;
+        public static final int join_player_game_button=0x7f090036;
+        public static final int join_room_name=0x7f090034;
         public static final int l_hook_tv=0x7f090025;
         public static final int l_jab_tv=0x7f090024;
         public static final int l_up_tv=0x7f090026;
         public static final int left_glove=0x7f090022;
         public static final int list_view=0x7f090013;
-        public static final int locker_room_title=0x7f090039;
+        public static final int locker_room_title=0x7f09003b;
         public static final int match_details_container=0x7f090014;
         public static final int match_history_button=0x7f090002;
         public static final int match_history_title=0x7f090012;
         public static final int match_stats_table_layout=0x7f090007;
-        public static final int medium_text=0x7f09002c;
+        public static final int medium_text=0x7f09002e;
         public static final int music=0x7f09001a;
         public static final int music_seekbar=0x7f09001b;
-        public static final int opponent=0x7f09003c;
+        public static final int opponent=0x7f09003e;
         public static final int opponent_boxer=0x7f090021;
         public static final int opponent_name=0x7f09000e;
         public static final int outcome=0x7f090010;
-        public static final int password=0x7f090038;
-        public static final int player1=0x7f09003e;
-        public static final int player2=0x7f09003d;
+        public static final int password=0x7f09003a;
+        public static final int player1=0x7f090040;
+        public static final int player1_hp=0x7f09002a;
+        public static final int player2=0x7f09003f;
+        public static final int player2_hp=0x7f09002b;
         public static final int player_vs_ai_button=0x7f090006;
         public static final int player_vs_player_button=0x7f090005;
         public static final int r_hook_tv=0x7f090028;
         public static final int r_jab_tv=0x7f090027;
         public static final int r_up_tv=0x7f090029;
-        public static final int ready_button=0x7f09003b;
+        public static final int ready_button=0x7f09003d;
         public static final int right_glove=0x7f090023;
-        public static final int room_name=0x7f090037;
+        public static final int room_name=0x7f090039;
         public static final int save_button=0x7f09001f;
         public static final int settings_button=0x7f090003;
         public static final int sound=0x7f090018;
         public static final int sound_seekbar=0x7f090019;
-        public static final int spec_title=0x7f090035;
+        public static final int spec_title=0x7f090037;
         public static final int spectate_button=0x7f090001;
-        public static final int start_box_button=0x7f09002a;
+        public static final int start_box_button=0x7f09002c;
         public static final int successful_hits=0x7f090009;
         public static final int successful_hits_line=0x7f090008;
         public static final int successful_hits_value=0x7f09000a;
-        public static final int textView6=0x7f09003a;
+        public static final int textView6=0x7f09003c;
         public static final int title=0x7f090000;
         public static final int username=0x7f09001c;
         public static final int username_edit_text=0x7f09001d;
@@ -122,67 +124,68 @@ public final class R {
         /**  Arenas 
          */
         public static final int arena_title=0x7f070013;
-        public static final int blocked_hits=0x7f070027;
+        public static final int blocked_hits=0x7f070028;
         public static final int box=0x7f070012;
         /**  Computer difficulty 
          */
         public static final int computer_difficulty_title=0x7f07000e;
-        public static final int connected=0x7f070019;
-        public static final int create=0x7f07001e;
-        public static final int default_date=0x7f07002b;
-        public static final int default_opponent_name=0x7f07002a;
-        public static final int default_score=0x7f07002e;
-        public static final int done=0x7f07002d;
+        public static final int connected=0x7f07001a;
+        public static final int create=0x7f07001f;
+        public static final int default_date=0x7f07002c;
+        public static final int default_opponent_name=0x7f07002b;
+        public static final int default_score=0x7f07002f;
+        public static final int done=0x7f07002e;
         public static final int easy=0x7f07000f;
         public static final int exit=0x7f070007;
         public static final int hard=0x7f070011;
-        public static final int join=0x7f07001f;
+        public static final int join=0x7f070020;
         /**  Locker room 
          */
-        public static final int locker_room=0x7f070015;
-        public static final int lose=0x7f070029;
+        public static final int locker_room=0x7f070016;
+        public static final int lose=0x7f07002a;
         public static final int main_menu_title=0x7f07000b;
         public static final int match_details_title=0x7f07000d;
         public static final int match_history=0x7f070005;
         /**  Titles 
          */
         public static final int match_history_title=0x7f07000a;
+        public static final int max_health=0x7f070015;
         public static final int medium=0x7f070010;
-        public static final int password=0x7f07001d;
-        public static final int player1=0x7f070016;
-        public static final int player2=0x7f070017;
+        public static final int password=0x7f07001e;
+        public static final int player1=0x7f070017;
+        public static final int player2=0x7f070018;
         public static final int player_vs_ai=0x7f070008;
         public static final int player_vs_player=0x7f070009;
-        public static final int ready=0x7f07001a;
-        public static final int room_name=0x7f07001c;
+        public static final int ready=0x7f07001b;
+        public static final int room_name=0x7f07001d;
         public static final int settings=0x7f070006;
         /**  Settings 
          */
-        public static final int settings_glove_color=0x7f070020;
-        public static final int settings_music=0x7f070022;
-        public static final int settings_save=0x7f070025;
-        public static final int settings_sound=0x7f070021;
+        public static final int settings_glove_color=0x7f070021;
+        public static final int settings_music=0x7f070023;
+        public static final int settings_save=0x7f070026;
+        public static final int settings_sound=0x7f070022;
         public static final int settings_title=0x7f07000c;
-        public static final int settings_username=0x7f070023;
-        public static final int settings_username_hint=0x7f070024;
-        public static final int spec1=0x7f070018;
+        public static final int settings_username=0x7f070024;
+        public static final int settings_username_hint=0x7f070025;
+        public static final int spec1=0x7f070019;
         /**  Main Menu Buttons 
          */
         public static final int spectate=0x7f070004;
         public static final int spectator_arena_title=0x7f070014;
         /**  Stats 
          */
-        public static final int successful_hits=0x7f070026;
-        public static final int table_row=0x7f07002c;
+        public static final int successful_hits=0x7f070027;
+        public static final int table_row=0x7f07002d;
         public static final int title_activity_match_details=0x7f070002;
         public static final int title_activity_match_history=0x7f070001;
         public static final int title_activity_settings=0x7f070003;
         /**  Locate matches 
          */
-        public static final int vs_player=0x7f07001b;
+        public static final int vs_player=0x7f07001c;
         /**  Misc 
          */
-        public static final int win=0x7f070028;
+        public static final int win=0x7f070029;
     }
     public static final class style {
         /** 

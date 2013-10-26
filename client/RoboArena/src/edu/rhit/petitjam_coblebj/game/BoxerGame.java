@@ -3,6 +3,7 @@ package edu.rhit.petitjam_coblebj.game;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
 
 public class BoxerGame {
@@ -27,9 +28,13 @@ public class BoxerGame {
 	private static final int UPPERCUT_COOLDOWN = 2000;
 	
 	// private GameView gview;
+	private static TextView player1_hp_textview;
+	private static TextView player2_hp_textview;
 	
 	public BoxerGame(Context context) {
 		mArena = (ArenaActivity)context;
+		player1_hp_textview = mArena.player1_hp_textview;
+		player2_hp_textview = mArena.player2_hp_textview;
 		
 		local = new LocalPlayer();
 		remote = new ComputerPlayer(this);
@@ -66,6 +71,13 @@ public class BoxerGame {
 //		Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
 	}
 	
+	public void updateHealth(){
+		int p1hp = this.local.getHealth();
+		int p2hp = this.remote.getHealth();
+		player1_hp_textview.setText(Integer.toString(p1hp));
+		player2_hp_textview.setText(Integer.toString(p2hp));
+	}	
+	
 	/* LOCAL PLAYER ACTIONS */
 	
 	public void localLeftJab() {
@@ -79,6 +91,7 @@ public class BoxerGame {
 				 remote.decrementHealth(JAB_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(JAB_COOLDOWN);
 		 }
@@ -95,6 +108,7 @@ public class BoxerGame {
 				 remote.decrementHealth(JAB_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(JAB_COOLDOWN);
 		 }
@@ -111,6 +125,7 @@ public class BoxerGame {
 				 remote.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(HOOK_COOLDOWN);
 		 }
@@ -127,6 +142,7 @@ public class BoxerGame {
 				 remote.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
 				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(HOOK_COOLDOWN);
 		 }
@@ -142,6 +158,8 @@ public class BoxerGame {
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
@@ -157,6 +175,8 @@ public class BoxerGame {
 			 if(!remote.isBlocking()){
 				 remote.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
 			 local.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
@@ -179,8 +199,9 @@ public class BoxerGame {
 			 if(!local.isBlocking()){
 				 local.decrementHealth(JAB_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(JAB_COOLDOWN);
 		 }
 	}
@@ -192,8 +213,9 @@ public class BoxerGame {
 			 if(!local.isBlocking()){
 				 local.decrementHealth(JAB_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(JAB_COOLDOWN);
 		 }
 	}
@@ -205,8 +227,9 @@ public class BoxerGame {
 			 if(!local.isBlocking()){
 				 local.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(HOOK_COOLDOWN);
 		 }
 	} 
@@ -218,8 +241,9 @@ public class BoxerGame {
 			 if(!local.isBlocking()){
 				 local.decrementHealth(HOOK_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(HOOK_COOLDOWN);
 		 }
 	}
@@ -231,8 +255,9 @@ public class BoxerGame {
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
 	}
@@ -244,8 +269,9 @@ public class BoxerGame {
 			 if(!local.isBlocking()){
 				 local.decrementHealth(UPPERCUT_DMG);
 				 // update remote player health bar
+				 printHealth();
+				 updateHealth();
 			 }
-			 printHealth();
 			 remote.startActionDelay(UPPERCUT_COOLDOWN);
 		 }
 	}
