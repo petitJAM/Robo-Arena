@@ -10,6 +10,7 @@ public class ComputerPlayer extends RemotePlayer {
 	public static final int COMPUTER_PLAYER_DIFFICULTY_EASY = 0;
 	public static final int COMPUTER_PLAYER_DIFFICULTY_MEDIUM = 1;
 	public static final int COMPUTER_PLAYER_DIFFICULTY_HARD = 2;
+	public static final String KEY_COMPUTER_DIFFICULTY = "key_computer_difficulty";
 
 	private BoxerGame mGame;
 	

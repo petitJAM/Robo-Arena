@@ -10,10 +10,9 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
+import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
 public class ComputerDifficultyActivity extends Activity {
-
-	public static final String KEY_COMPUTER_DIFFICULTY = "key_computer_difficulty";
 
 	// Fields
 	private SeekBar difficulty_bar;
@@ -57,7 +56,7 @@ public class ComputerDifficultyActivity extends Activity {
 				
 				Intent lockerRoomIntent = new Intent(ComputerDifficultyActivity.this, LockerRoomActivity.class);
 				lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, ArenaActivity.GAME_MODE_COMPUTER);
-				lockerRoomIntent.putExtra(KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
+				lockerRoomIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
 				startActivity(lockerRoomIntent);
 			}
 		});

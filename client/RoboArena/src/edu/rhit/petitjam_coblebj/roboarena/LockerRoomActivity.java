@@ -19,7 +19,7 @@ public class LockerRoomActivity extends Activity {
 		setContentView(R.layout.locker_room);
 
 		final int gameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE, ArenaActivity.GAME_MODE_COMPUTER);
-		final int computerDifficulty = getIntent().getIntExtra(ComputerDifficultyActivity.KEY_COMPUTER_DIFFICULTY,
+		final int computerDifficulty = getIntent().getIntExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY,
 				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
 
 		Button ready_button = (Button)findViewById(R.id.ready_button);
@@ -31,7 +31,7 @@ public class LockerRoomActivity extends Activity {
 				arenaIntent.putExtra(ArenaActivity.KEY_GAME_MODE, gameMode);
 
 				if (gameMode == ArenaActivity.GAME_MODE_COMPUTER) {
-					arenaIntent.putExtra(ComputerDifficultyActivity.KEY_COMPUTER_DIFFICULTY, computerDifficulty);
+					arenaIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, computerDifficulty);
 				}
 
 				Log.d(MainMenuActivity.RA, "Starting new arena with game mode " + gameMode + " and difficulty "
