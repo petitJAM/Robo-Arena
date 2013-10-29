@@ -18,8 +18,8 @@ public abstract class Player {
 	public static final int ACTION_BLOCK = 6;
 
 	public Player() {
-		health = 1000;
-		leftActionsAllowed = true;
+		health = 100;
+		leftActionsAllowed = true; 
 		rightActionsAllowed = true;
 	}
 

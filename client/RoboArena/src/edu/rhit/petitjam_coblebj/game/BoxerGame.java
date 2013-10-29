@@ -76,6 +76,8 @@ public class BoxerGame {
 		int p2hp = this.remote.getHealth();
 		player1_hp_textview.setText(Integer.toString(p1hp));
 		player2_hp_textview.setText(Integer.toString(p2hp));
+		
+		// if either player < 0, end game
 	}	
 	
 	/* LOCAL PLAYER ACTIONS */

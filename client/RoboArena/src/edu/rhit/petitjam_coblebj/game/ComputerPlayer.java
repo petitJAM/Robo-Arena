@@ -15,7 +15,7 @@ public class ComputerPlayer extends RemotePlayer {
 	
 	public ComputerPlayer(BoxerGame game) {
 		super();
-		mGame = game;
+		mGame = game; 
 	}
 
 	@Override

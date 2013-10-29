@@ -30,7 +30,7 @@
     <!-- Arenas -->
     <string name="arena_title">Player 1 Vs. Opponent</string>
     <string name="spectator_arena_title">Player 1 Vs. Player 2</string>
-    <string name="max_health">1000</string>
+    <string name="max_health">100</string>
     
     <!-- Locker room -->
     <string name="locker_room">Locker Room</string>
