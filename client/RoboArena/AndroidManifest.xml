@@ -29,7 +29,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="edu.rhit.petitjam_coblebj.roboarena.computerDifficultyActivity"
+            android:name="edu.rhit.petitjam_coblebj.roboarena.ComputerDifficultyActivity"
             android:label="@string/computer_difficulty_title"
             android:screenOrientation="landscape" >
         </activity>

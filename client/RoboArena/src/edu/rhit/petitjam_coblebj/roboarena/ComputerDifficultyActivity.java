@@ -10,7 +10,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 
-public class computerDifficultyActivity extends Activity {
+public class ComputerDifficultyActivity extends Activity {
 
 	// Fields
 	private SeekBar difficulty_bar;
@@ -28,7 +28,7 @@ public class computerDifficultyActivity extends Activity {
 			int progressChanged = 0;
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				Toast.makeText(computerDifficultyActivity.this, "Delta change: "+progressChanged, Toast.LENGTH_SHORT).show();				
+				Toast.makeText(ComputerDifficultyActivity.this, "Delta change: "+progressChanged, Toast.LENGTH_SHORT).show();				
 			}
 			
 			@Override
@@ -51,7 +51,7 @@ public class computerDifficultyActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent arenaIntent = new Intent(computerDifficultyActivity.this, ArenaActivity.class);
+				Intent arenaIntent = new Intent(ComputerDifficultyActivity.this, ArenaActivity.class);
 				startActivity(arenaIntent);
 			}
 		});

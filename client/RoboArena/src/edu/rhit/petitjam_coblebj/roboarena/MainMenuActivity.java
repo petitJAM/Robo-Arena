@@ -28,7 +28,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.player_vs_ai_button: // Layout and navigation is done, but functionality needs to be added
 			Log.d(RA, "Player vs AI");
-			Intent computerDifficultyIntent = new Intent(this, computerDifficultyActivity.class);
+			Intent computerDifficultyIntent = new Intent(this, ComputerDifficultyActivity.class);
 			startActivity(computerDifficultyIntent);
 			break;
 			
