@@ -39,7 +39,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="edu.rhit.petitjam_coblebj.roboarena.LocatePlayerActivity"
+            android:name="edu.rhit.petitjam_coblebj.roboarena.PVPLobbyActivity"
             android:label="@string/vs_player"
             android:screenOrientation="landscape" >
         </activity>

@@ -10,11 +10,16 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
 
-public class ArenaActivity extends Activity{
+public class ArenaActivity extends Activity {
 
 	// Fields
 	private GestureDetector mDetector;
 	private BoxerGame mGame;
+	
+
+	public static final String KEY_GAME_MODE = "key_game_mode";
+	public static final int GAME_MODE_HUMAN = 0;
+	public static final int GAME_MODE_COMPUTER = 1;
 	
 	public TextView l_jab;
 	public TextView l_hook;

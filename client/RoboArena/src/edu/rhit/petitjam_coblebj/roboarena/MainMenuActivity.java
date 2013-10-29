@@ -34,7 +34,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			
 		case R.id.player_vs_player_button: // Layout and navigation is done, but functionality needs to be added
 			Log.d(RA, "Player vs Player");
-			Intent locatePlayerIntent = new Intent(this, LocatePlayerActivity.class);
+			Intent locatePlayerIntent = new Intent(this, PVPLobbyActivity.class);
 			startActivity(locatePlayerIntent);
 			break;
 			
