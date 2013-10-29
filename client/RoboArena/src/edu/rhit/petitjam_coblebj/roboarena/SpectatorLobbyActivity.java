@@ -7,20 +7,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class LocateSpectatorActivity extends Activity{
+public class SpectatorLobbyActivity extends Activity{
 
 	// Fields
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.locate_spectator_game);
+		setContentView(R.layout.spectator_lobby);
 		
 		Button join_button = (Button)findViewById(R.id.join_button);
 		join_button.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Intent spectatorArenaIntent = new Intent(LocateSpectatorActivity.this, SpectatorArenaActivity.class);
+				Intent spectatorArenaIntent = new Intent(SpectatorLobbyActivity.this, SpectatorArenaActivity.class);
 				startActivity(spectatorArenaIntent);				
 			}
 		});

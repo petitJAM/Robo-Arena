@@ -40,7 +40,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			
 		case R.id.spectate_button: // Layout and navigation is done, but functionality needs to be added
 			Log.d(RA, "Spectate");
-			Intent locateSpectatorIntent = new Intent(this, LocateSpectatorActivity.class);
+			Intent locateSpectatorIntent = new Intent(this, SpectatorLobbyActivity.class);
 			startActivity(locateSpectatorIntent);
 			break;
 			

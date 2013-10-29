@@ -44,7 +44,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name="edu.rhit.petitjam_coblebj.roboarena.LocateSpectatorActivity"
+            android:name="edu.rhit.petitjam_coblebj.roboarena.SpectatorLobbyActivity"
             android:label="@string/spectate"
             android:screenOrientation="landscape" >
         </activity>
