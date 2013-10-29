@@ -5,6 +5,9 @@
     <string name="title_activity_match_history">Match History</string>
     <string name="title_activity_match_details">Match Details</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    
+    <!-- Firebase -->
+    <string name="roboarena_firebase_url">robo-arena.firebaseIO.com</string>
 
     <!-- Main Menu Buttons -->
     <string name="spectate">Spectate</string>
