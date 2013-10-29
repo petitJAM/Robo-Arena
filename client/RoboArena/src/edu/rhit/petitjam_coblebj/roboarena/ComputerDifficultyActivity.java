@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
+import edu.rhit.petitjam_coblebj.game.BoxerGame;
 import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
 public class ComputerDifficultyActivity extends Activity {
@@ -29,6 +30,7 @@ public class ComputerDifficultyActivity extends Activity {
 		selectedDifficulty = difficulty_bar.getProgress();
 
 		difficulty_bar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			
 			// TODO - finish the correct logic for this function
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
@@ -55,7 +57,7 @@ public class ComputerDifficultyActivity extends Activity {
 				Log.d(MainMenuActivity.RA, "Starting locker room from computer difficulty with " + selectedDifficulty);
 				
 				Intent lockerRoomIntent = new Intent(ComputerDifficultyActivity.this, LockerRoomActivity.class);
-				lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, ArenaActivity.GAME_MODE_COMPUTER);
+				lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
 				lockerRoomIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
 				startActivity(lockerRoomIntent);
 			}

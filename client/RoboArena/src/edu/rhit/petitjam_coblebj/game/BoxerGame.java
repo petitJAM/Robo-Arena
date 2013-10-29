@@ -7,6 +7,9 @@ import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
 
 public class BoxerGame {
+
+	public static final int GAME_MODE_HUMAN = 0;
+	public static final int GAME_MODE_COMPUTER = 1;
 	
 	private static final String BG = "BG";
 	private static final String BG_L = "BG_L";
@@ -22,6 +25,8 @@ public class BoxerGame {
 	private static final int JAB_DMG = 1;
 	private static final int HOOK_DMG = 2;
 	private static final int UPPERCUT_DMG = 3;
+	
+	// Cooldowns for each punch
 	private static final int BLOCKING_COOLDOWN = 1000; 
 	private static final int JAB_COOLDOWN = 1000;
 	private static final int HOOK_COOLDOWN = 1200;
@@ -31,13 +36,36 @@ public class BoxerGame {
 	private static TextView player1_hp_textview;
 	private static TextView player2_hp_textview;
 	
-	public BoxerGame(Context context) {
+	public BoxerGame(Context context, int gameMode) {
 		mArena = (ArenaActivity)context;
+		
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
 		
 		local = new LocalPlayer();
-		remote = new ComputerPlayer(this);
+		
+		if (gameMode == GAME_MODE_COMPUTER) {
+			remote = new ComputerPlayer(this, ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
+		} else {
+			// TODO: Pass whatever params are needed
+			remote = new HumanPlayer();
+		}
+	}
+	
+	public BoxerGame(Context context, int gameMode, int computerDifficulty) {
+		mArena = (ArenaActivity)context;
+		
+		player1_hp_textview = mArena.player1_hp_textview;
+		player2_hp_textview = mArena.player2_hp_textview;
+		
+		local = new LocalPlayer();
+		
+		if (gameMode == GAME_MODE_COMPUTER) {
+			remote = new ComputerPlayer(this, computerDifficulty);
+		} else {
+			// TODO: Pass whatever params are needed
+			remote = new HumanPlayer();
+		}
 	}
 
 	public void startGame() {
@@ -50,7 +78,8 @@ public class BoxerGame {
 		if(pvp){
 			this.remote = new HumanPlayer();
 		} else {
-			this.remote = new ComputerPlayer();
+			// TODO: Fix this hardcoded Difficulty Easy
+			this.remote = new ComputerPlayer(this, ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
 		}
 	}
 

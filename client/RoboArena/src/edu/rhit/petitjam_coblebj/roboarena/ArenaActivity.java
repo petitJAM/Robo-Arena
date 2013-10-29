@@ -13,13 +13,11 @@ import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
 public class ArenaActivity extends Activity {
 
+	public static final String KEY_GAME_MODE = "key_game_mode";
+	
 	// Fields
 	private GestureDetector mDetector;
 	private BoxerGame mGame;
-
-	public static final String KEY_GAME_MODE = "key_game_mode";
-	public static final int GAME_MODE_HUMAN = 0;
-	public static final int GAME_MODE_COMPUTER = 1;
 
 	public TextView l_jab;
 	public TextView l_hook;
@@ -49,11 +47,11 @@ public class ArenaActivity extends Activity {
 		player1_hp_textview = (TextView)findViewById(R.id.player1_hp);
 		player2_hp_textview = (TextView)findViewById(R.id.player2_hp);
 
-		int gameMode = getIntent().getIntExtra(KEY_GAME_MODE, GAME_MODE_COMPUTER);
+		int gameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
 		int computerDifficulty = getIntent().getIntExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY,
 				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
 
-		mGame = new BoxerGame(this);
+		mGame = new BoxerGame(this, gameMode, computerDifficulty);
 
 		final Handler handler = new Handler();
 		final Runnable r = new Runnable() {

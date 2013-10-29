@@ -13,14 +13,12 @@ public class ComputerPlayer extends RemotePlayer {
 	public static final String KEY_COMPUTER_DIFFICULTY = "key_computer_difficulty";
 
 	private BoxerGame mGame;
+	private int mDifficulty;
 	
-	public ComputerPlayer() {
+	public ComputerPlayer(BoxerGame game, int difficulty) {
 		super();
-	}
-	
-	public ComputerPlayer(BoxerGame game) {
-		super();
-		mGame = game; 
+		mGame = game;
+		mDifficulty = difficulty; 
 	}
 
 	@Override
