@@ -64,10 +64,11 @@ public class ComputerPlayer extends RemotePlayer {
 			
 			Random gen = new Random();
 			
+			// TODO: Do left and right actions separately.
 			while (true) {
 				int next = gen.nextInt() % NUMBER_OF_ACTIONS; // number of actions
 				publishProgress(new Integer[] { next });
-				SystemClock.sleep(3000);
+				SystemClock.sleep((3 - mDifficulty) * 1000); // time between throws is different by level
 			}
 		}
 		

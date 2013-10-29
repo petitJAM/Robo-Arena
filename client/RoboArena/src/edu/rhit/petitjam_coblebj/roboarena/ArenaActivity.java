@@ -92,7 +92,6 @@ public class ArenaActivity extends Activity {
 		/* Constants for gesture swipe restrictions */
 		private static final int SWIPE_MIN_VELOCITY = 100;
 		private static final int SWIPE_MAX_OFF_PATH = 100;
-		private static final int SWIPE_MIN_DISTANCE = 100;
 
 		/*
 		 * Handles Jabs
@@ -100,7 +99,6 @@ public class ArenaActivity extends Activity {
 		@Override
 		public boolean onSingleTapUp(MotionEvent e) {
 			float x = e.getX();
-			float y = e.getY();
 
 			if (x >= CENTER_X) {
 				Log.d(PGL, "right jab");

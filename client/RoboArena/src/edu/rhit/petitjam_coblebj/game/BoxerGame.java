@@ -11,7 +11,7 @@ public class BoxerGame {
 	public static final int GAME_MODE_HUMAN = 0;
 	public static final int GAME_MODE_COMPUTER = 1;
 	
-	private static final String BG = "BG";
+//	private static final String BG = "BG";
 	private static final String BG_L = "BG_L";
 	private static final String BG_R = "BG_R";
 	
@@ -28,9 +28,9 @@ public class BoxerGame {
 	
 	// Cooldowns for each punch
 	private static final int BLOCKING_COOLDOWN = 1000; 
-	private static final int JAB_COOLDOWN = 1000;
-	private static final int HOOK_COOLDOWN = 1200;
-	private static final int UPPERCUT_COOLDOWN = 2000;
+	private static final int JAB_COOLDOWN = 300;
+	private static final int HOOK_COOLDOWN = 600;
+	private static final int UPPERCUT_COOLDOWN = 900;
 	
 	// private GameView gview;
 	private static TextView player1_hp_textview;

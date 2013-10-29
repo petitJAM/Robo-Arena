@@ -18,6 +18,7 @@ public abstract class Player {
 	public static final int ACTION_BLOCK = 6;
 
 	public Player() {
+		// TODO: Initial sync with Firebase
 		health = 100;
 		leftActionsAllowed = true; 
 		rightActionsAllowed = true;
@@ -28,14 +29,17 @@ public abstract class Player {
 	}
 
 	public void setHealth(int health) {
+		// TODO: Sync with Firebase
 		this.health = health;
 	}
 
 	public void decrementHealth(int damage) {
+		// TODO: Sync with Firebase
 		this.health -= damage;
 	}
 
 	public void incrementHealth(int restoredAmount) {
+		// TODO: Sync with Firebase
 		this.health += restoredAmount;
 	}
 
@@ -52,6 +56,7 @@ public abstract class Player {
 	}
 
 	public void setBlocking(boolean b) {
+		// TODO: Sync with Firebase
 		this.blocking = b;
 	}
 
@@ -63,6 +68,7 @@ public abstract class Player {
 
 			@Override
 			public void run() {
+				// TODO: Sync with Firebase
 				leftActionsAllowed = true;
 				blocking = false;
 			}
@@ -78,6 +84,7 @@ public abstract class Player {
 
 			@Override
 			public void run() {
+				// TODO: Sync with Firebase
 				rightActionsAllowed = true;
 				blocking = false;
 			}
