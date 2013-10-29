@@ -9,8 +9,8 @@
 *.class
 
 # generated files
-client/RoboArena/bin/
-client/RoboArena/gen/
+client/RoboArena/bin/*
+client/RoboArena/gen/*
 
 # Local configuration file (sdk path, etc)
 local.properties
