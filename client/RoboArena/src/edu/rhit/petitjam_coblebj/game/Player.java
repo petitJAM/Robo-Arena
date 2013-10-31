@@ -1,5 +1,7 @@
 package edu.rhit.petitjam_coblebj.game;
 
+import com.firebase.client.Firebase;
+
 import android.os.Handler;
 
 public abstract class Player {
@@ -19,8 +21,10 @@ public abstract class Player {
 
 	public Player() {
 		// TODO: Initial sync with Firebase
+		FirebaseIOHandler fb = new PVPFirebaseIOHandler("game0", "player_id_1");
+
 		health = 100;
-		leftActionsAllowed = true; 
+		leftActionsAllowed = true;
 		rightActionsAllowed = true;
 	}
 
@@ -46,7 +50,7 @@ public abstract class Player {
 	public boolean getLeftActionsAllowed() {
 		return leftActionsAllowed;
 	}
-	
+
 	public boolean getRightActionsAllowed() {
 		return rightActionsAllowed;
 	}
@@ -75,7 +79,7 @@ public abstract class Player {
 
 		}, timeInMillis);
 	}
-	
+
 	public void startRightActionDelay(int timeInMillis) {
 		rightActionsAllowed = false;
 
@@ -90,5 +94,111 @@ public abstract class Player {
 			}
 
 		}, timeInMillis);
+	}
+	
+	private interface FirebaseIOHandler {
+		public void setHealth(int health);
+		public void setLeftActionsAllowed(boolean allowed);
+		public void setRightActionsAllowed(boolean allowed);
+		
+		/*
+		 * Increment the action counters
+		 */
+		public void incrementLeftJab();
+		public void incrementLeftHook();
+		public void incrementLeftUppercut();
+		public void incrementRightJab();
+		public void incrementRightHook();
+		public void incrementRightUppercut();
+		public void incrementBlock();
+	}
+
+	private class PVPFirebaseIOHandler implements FirebaseIOHandler {
+		private Firebase f;
+		private String mGameId;
+		private String mPlayerId;
+
+		public PVPFirebaseIOHandler(String gameId, String playerId) {
+			mGameId = gameId;
+			mPlayerId = playerId;
+		}
+
+		@Override
+		public void setHealth(int health) {
+		}
+
+		@Override
+		public void setLeftActionsAllowed(boolean allowed) {
+		}
+
+		@Override
+		public void setRightActionsAllowed(boolean allowed) {
+		}
+
+		@Override
+		public void incrementLeftJab() {
+		}
+
+		@Override
+		public void incrementLeftHook() {
+		}
+
+		@Override
+		public void incrementLeftUppercut() {
+		}
+
+		@Override
+		public void incrementRightJab() {
+		}
+
+		@Override
+		public void incrementRightHook() {
+		}
+
+		@Override
+		public void incrementRightUppercut() {			
+		}
+
+		@Override
+		public void incrementBlock() {
+		}
+	}
+
+	/*
+	 * Absorbs calls to sync with firebase.  Used when playing local vs AI.
+	 */
+	private class NullFirebaseIOHandler implements FirebaseIOHandler {
+
+		public NullFirebaseIOHandler() {}
+
+		@Override
+		public void setHealth(int health) {}
+
+		@Override
+		public void setLeftActionsAllowed(boolean allowed) {}
+
+		@Override
+		public void setRightActionsAllowed(boolean allowed) {}
+
+		@Override
+		public void incrementLeftJab() {}
+
+		@Override
+		public void incrementLeftHook() {}
+
+		@Override
+		public void incrementLeftUppercut() {}
+
+		@Override
+		public void incrementRightJab() {}
+
+		@Override
+		public void incrementRightHook() {}
+
+		@Override
+		public void incrementRightUppercut() {}
+
+		@Override
+		public void incrementBlock() {}
 	}
 }
