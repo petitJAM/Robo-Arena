@@ -33,7 +33,7 @@ public class ArenaActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.arena);
+		setContentView(R.layout.activity_arena);
 
 		/* TEMP TEXTVIEWS */
 		l_jab = (TextView)findViewById(R.id.l_jab_tv);

@@ -14,7 +14,7 @@ public class SpectatorLobbyActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.spectator_lobby);
+		setContentView(R.layout.activity_spectator_lobby);
 		
 		Button join_button = (Button)findViewById(R.id.join_button);
 		join_button.setOnClickListener(new OnClickListener(){

@@ -7,19 +7,29 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 
 public class PVPLobbyActivity extends Activity {
 	
 	private Firebase mRef;
+	
+	private EditText mCreateRoomName;
+	private EditText mCreateRoomPassword;
+	private EditText mJoinRoomName;
+	private EditText mJoinRoomPassword;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pvp_lobby);
+		setContentView(R.layout.activity_pvp_lobby);
 		
 		mRef = new Firebase(getString(R.string.roboarena_firebase_games));
+		
+		mCreateRoomName = (EditText)findViewById(R.id.create_room_name);
+		mCreateRoomPassword = (EditText)findViewById(R.id.create_password);
 		
 		Button join_button = (Button)findViewById(R.id.join_player_game_button);
 		Button create_button = (Button)findViewById(R.id.create_player_game_button);
@@ -40,6 +50,8 @@ public class PVPLobbyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				// TODO: Check if chosen name exists
+				
 				// Create new game
 				Firebase gameRef = mRef.child("game17"); // TODO: change to child
 				Log.d("GameSetup", "New game created at " + gameRef.getName());
@@ -59,7 +71,7 @@ public class PVPLobbyActivity extends Activity {
 				// Create player 2
 				Firebase playerTwoRef = gameRef.child(getString(R.string.fb_game_player_id_2));
 				playerTwoRef.child("health").setValue(Integer.valueOf(100));
-				playerOneRef.child("is_connected").setValue(Boolean.FALSE);
+				playerTwoRef.child("is_connected").setValue(Boolean.FALSE);
 				playerTwoRef.child("actions_allowed").setValue(Boolean.FALSE);
 				Log.d("GameSetup", "New player 2 created at " + playerTwoRef.getName());
 				

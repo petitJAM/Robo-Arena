@@ -22,7 +22,7 @@ public class ComputerDifficultyActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.computer_difficulty);
+		setContentView(R.layout.activity_computer_difficulty);
 
 		// Set seekerbar listener
 		difficulty_bar = (SeekBar)findViewById(R.id.difficulty_bar);

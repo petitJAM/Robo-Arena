@@ -14,7 +14,7 @@ public class LockerRoomActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.locker_room);
+		setContentView(R.layout.activity_locker_room);
 
 		Button ready_button = (Button)findViewById(R.id.ready_button);
 		ready_button.setOnClickListener(new OnClickListener() {
