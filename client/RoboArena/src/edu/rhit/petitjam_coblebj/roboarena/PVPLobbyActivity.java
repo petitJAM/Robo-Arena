@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class PVPLobbyActivity extends Activity {
 	private EditText mJoinRoomName;
 	private EditText mJoinRoomPassword;
 
+	private CheckBox mAllowSpectators;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +41,9 @@ public class PVPLobbyActivity extends Activity {
 		mJoinRoomName = (EditText)findViewById(R.id.join_room_name);
 		mJoinRoomPassword = (EditText)findViewById(R.id.join_room_password);
 
+		// Allow Specs Check
+		mAllowSpectators = (CheckBox)findViewById(R.id.allow_spectators_check);
+
 		// Buttons
 		Button join_button = (Button)findViewById(R.id.join_player_game_button);
 		Button create_button = (Button)findViewById(R.id.create_player_game_button);
@@ -50,47 +56,67 @@ public class PVPLobbyActivity extends Activity {
 		 * 
 		 * When we join, player_joiner
 		 * 
-		 * **************************************** 
+		 * ****************************************
 		 */
 
 		join_button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO: check for game existence/valid password/etc
 
 				final String gameName = mJoinRoomName.getText().toString();
 				final String gamePassword = mJoinRoomPassword.getText().toString();
 
 				final Firebase gameRef = mRef.child(gameName);
-				final Firebase passwordRef = gameRef.child(getString(R.string.fb_game_info)).child(
-						getString(R.string.fb_game_info_password));
 
-				passwordRef.addListenerForSingleValueEvent(new ValueEventListener() {
+				gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
 					@Override
 					public void onDataChange(DataSnapshot snap) {
-						String password = (String)snap.getValue();
 
-						if (!password.equals(gamePassword)) {
-							Toast.makeText(PVPLobbyActivity.this, R.string.error_game_password_no_match,
+						if (snap.getValue() == null) {
+							Toast.makeText(PVPLobbyActivity.this, R.string.error_game_does_not_exist,
 									Toast.LENGTH_SHORT).show();
+							mJoinRoomName.setText("");
+							mJoinRoomPassword.setText("");
 							return;
 						}
 
-						gameRef.child(getString(R.string.fb_game_player_joiner))
-								.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.TRUE);
+						final Firebase passwordRef = gameRef.child(getString(R.string.fb_game_info)).child(
+								getString(R.string.fb_game_info_password));
 
-						Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
+						passwordRef.addListenerForSingleValueEvent(new ValueEventListener() {
+							@Override
+							public void onDataChange(DataSnapshot snap) {
+								String password = (String)snap.getValue();
 
-						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRef.getName());
-						lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID,
-								getString(R.string.fb_game_player_joiner));
+								if (!password.equals(gamePassword)) {
+									Toast.makeText(PVPLobbyActivity.this, R.string.error_game_password_no_match,
+											Toast.LENGTH_SHORT).show();
+									mJoinRoomPassword.setText("");
+									return;
+								}
 
-						Log.d(MainMenuActivity.RA, "Starting locker room by JOIN game button");
-						startActivity(lockerRoomIntent);
+								gameRef.child(getString(R.string.fb_game_player_joiner))
+										.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.TRUE);
+
+								Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
+
+								lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRef.getName());
+								lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID,
+										getString(R.string.fb_game_player_joiner));
+
+								Log.d(MainMenuActivity.RA, "Starting locker room by JOIN game button");
+								startActivity(lockerRoomIntent);
+							}
+
+							@Override
+							public void onCancelled() {}
+						});
 					}
 
 					@Override
-					public void onCancelled() {}
+					public void onCancelled() {
+
+					}
 				});
 			}
 		});
@@ -99,30 +125,43 @@ public class PVPLobbyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				// TODO: Check if chosen name exists
-				String gameName = mCreateRoomName.getText().toString();
-				String gamePassword = mCreateRoomPassword.getText().toString();
+				final String gameName = mCreateRoomName.getText().toString();
+				final String gamePassword = mCreateRoomPassword.getText().toString();
+				final boolean allowSpectators = mAllowSpectators.isChecked();
 
-				Log.d(GAME_SETUP, "gameName:" + gameName + ":end");
+				Log.d(GAME_SETUP, "gameName: " + gameName);
+				Log.d(GAME_SETUP, "gamePass: " + gamePassword);
 
 				if (gameName.isEmpty()) {
 					Toast.makeText(PVPLobbyActivity.this, R.string.error_game_name_empty, Toast.LENGTH_SHORT).show();
 					return;
 				}
 
-				// TODO: Test if name exists
-				// if (false) {
-				// Toast.makeText(PVPLobbyActivity.this, getString(R.string.error_game_name_exists), Toast.LENGTH_SHORT).show();
-				// return;
-				// }
+				final Firebase gameRef = mRef.child(gameName);
 
-				String gameRefName = createNewGame(gameName, gamePassword, true); // TODO: get allowSpectators from user
+				gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+					@Override
+					public void onDataChange(DataSnapshot snap) {
+						if (snap.getValue() != null) {
+							Toast.makeText(PVPLobbyActivity.this, R.string.error_game_name_exists, Toast.LENGTH_SHORT)
+									.show();
+							mCreateRoomName.setText("");
+							mCreateRoomPassword.setText("");
+							return;
+						}
 
-				Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
-				lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRefName);
+						String gameRefName = createNewGame(gameName, gamePassword, allowSpectators);
 
-				Log.d(MainMenuActivity.RA, "Starting locker room by CREATE game button");
-				startActivity(lockerRoomIntent);
+						Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
+						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRefName);
+
+						Log.d(MainMenuActivity.RA, "Starting locker room by CREATE game button");
+						startActivity(lockerRoomIntent);
+					}
+
+					@Override
+					public void onCancelled() {}
+				});
 			}
 		});
 	}

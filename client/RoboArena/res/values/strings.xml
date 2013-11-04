@@ -30,6 +30,12 @@
     <string name="fb_game_player_right_hook">right_hook</string>
     <string name="fb_game_player_right_uppercut">right_uppercut</string>
     
+    <!-- Errors -->
+    <string name="error_game_name_empty">Enter a game name</string>
+    <string name="error_game_name_exists">Game name is taken, choose another!</string>
+    <string name="error_game_password_no_match">Password incorrect!</string>
+    <string name="error_game_does_not_exist">Game doesn\'t exists, try again</string>
+    
     <!-- Main Menu Buttons -->
     <string name="spectate">Spectate</string>
     <string name="match_history">Match History</string>
@@ -69,7 +75,8 @@
     <string name="room_name">Room Name</string>
     <string name="password">Password</string>
     <string name="create">Create</string>
-    <string name="join">Join</string>    
+    <string name="join">Join</string>
+    <string name="allow_spectators">Allow Spectators?</string>
     
     <!-- Settings -->
     <string name="settings_glove_color">Glove Color</string>
@@ -83,11 +90,6 @@
     <string name="successful_hits">Successful Hits</string>
     <string name="blocked_hits">Blocked Hits</string>
     
-    <!-- Errors -->
-    <string name="error_game_name_empty">Enter a game name</string>
-    <string name="error_game_name_exists">Game name is taken, choose another!</string>
-    <string name="error_game_password_no_match">Password incorrect!</string>
-
     <!-- Misc -->
     <string name="win">Win</string>
     <string name="lose">Lose</string>

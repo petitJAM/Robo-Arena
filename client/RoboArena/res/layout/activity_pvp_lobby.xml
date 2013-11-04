@@ -72,4 +72,14 @@
         android:layout_toLeftOf="@+id/join_room_name"
         android:text="@string/join" />
 
+    <CheckBox
+        android:id="@+id/allow_spectators_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/join_room_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:checked="true"
+        android:text="@string/allow_spectators" />
+
 </RelativeLayout>
