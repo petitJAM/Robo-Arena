@@ -65,12 +65,21 @@ public class PVPLobbyActivity extends Activity {
 
 				final String gameName = mJoinRoomName.getText().toString();
 				final String gamePassword = mJoinRoomPassword.getText().toString();
+				
+				if (gameName.isEmpty()) {
+					Toast.makeText(PVPLobbyActivity.this, R.string.error_game_name_empty, Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				final Firebase gameRef = mRef.child(gameName);
+				
+				Log.d("RA", "clicked join");
 
 				gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
 					@Override
 					public void onDataChange(DataSnapshot snap) {
+						
+						Log.d("RA", "checking if game exists");
 
 						if (snap.getValue() == null) {
 							Toast.makeText(PVPLobbyActivity.this, R.string.error_game_does_not_exist,
@@ -86,6 +95,9 @@ public class PVPLobbyActivity extends Activity {
 						passwordRef.addListenerForSingleValueEvent(new ValueEventListener() {
 							@Override
 							public void onDataChange(DataSnapshot snap) {
+								
+								Log.d("RA", "checking if password correct");
+								
 								String password = (String)snap.getValue();
 
 								if (!password.equals(gamePassword)) {
@@ -94,6 +106,8 @@ public class PVPLobbyActivity extends Activity {
 									mJoinRoomPassword.setText("");
 									return;
 								}
+								
+								Log.d("RA", "this is where we go to the locker room");
 
 								gameRef.child(getString(R.string.fb_game_player_joiner))
 										.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.TRUE);
@@ -153,6 +167,7 @@ public class PVPLobbyActivity extends Activity {
 						String gameRefName = createNewGame(gameName, gamePassword, allowSpectators);
 
 						Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
+						lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID, getString(R.string.fb_game_player_creator));
 						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRefName);
 
 						Log.d(MainMenuActivity.RA, "Starting locker room by CREATE game button");
@@ -190,6 +205,7 @@ public class PVPLobbyActivity extends Activity {
 
 		// Create player stats / statuses
 		playerRef.child(getString(R.string.fb_game_player_health)).setValue(Integer.valueOf(100));
+		playerRef.child(getString(R.string.fb_game_player_is_ready)).setValue(Boolean.FALSE);
 		playerRef.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.FALSE);
 		playerRef.child(getString(R.string.fb_game_player_actions_allowed)).setValue(Boolean.FALSE);
 

@@ -102,7 +102,7 @@ public class BoxerGame {
 		player1_hp_textview.setText(Integer.toString(p1hp));
 		player2_hp_textview.setText(Integer.toString(p2hp));
 		
-		// if either player < 0, end game
+		// TODO: if either player.hp < 0, end game
 	}
 	
 	
