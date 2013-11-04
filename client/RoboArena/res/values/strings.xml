@@ -6,8 +6,14 @@
     <string name="title_activity_match_details">Match Details</string>
     <string name="title_activity_settings">SettingsActivity</string>
     
-    <!-- Firebase -->
-    <string name="roboarena_firebase_url">robo-arena.firebaseIO.com</string>
+    <!-- Firebase URLS -->
+    <string name="roboarena_firebase_url">https://robo-arena.firebaseIO.com</string>
+    <string name="roboarena_firebase_games">https://robo-arena.firebaseIO.com/games</string>
+    
+    <!-- Firebase Strings -->
+    <string name="fb_game_info">info</string>
+    <string name="fb_game_player_id_1">player_id_1</string>
+    <string name="fb_game_player_id_2">player_id_2</string>
 
     <!-- Main Menu Buttons -->
     <string name="spectate">Spectate</string>

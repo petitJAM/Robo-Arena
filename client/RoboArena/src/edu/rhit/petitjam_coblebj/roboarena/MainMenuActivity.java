@@ -1,6 +1,7 @@
 package edu.rhit.petitjam_coblebj.roboarena;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +10,15 @@ import android.view.View.OnClickListener;
 
 public class MainMenuActivity extends Activity implements OnClickListener {
 	static final String RA = "RA"; // Debug tag
+	
+	private static Context mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
+		
+		mContext = this;
 
 		findViewById(R.id.player_vs_ai_button).setOnClickListener(this);
 		findViewById(R.id.player_vs_player_button).setOnClickListener(this);
@@ -61,5 +66,9 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 			finish();
 			break;
 		}
+	}
+	
+	public static Context getContext() {
+		return mContext;
 	}
 }

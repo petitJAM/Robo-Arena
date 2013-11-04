@@ -14,6 +14,7 @@ import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 public class ArenaActivity extends Activity {
 
 	public static final String KEY_GAME_MODE = "key_game_mode";
+	public static final String KEY_GAME_ID = "key_firebase_ref";
 	
 	// Fields
 	private GestureDetector mDetector;
@@ -50,9 +51,18 @@ public class ArenaActivity extends Activity {
 		int gameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
 		int computerDifficulty = getIntent().getIntExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY,
 				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
+		String gameId = getIntent().getStringExtra(KEY_GAME_ID);
 
-		mGame = new BoxerGame(this, gameMode, computerDifficulty);
+		if (gameMode == BoxerGame.GAME_MODE_HUMAN) {
+			mGame = new BoxerGame(this, gameId);
+			
+		} else if (gameMode == BoxerGame.GAME_MODE_COMPUTER) {
+			mGame = new BoxerGame(this, computerDifficulty);
+		}
 
+		
+		////////
+		// Erases the background of the textviews every 2 seconds
 		final Handler handler = new Handler();
 		final Runnable r = new Runnable() {
 			@Override
@@ -67,8 +77,8 @@ public class ArenaActivity extends Activity {
 				handler.postDelayed(this, 2000);
 			}
 		};
-
 		handler.postDelayed(r, 2000);
+		////////
 
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
 

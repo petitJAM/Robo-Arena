@@ -1,8 +1,11 @@
 package edu.rhit.petitjam_coblebj.game;
 
+import android.os.Handler;
+
 import com.firebase.client.Firebase;
 
-import android.os.Handler;
+import edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity;
+import edu.rhit.petitjam_coblebj.roboarena.R;
 
 public abstract class Player {
 	private int health;
@@ -114,11 +117,13 @@ public abstract class Player {
 	}
 
 	private class PVPFirebaseIOHandler implements FirebaseIOHandler {
-		private Firebase f;
+		private Firebase mFb;
 		private String mGameId;
 		private String mPlayerId;
 
 		public PVPFirebaseIOHandler(String gameId, String playerId) {
+			String firebaseURL = MainMenuActivity.getContext().getResources().getString(R.string.roboarena_firebase_url);
+			mFb = new Firebase(firebaseURL + "/" + gameId + "/" + playerId);
 			mGameId = gameId;
 			mPlayerId = playerId;
 		}
