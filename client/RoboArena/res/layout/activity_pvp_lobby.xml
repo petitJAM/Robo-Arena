@@ -36,31 +36,33 @@
     </EditText>
 
     <EditText
-        android:id="@+id/create_password"
+        android:id="@+id/create_room_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/create_room_name"
         android:layout_below="@+id/create_player_game_button"
         android:ems="10"
-        android:hint="@string/password" />
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/join_room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/create_password"
+        android:layout_below="@+id/create_room_password"
         android:layout_toRightOf="@+id/create_player_game_button"
         android:ems="10"
         android:hint="@string/room_name" />
 
     <EditText
-        android:id="@+id/join_password"
+        android:id="@+id/join_room_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/join_room_name"
         android:layout_below="@+id/join_room_name"
         android:ems="10"
-        android:hint="@string/password" />
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/join_player_game_button"

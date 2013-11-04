@@ -15,6 +15,7 @@ public class ArenaActivity extends Activity {
 
 	public static final String KEY_GAME_MODE = "key_game_mode";
 	public static final String KEY_GAME_ID = "key_firebase_ref";
+	protected static final String KEY_PLAYER_ID = "key_player_id";
 	
 	// Fields
 	private GestureDetector mDetector;

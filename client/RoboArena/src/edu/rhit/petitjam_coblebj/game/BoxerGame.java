@@ -103,7 +103,11 @@ public class BoxerGame {
 		player2_hp_textview.setText(Integer.toString(p2hp));
 		
 		// if either player < 0, end game
-	}	
+	}
+	
+	
+	
+	
 	
 	/* LOCAL PLAYER ACTIONS */
 	

@@ -12,9 +12,24 @@
     
     <!-- Firebase Strings -->
     <string name="fb_game_info">info</string>
-    <string name="fb_game_player_id_1">player_id_1</string>
-    <string name="fb_game_player_id_2">player_id_2</string>
-
+    <string name="fb_game_info_game_running">game_running</string>
+    <string name="fb_game_info_password">password</string>
+    <string name="fb_game_info_allow_spectators">allow_spectators</string>
+    
+    <string name="fb_game_player_creator">player_creator</string>
+    <string name="fb_game_player_joiner">player_joiner</string>
+    <string name="fb_game_player_health">health</string>
+    <string name="fb_game_player_is_connected">is_connected</string>
+    <string name="fb_game_player_actions_allowed">actions_allowed</string>
+    
+    <string name="fb_game_player_block">block</string>
+    <string name="fb_game_player_left_jab">left_jab</string>
+    <string name="fb_game_player_left_hook">left_hook</string>
+    <string name="fb_game_player_left_uppercut">left_uppercut</string>
+    <string name="fb_game_player_right_jab">right_jab</string>
+    <string name="fb_game_player_right_hook">right_hook</string>
+    <string name="fb_game_player_right_uppercut">right_uppercut</string>
+    
     <!-- Main Menu Buttons -->
     <string name="spectate">Spectate</string>
     <string name="match_history">Match History</string>
@@ -67,6 +82,11 @@
     <!-- Stats -->
     <string name="successful_hits">Successful Hits</string>
     <string name="blocked_hits">Blocked Hits</string>
+    
+    <!-- Errors -->
+    <string name="error_game_name_empty">Enter a game name</string>
+    <string name="error_game_name_exists">Game name is taken, choose another!</string>
+    <string name="error_game_password_no_match">Password incorrect!</string>
 
     <!-- Misc -->
     <string name="win">Win</string>
