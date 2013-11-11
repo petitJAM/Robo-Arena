@@ -1,5 +1,7 @@
 package edu.rhit.petitjam_coblebj.game;
 
+import android.util.Log;
+
 import com.firebase.client.Firebase;
 
 import edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity;
@@ -9,8 +11,6 @@ public class LocalPlayer extends Player {
 
 	private FirebaseIOHandler mFbHandler;
 	
-	// TODO: Update constructors, both here and in Player
-	
 	// Constructor for local AI game
 	public LocalPlayer(BoxerGame game) {
 		super(game);
@@ -19,7 +19,7 @@ public class LocalPlayer extends Player {
 	
 	// Constructor for PVP game
 	public LocalPlayer(BoxerGame game, String gameId, String playerId) {
-		super(game, gameId, playerId);
+		super(game);
 		mFbHandler = new PVPFirebaseIOHandler(gameId, playerId);
 	}
 	
@@ -59,6 +59,47 @@ public class LocalPlayer extends Player {
 		mFbHandler.setBlocking(getBlocking());
 	}
 	
+	/* ******* */
+	/* Actions */
+	/* ******* */
+	
+	public void leftJab() {
+		Log.d("RA", "leftJab in LocalPlayer");
+		mFbHandler.incrementLeftJab();
+	}
+	
+	public void leftHook() {
+		Log.d("RA", "leftHook in LocalPlayer");
+		mFbHandler.incrementLeftHook();
+	}
+	
+	public void leftUppercut() {
+		Log.d("RA", "leftUppercut in LocalPlayer");
+		mFbHandler.incrementLeftUppercut();
+	}
+	
+	public void rightJab() {
+		Log.d("RA", "rightJab in LocalPlayer");
+		mFbHandler.incrementRightJab();
+	}
+	
+	public void rightHook() {
+		Log.d("RA", "rightHook in LocalPlayer");
+		mFbHandler.incrementRightHook();
+	}
+	
+	public void rightUppercut() {
+		Log.d("RA", "rightUppercut in LocalPlayer");
+		mFbHandler.incrementRightUppercut();
+	}
+	
+	public void block() {
+		Log.d("RA", "block in LocalPlayer");
+		mFbHandler.incrementBlock();
+		mFbHandler.setBlocking(true);
+	}
+	
+	/* ******* */
 
 	private interface FirebaseIOHandler {
 		public void setHealth(int health);
@@ -113,7 +154,7 @@ public class LocalPlayer extends Player {
 
 		public PVPFirebaseIOHandler(String gameId, String playerId) {
 			String firebaseURL = MainMenuActivity.getContext().getResources()
-					.getString(R.string.roboarena_firebase_url);
+					.getString(R.string.roboarena_firebase_games);
 			mFb = new Firebase(firebaseURL + "/" + gameId + "/" + playerId);
 
 			mHealthFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_health));
@@ -149,6 +190,7 @@ public class LocalPlayer extends Player {
 
 		@Override
 		public void incrementLeftJab() {
+			Log.d("RA", "increment left jab to " + (mLeftJabCounter + 1));
 			mLeftJabFB.setValue(Integer.valueOf(++mLeftJabCounter));
 		}
 

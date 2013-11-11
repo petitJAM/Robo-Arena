@@ -4,6 +4,8 @@ public class HumanPlayer extends RemotePlayer {
 
 	public HumanPlayer(BoxerGame game) {
 		super(game);
+		
+		// TODO: create a bunch of value event listeners to read in action events from FB
 	}
 
 	@Override

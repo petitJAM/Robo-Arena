@@ -32,20 +32,6 @@ public abstract class Player {
 		mRightActionsAllowed = true;
 	}
 
-	/**
-	 * Create a new player in game.  Connect to Firebase at "gameId/playerId".
-	 * 
-	 * @param game
-	 * @param gameId
-	 * @param playerId
-	 */
-	public Player(BoxerGame game, String gameId, String playerId) {
-		mGame = game;
-		mHealth = 100;
-		mLeftActionsAllowed = true;
-		mRightActionsAllowed = true;
-	}
-
 	public BoxerGame getGame() {
 		return mGame;
 	}
