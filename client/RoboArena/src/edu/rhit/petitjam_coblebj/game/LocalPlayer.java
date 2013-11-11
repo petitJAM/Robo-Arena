@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.firebase.client.Firebase;
 
-import edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity;
 import edu.rhit.petitjam_coblebj.roboarena.R;
 
 public class LocalPlayer extends Player {
@@ -25,37 +24,37 @@ public class LocalPlayer extends Player {
 	
 	@Override
 	public void setHealth(int health) {
-		super.setHealth(health);
+		super.setHealthHelper(health);
 		mFbHandler.setHealth(health);
 	}
 	
 	@Override
 	public void decrementHealth(int damage) {
-		super.decrementHealth(damage);
+		super.setHealthHelper(getHealth() - damage);
 		mFbHandler.setHealth(getHealth());
 	}
 	
 	@Override
 	public void incrementHealth(int damage) {
-		super.decrementHealth(damage);
+		super.setHealthHelper(getHealth() + damage);
 		mFbHandler.setHealth(getHealth());
 	}
 	
 	@Override
 	public void setLeftActionsAllowed(boolean allowed) {
-		super.setLeftActionsAllowed(allowed);
+		super.setLeftActionsAllowedHelper(allowed);
 		mFbHandler.setLeftActionsAllowed(allowed);
 	}
 	
 	@Override
 	public void setRightActionsAllowed(boolean allowed) {
-		super.setRightActionsAllowed(allowed);
+		super.setRightActionsAllowedHelper(allowed);
 		mFbHandler.setRightActionsAllowed(allowed);
 	}
 	
 	@Override
 	public void setBlocking(boolean blocking) {
-		super.setBlocking(blocking);
+		super.setBlockingHelper(blocking);
 		mFbHandler.setBlocking(getBlocking());
 	}
 	
@@ -153,24 +152,23 @@ public class LocalPlayer extends Player {
 		private int mBlockCounter = 0;
 
 		public PVPFirebaseIOHandler(String gameId, String playerId) {
-			String firebaseURL = MainMenuActivity.getContext().getResources()
-					.getString(R.string.roboarena_firebase_games);
+			String firebaseURL = getString(R.string.roboarena_firebase_games);
 			mFb = new Firebase(firebaseURL + "/" + gameId + "/" + playerId);
 
-			mHealthFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_health));
-			mLeftActionsAllowedFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_left_actions_allowed));
-			mRightActionsAllowedFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_right_actions_allowed));
+			mHealthFB = mFb.child(getString(R.string.fb_game_player_health));
+			mLeftActionsAllowedFB = mFb.child(getString(R.string.fb_game_player_left_actions_allowed));
+			mRightActionsAllowedFB = mFb.child(getString(R.string.fb_game_player_right_actions_allowed));
 
-			mLeftJabFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_left_jab));
-			mLeftHookFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_left_hook));
-			mLeftUppercutFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_left_uppercut));
+			mLeftJabFB = mFb.child(getString(R.string.fb_game_player_left_jab));
+			mLeftHookFB = mFb.child(getString(R.string.fb_game_player_left_hook));
+			mLeftUppercutFB = mFb.child(getString(R.string.fb_game_player_left_uppercut));
 
-			mRightJabFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_right_jab));
-			mRightHookFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_right_hook));
-			mRightUppercutFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_right_uppercut));
+			mRightJabFB = mFb.child(getString(R.string.fb_game_player_right_jab));
+			mRightHookFB = mFb.child(getString(R.string.fb_game_player_right_hook));
+			mRightUppercutFB = mFb.child(getString(R.string.fb_game_player_right_uppercut));
 
-			mBlockFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_block));
-			mBlockingFB = mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_blocking));
+			mBlockFB = mFb.child(getString(R.string.fb_game_player_block));
+			mBlockingFB = mFb.child(getString(R.string.fb_game_player_blocking));
 		}
 
 		@Override

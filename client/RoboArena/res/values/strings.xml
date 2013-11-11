@@ -12,12 +12,14 @@
     
     <!-- Firebase Strings -->
     <string name="fb_game_info">info</string>
+    <string name="fb_game_player_creator">player_creator</string>
+    <string name="fb_game_player_joiner">player_joiner</string>
+    
+    <string name="fb_game_info_active">active</string>
     <string name="fb_game_info_game_running">game_running</string>
     <string name="fb_game_info_password">password</string>
     <string name="fb_game_info_allow_spectators">allow_spectators</string>
     
-    <string name="fb_game_player_creator">player_creator</string>
-    <string name="fb_game_player_joiner">player_joiner</string>
     <string name="fb_game_player_health">health</string>
     <string name="fb_game_player_is_connected">is_connected</string>
     <string name="fb_game_player_is_ready">is_ready</string>

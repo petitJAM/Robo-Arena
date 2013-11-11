@@ -1,6 +1,7 @@
 package edu.rhit.petitjam_coblebj.game;
 
 import android.os.Handler;
+import edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity;
 
 public abstract class Player {
 
@@ -39,18 +40,30 @@ public abstract class Player {
 	public int getHealth() {
 		return mHealth;
 	}
-
-	public void setHealth(int health) {
+	
+	public void setHealthHelper(int health) {
 		mHealth = health;
 	}
-
-	public void decrementHealth(int damage) {
-		mHealth -= damage;
+	
+	public void setLeftActionsAllowedHelper(boolean allowed) {
+		mLeftActionsAllowed = allowed;
+	}
+	
+	public void setRightActionsAllowedHelper(boolean allowed) {
+		mRightActionsAllowed = allowed;
+	}
+	
+	public void setBlockingHelper(boolean blocking) {
+		mBlocking = blocking;
 	}
 
-	public void incrementHealth(int restoredAmount) {
-		mHealth += restoredAmount;
-	}
+	public abstract void setHealth(int health);
+	public abstract void decrementHealth(int damage);
+	public abstract void incrementHealth(int restoredAmount);
+	
+	public abstract void setLeftActionsAllowed(boolean allowed);
+	public abstract void setRightActionsAllowed(boolean allowed);
+	public abstract void setBlocking(boolean blocking);
 	
 	public boolean getLeftActionsAllowed() {
 		return mLeftActionsAllowed;
@@ -60,24 +73,12 @@ public abstract class Player {
 		return mRightActionsAllowed;
 	}
 
-	public void setLeftActionsAllowed(boolean allowed) {
-		mLeftActionsAllowed = allowed;
-	}
-	
-	public void setRightActionsAllowed(boolean allowed) {
-		mRightActionsAllowed = allowed;
-	}
-
 	public boolean isBlocking() {
 		return mBlocking;
 	}
 	
 	public boolean getBlocking() {
 		return mBlocking;
-	}
-
-	public void setBlocking(boolean blocking) {
-		mBlocking = blocking;
 	}
 
 	public void startLeftActionDelay(int timeInMillis) {
@@ -110,4 +111,7 @@ public abstract class Player {
 		}, timeInMillis);
 	}
 
+	public String getString(int resId) {
+		return MainMenuActivity.getContext().getResources().getString(resId);
+	}
 }

@@ -202,6 +202,7 @@ public class PVPLobbyActivity extends Activity {
 
 		// Create info object for the game
 		Firebase infoRef = gameRef.child(getString(R.string.fb_game_info));
+		infoRef.child(getString(R.string.fb_game_info_active)).setValue(Boolean.TRUE);
 		infoRef.child(getString(R.string.fb_game_info_game_running)).setValue(Boolean.FALSE);
 		infoRef.child(getString(R.string.fb_game_info_allow_spectators)).setValue(allowSpectators);
 		infoRef.child(getString(R.string.fb_game_info_password)).setValue(gamePassword);

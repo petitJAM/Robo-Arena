@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.util.Log;
 import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
+import edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity;
+import edu.rhit.petitjam_coblebj.roboarena.R;
 
 public class BoxerGame {
 
@@ -20,8 +22,10 @@ public class BoxerGame {
 	private LocalPlayer mLocal;
 	private RemotePlayer mRemote;
 
-	private int mGameMode;
-	private int mComputerDifficulty;
+//	private int mGameMode;
+//	private int mComputerDifficulty;
+	
+	// TODO: Use the game_running in /games/gameId/info
 
 	// Damage associate with each punch
 	private static final int JAB_DMG = 1;
@@ -38,23 +42,27 @@ public class BoxerGame {
 	private static TextView player1_hp_textview;
 	private static TextView player2_hp_textview;
 
-
 	// TODO: Pass the gameId through to the players
 	public BoxerGame(Context context, String gameId, String localPlayerId) {
 		mArena = (ArenaActivity)context;
-		mGameMode = GAME_MODE_HUMAN;
+//		mGameMode = GAME_MODE_HUMAN;
 
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
+		
+		// Set the remote player's ID
+		String creatorId = MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_creator);
+		String joinerId = MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_joiner);
+		String remotePlayerId = localPlayerId.equals(creatorId) ? joinerId : creatorId;
 
 		mLocal = new LocalPlayer(this, gameId, localPlayerId);
-		mRemote = new HumanPlayer(this);
+		mRemote = new HumanPlayer(this, gameId, remotePlayerId);
 	}
 
 	public BoxerGame(Context context, int computerDifficulty) {
 		mArena = (ArenaActivity)context;
-		mGameMode = GAME_MODE_COMPUTER;
-		mComputerDifficulty = computerDifficulty;
+//		mGameMode = GAME_MODE_COMPUTER;
+//		mComputerDifficulty = computerDifficulty;
 
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
@@ -67,31 +75,31 @@ public class BoxerGame {
 		mRemote.start();
 	}
 
-	// TODO: reconsider the use of this
-	public void newGame(boolean pvp) {
-		mLocal = new LocalPlayer(this);
-
-		if (mGameMode == GAME_MODE_HUMAN) {
-			mRemote = new HumanPlayer(this);
-
-		} else {
-			// TODO: Fix this hardcoded Difficulty Easy
-			mRemote = new ComputerPlayer(this, mComputerDifficulty);
-		}
-	}
-
-	public void playGame() {
-		// not sure on this game loop yet
-		if (mGameMode == GAME_MODE_COMPUTER) {
-			// start ai computer game
-		} else {
-			// receive foreign moves from server
-		}
-	}
-
-	public void pauseGame() {
-
-	}
+//	// T ODO: reconsider the use of this
+//	public void newGame(boolean pvp) {
+//		mLocal = new LocalPlayer(this);
+//
+//		if (mGameMode == GAME_MODE_HUMAN) {
+//			mRemote = new HumanPlayer(this);
+//
+//		} else {
+//			// T ODO: Fix this hardcoded Difficulty Easy
+//			mRemote = new ComputerPlayer(this, mComputerDifficulty);
+//		}
+//	}
+//
+//	public void playGame() {
+//		// not sure on this game loop yet
+//		if (mGameMode == GAME_MODE_COMPUTER) {
+//			// start ai computer game
+//		} else {
+//			// receive foreign moves from server
+//		}
+//	}
+//
+//	public void pauseGame() {
+//
+//	}
 
 	private void printHealth() {
 		// Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
@@ -104,6 +112,7 @@ public class BoxerGame {
 		player2_hp_textview.setText(Integer.toString(p2hp));
 
 		// TODO: if either player.hp < 0, end game
+		// FIXME: This todo doesn't belong here
 	}
 
 
@@ -139,6 +148,8 @@ public class BoxerGame {
 	public void localRightJab() {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Jab");
+			
+			mLocal.rightJab(); // tell the local it punched
 
 			mArena.r_jab.setBackgroundColor(Color.CYAN);
 
@@ -156,6 +167,8 @@ public class BoxerGame {
 	public void localLeftHook() {
 		if (mLocal.getLeftActionsAllowed()) {
 			Log.d(BG_L, "Local Left Hook");
+			
+			mLocal.leftHook(); // tell the local it punched
 
 			mArena.l_hook.setBackgroundColor(Color.CYAN);
 
@@ -173,6 +186,8 @@ public class BoxerGame {
 	public void localRightHook() {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Hook");
+			
+			mLocal.rightJab(); // tell the local it punched
 
 			mArena.r_hook.setBackgroundColor(Color.CYAN);
 
@@ -190,6 +205,8 @@ public class BoxerGame {
 	public void localLeftUppercut() {
 		if (mLocal.getLeftActionsAllowed()) {
 			Log.d(BG_L, "Local Left Uppercut");
+			
+			mLocal.leftUppercut(); // tell the local it punched
 
 			mArena.l_up.setBackgroundColor(Color.CYAN);
 
@@ -207,6 +224,8 @@ public class BoxerGame {
 	public void localRightUppercut() {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Uppercut");
+			
+			mLocal.rightUppercut(); // tell the local it punched
 
 			mArena.r_up.setBackgroundColor(Color.CYAN);
 
@@ -224,6 +243,9 @@ public class BoxerGame {
 	public void localBlock() {
 		if (!mLocal.isBlocking()) {
 			Log.d(BG_L, "Local Block");
+			
+			mLocal.block(); // tell the local it punched
+			
 			mLocal.setBlocking(true);
 			mLocal.startLeftActionDelay(BLOCKING_COOLDOWN);
 			mLocal.startRightActionDelay(BLOCKING_COOLDOWN);
