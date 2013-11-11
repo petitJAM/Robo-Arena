@@ -52,12 +52,16 @@ public class ArenaActivity extends Activity {
 		int gameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
 		int computerDifficulty = getIntent().getIntExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY,
 				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
+		
 		String gameId = getIntent().getStringExtra(KEY_GAME_ID);
+		String playerId = getIntent().getStringExtra(KEY_PLAYER_ID);
 
 		if (gameMode == BoxerGame.GAME_MODE_HUMAN) {
-			mGame = new BoxerGame(this, gameId);
+			Log.d("RA", "Creating BoxerGame vs HUMAN");
+			mGame = new BoxerGame(this, gameId, playerId);
 			
 		} else if (gameMode == BoxerGame.GAME_MODE_COMPUTER) {
+			Log.d("RA", "Creating BoxerGame vs COMPUTER");
 			mGame = new BoxerGame(this, computerDifficulty);
 		}
 

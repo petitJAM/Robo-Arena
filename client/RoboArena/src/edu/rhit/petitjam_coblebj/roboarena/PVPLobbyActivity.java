@@ -15,6 +15,15 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.ValueEventListener;
 
+/**
+ * 
+ * <p>When this class starts the LockerRoomActivity, a couple extras are put in place:</p>
+ * 
+ * 	<p>KEY_GAME_ID - the name of this game in Firebase<br/>
+ * 	   KEY_PLAYER_ID - the id of the LOCAL player ("player_creator" or "player_joiner")</p>
+ * 
+ * @author petitjam
+ */
 public class PVPLobbyActivity extends Activity {
 
 	private static String GAME_SETUP = "GameSetup";
@@ -52,9 +61,9 @@ public class PVPLobbyActivity extends Activity {
 		 * 
 		 * BIG IMPORTANT NOTE TO REMEMBER
 		 * 
-		 * When we create the game, we are player_creator
+		 * When we create the game, we are "player_creator"
 		 * 
-		 * When we join, player_joiner
+		 * When we join, "player_joiner"
 		 * 
 		 * ****************************************
 		 */
@@ -207,7 +216,9 @@ public class PVPLobbyActivity extends Activity {
 		playerRef.child(getString(R.string.fb_game_player_health)).setValue(Integer.valueOf(100));
 		playerRef.child(getString(R.string.fb_game_player_is_ready)).setValue(Boolean.FALSE);
 		playerRef.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.FALSE);
-		playerRef.child(getString(R.string.fb_game_player_actions_allowed)).setValue(Boolean.FALSE);
+		playerRef.child(getString(R.string.fb_game_player_left_actions_allowed)).setValue(Boolean.FALSE);
+		playerRef.child(getString(R.string.fb_game_player_right_actions_allowed)).setValue(Boolean.FALSE);
+		playerRef.child(getString(R.string.fb_game_player_blocking)).setValue(Boolean.FALSE);
 
 		// Set all action counters to 0
 		playerRef.child(getString(R.string.fb_game_player_block)).setValue(Integer.valueOf(0));

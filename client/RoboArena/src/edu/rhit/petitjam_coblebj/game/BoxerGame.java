@@ -40,15 +40,15 @@ public class BoxerGame {
 		
 	
 	// TODO: Pass the gameId through to the players
-	public BoxerGame(Context context, String gameId) {
+	public BoxerGame(Context context, String gameId, String localPlayerId) {
 		mArena = (ArenaActivity)context;
 		mGameMode = GAME_MODE_HUMAN;
 		
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
 		
-		mLocal = new LocalPlayer();
-		mRemote = new HumanPlayer();
+		mLocal = new LocalPlayer(this);
+		mRemote = new HumanPlayer(this);
 	}
 	
 	public BoxerGame(Context context, int computerDifficulty) {
@@ -59,7 +59,7 @@ public class BoxerGame {
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
 		
-		mLocal = new LocalPlayer();
+		mLocal = new LocalPlayer(this);
 		mRemote = new ComputerPlayer(this, computerDifficulty);
 	}
 
@@ -67,11 +67,12 @@ public class BoxerGame {
 		mRemote.start();
 	}
 
+	// TODO: reconsider the use of this
 	public void newGame(boolean pvp) {
-		mLocal = new LocalPlayer();
+		mLocal = new LocalPlayer(this);
 		
 		if (mGameMode == GAME_MODE_HUMAN){
-			mRemote = new HumanPlayer();
+			mRemote = new HumanPlayer(this);
 			
 		} else {
 			// TODO: Fix this hardcoded Difficulty Easy
@@ -106,10 +107,9 @@ public class BoxerGame {
 	}
 	
 	
-	
-	
-	
-	/* LOCAL PLAYER ACTIONS */
+	/* ********************* */
+	/* LOCAL PLAYER ACTIONS  */
+	/* ********************* */
 	
 	public void localLeftJab() {
 		 if (mLocal.getLeftActionsAllowed()) {
@@ -222,7 +222,9 @@ public class BoxerGame {
 		}
 	}
 	
+	/* ********************* */
 	/* REMOTE PLAYER ACTIONS */
+	/* ********************* */
 	
 	public void remoteLeftJab() {
 		if (mRemote.getLeftActionsAllowed()) {

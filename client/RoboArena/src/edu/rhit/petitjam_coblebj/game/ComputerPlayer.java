@@ -12,12 +12,10 @@ public class ComputerPlayer extends RemotePlayer {
 	public static final int COMPUTER_PLAYER_DIFFICULTY_HARD = 2;
 	public static final String KEY_COMPUTER_DIFFICULTY = "key_computer_difficulty";
 
-	private BoxerGame mGame;
 	private int mDifficulty;
 	
 	public ComputerPlayer(BoxerGame game, int difficulty) {
-		super();
-		mGame = game;
+		super(game);
 		mDifficulty = difficulty; 
 	}
 
@@ -30,25 +28,25 @@ public class ComputerPlayer extends RemotePlayer {
 	private void doAction(int action) {
 		switch (action) {
 		case ACTION_BLOCK:
-			mGame.remoteBlock();
+			getGame().remoteBlock();
 			break;
 		case ACTION_LEFT_JAB:
-			mGame.remoteLeftJab();
+			getGame().remoteLeftJab();
 			break;
 		case ACTION_LEFT_HOOK:
-			mGame.remoteLeftHook();
+			getGame().remoteLeftHook();
 			break;
 		case ACTION_LEFT_UPPERCUT:
-			mGame.remoteLeftUppercut();
+			getGame().remoteLeftUppercut();
 			break;
 		case ACTION_RIGHT_JAB:
-			mGame.remoteRightJab();
+			getGame().remoteRightJab();
 			break;
 		case ACTION_RIGHT_HOOK:
-			mGame.remoteRightHook();
+			getGame().remoteRightHook();
 			break;
 		case ACTION_RIGHT_UPPERCUT:
-			mGame.remoteRightUppercut();
+			getGame().remoteRightUppercut();
 			break;
 		}
 	}

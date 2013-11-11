@@ -56,10 +56,10 @@ public class ComputerDifficultyActivity extends Activity {
 			public void onClick(View v) {
 				Log.d(MainMenuActivity.RA, "Starting locker room from computer difficulty with " + selectedDifficulty);
 				
-				Intent lockerRoomIntent = new Intent(ComputerDifficultyActivity.this, LockerRoomActivity.class);
-				lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
-				lockerRoomIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
-				startActivity(lockerRoomIntent);
+				Intent arenaIntent = new Intent(ComputerDifficultyActivity.this, ArenaActivity.class);
+				arenaIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
+				arenaIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
+				startActivity(arenaIntent);
 			}
 		});
 	}
