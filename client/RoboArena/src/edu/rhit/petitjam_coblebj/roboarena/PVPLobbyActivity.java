@@ -15,6 +15,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.ValueEventListener;
 
+import edu.rhit.petitjam_coblebj.game.BoxerGame;
+
 /**
  * 
  * <p>When this class starts the LockerRoomActivity, a couple extras are put in place:</p>
@@ -123,6 +125,7 @@ public class PVPLobbyActivity extends Activity {
 
 								Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
 
+								lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_HUMAN);
 								lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRef.getName());
 								lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID,
 										getString(R.string.fb_game_player_joiner));
@@ -176,6 +179,8 @@ public class PVPLobbyActivity extends Activity {
 						String gameRefName = createNewGame(gameName, gamePassword, allowSpectators);
 
 						Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
+						
+						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_HUMAN);
 						lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID, getString(R.string.fb_game_player_creator));
 						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRefName);
 
