@@ -4,6 +4,7 @@ import java.util.Random;
 
 import android.os.AsyncTask;
 import android.os.SystemClock;
+import android.util.Log;
 
 public class ComputerPlayer extends RemotePlayer {
 	
@@ -11,6 +12,8 @@ public class ComputerPlayer extends RemotePlayer {
 	public static final int COMPUTER_PLAYER_DIFFICULTY_MEDIUM = 1;
 	public static final int COMPUTER_PLAYER_DIFFICULTY_HARD = 2;
 	public static final String KEY_COMPUTER_DIFFICULTY = "key_computer_difficulty";
+	
+	private ThrowRandomHitsTask mAITask;
 
 	private int mDifficulty;
 	
@@ -20,9 +23,31 @@ public class ComputerPlayer extends RemotePlayer {
 	}
 
 	@Override
+	public void setHealth(int health) {
+		super.setHealthHelper(health);
+	}
+
+	@Override
+	public void decrementHealth(int damage) {
+		super.setHealthHelper(getHealth() - damage);
+	}
+
+	@Override
+	public void incrementHealth(int restoredAmount) {
+		super.setHealthHelper(getHealth() + restoredAmount);
+	}
+
+	@Override
 	public void start() {
 		// We are a computer, so lets throw some random hits
-		new ThrowRandomHitsTask().execute(null, null, null);
+		mAITask = new ThrowRandomHitsTask();
+		mAITask.execute(null, null, null);
+	}
+
+	@Override
+	public void end() {
+		// TODO Auto-generated method stub
+		mAITask.cancel(true);
 	}
 	
 	private void doAction(int action) {
@@ -64,6 +89,10 @@ public class ComputerPlayer extends RemotePlayer {
 			
 			// TODO: Do left and right actions separately.
 			while (true) {
+				if (isCancelled()) {
+					Log.d("RA", "ending computer asynctask");
+					return null;
+				}
 				int next = gen.nextInt() % NUMBER_OF_ACTIONS; // number of actions
 				publishProgress(new Integer[] { next });
 				SystemClock.sleep((3 - mDifficulty) * 1000); // time between throws is different by level

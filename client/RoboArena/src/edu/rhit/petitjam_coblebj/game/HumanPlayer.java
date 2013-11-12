@@ -212,22 +212,29 @@ public class HumanPlayer extends RemotePlayer {
 	
 	@Override
 	public void incrementHealth(int restoredAmount) {
-		super.incrementHealth(restoredAmount);
+		super.setHealthHelper(getHealth() + restoredAmount);
 		mHealthFB.setValue(getHealth());
 	}
 	
 	@Override
 	public void decrementHealth(int damage) {
-		super.decrementHealth(damage);
+		super.setHealthHelper(getHealth() - damage);
 		mHealthFB.setValue(Integer.valueOf(getHealth()));
 	}
 	
 	@Override
 	public void setHealth(int health) {
-		super.setHealth(health);
+		super.setHealthHelper(health);
 		mHealthFB.setValue(Integer.valueOf(getHealth()));
 	}
 
 	@Override
-	public void start() {}
+	public void start() {
+		// Do nothing?
+	}
+
+	@Override
+	public void end() {
+		mFb.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.FALSE);
+	}
 }

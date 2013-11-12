@@ -12,21 +12,6 @@ public abstract class RemotePlayer extends Player {
 	public abstract void start();
 	
 	@Override
-	public void incrementHealth(int restoredAmount) {
-		super.setHealthHelper(getHealth() + restoredAmount);
-	}
-	
-	@Override
-	public void decrementHealth(int damage) {
-		super.setHealthHelper(getHealth() - damage);
-	}
-	
-	@Override
-	public void setHealth(int health) {
-		super.setHealthHelper(health);
-	}
-	
-	@Override
 	public void setLeftActionsAllowed(boolean allowed) {
 		setLeftActionsAllowedHelper(allowed);
 	}

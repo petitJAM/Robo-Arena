@@ -32,6 +32,8 @@ public abstract class Player {
 		mLeftActionsAllowed = true;
 		mRightActionsAllowed = true;
 	}
+	
+	public abstract void end();
 
 	public BoxerGame getGame() {
 		return mGame;

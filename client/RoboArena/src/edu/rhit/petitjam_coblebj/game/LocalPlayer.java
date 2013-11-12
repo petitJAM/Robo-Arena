@@ -23,6 +23,11 @@ public class LocalPlayer extends Player {
 	}
 	
 	@Override
+	public void end() {
+		mFbHandler.end();
+	}
+	
+	@Override
 	public void setHealth(int health) {
 		super.setHealthHelper(health);
 		mFbHandler.setHealth(health);
@@ -125,11 +130,14 @@ public class LocalPlayer extends Player {
 		public void incrementRightUppercut();
 
 		public void incrementBlock();
+		
+		public void end();
 	}
 
 	private class PVPFirebaseIOHandler implements FirebaseIOHandler {
 		private Firebase mFb;
 
+		private Firebase mInfoFB;
 		private Firebase mHealthFB;
 		private Firebase mLeftActionsAllowedFB;
 		private Firebase mRightActionsAllowedFB;
@@ -154,6 +162,8 @@ public class LocalPlayer extends Player {
 		public PVPFirebaseIOHandler(String gameId, String playerId) {
 			String firebaseURL = getString(R.string.roboarena_firebase_games);
 			mFb = new Firebase(firebaseURL + "/" + gameId + "/" + playerId);
+			
+			mInfoFB = mFb.child(getString(R.string.fb_game_player_is_connected));
 
 			mHealthFB = mFb.child(getString(R.string.fb_game_player_health));
 			mLeftActionsAllowedFB = mFb.child(getString(R.string.fb_game_player_left_actions_allowed));
@@ -226,6 +236,11 @@ public class LocalPlayer extends Player {
 		public void setBlocking(boolean blocking) {
 			mBlockingFB.setValue(Boolean.valueOf(blocking));
 		}
+
+		@Override
+		public void end() {
+			mInfoFB.setValue(Boolean.FALSE);
+		}
 	}
 
 	/*
@@ -267,5 +282,8 @@ public class LocalPlayer extends Player {
 
 		@Override
 		public void setBlocking(boolean blocking) {}
+
+		@Override
+		public void end() {}
 	}
 }

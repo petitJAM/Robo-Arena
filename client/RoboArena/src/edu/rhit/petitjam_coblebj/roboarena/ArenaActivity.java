@@ -28,6 +28,7 @@ public class ArenaActivity extends Activity {
 	public TextView r_hook;
 	public TextView r_up;
 	public TextView block;
+	
 	public TextView player1_hp_textview;
 	public TextView player2_hp_textview;
 
@@ -89,12 +90,15 @@ public class ArenaActivity extends Activity {
 
 		mGame.startGame();
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mGame.destroy();
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (event.getPointerCount() > 1) {
-			Log.d("PGL", "two finger event");
-		}
 		return mDetector.onTouchEvent(event);
 	}
 
@@ -147,6 +151,9 @@ public class ArenaActivity extends Activity {
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "right uppercut");
 						mGame.localRightUppercut();
+					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
+						Log.d(PGL, "block (right)");
+						mGame.localBlock();
 					} else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");
 						mGame.localRightHook();
@@ -159,6 +166,9 @@ public class ArenaActivity extends Activity {
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "left uppercut");
 						mGame.localLeftUppercut();
+					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
+						Log.d(PGL, "block (left)");
+						mGame.localBlock();
 					} else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe r->l
 						Log.d(PGL, "left hook");
 						mGame.localLeftHook();

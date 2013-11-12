@@ -34,8 +34,7 @@ public class ComputerDifficultyActivity extends Activity {
 			// TODO - finish the correct logic for this function
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				Toast.makeText(ComputerDifficultyActivity.this, "Delta change: " + selectedDifficulty,
-						Toast.LENGTH_SHORT).show();
+				Log.d("RA", "Set computer difficulty to " + selectedDifficulty);
 			}
 
 			@Override
@@ -60,6 +59,7 @@ public class ComputerDifficultyActivity extends Activity {
 				arenaIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
 				arenaIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
 				startActivity(arenaIntent);
+				finish();
 			}
 		});
 	}

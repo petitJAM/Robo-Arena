@@ -132,6 +132,7 @@ public class PVPLobbyActivity extends Activity {
 
 								Log.d(MainMenuActivity.RA, "Starting locker room by JOIN game button");
 								startActivity(lockerRoomIntent);
+								finish();
 							}
 
 							@Override
@@ -186,6 +187,7 @@ public class PVPLobbyActivity extends Activity {
 
 						Log.d(MainMenuActivity.RA, "Starting locker room by CREATE game button");
 						startActivity(lockerRoomIntent);
+						finish();
 					}
 
 					@Override

@@ -120,5 +120,6 @@ public class LockerRoomActivity extends Activity {
 		// Pass along the extras
 		arenaIntent.putExtras(getIntent().getExtras());
 		startActivity(arenaIntent);
+		finish(); // we don't want BACK to send us here
 	}
 }

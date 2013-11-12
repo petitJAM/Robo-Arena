@@ -21,9 +21,6 @@ public class BoxerGame {
 
 	private LocalPlayer mLocal;
 	private RemotePlayer mRemote;
-
-//	private int mGameMode;
-//	private int mComputerDifficulty;
 	
 	// TODO: Use the game_running in /games/gameId/info
 
@@ -42,10 +39,8 @@ public class BoxerGame {
 	private static TextView player1_hp_textview;
 	private static TextView player2_hp_textview;
 
-	// TODO: Pass the gameId through to the players
 	public BoxerGame(Context context, String gameId, String localPlayerId) {
 		mArena = (ArenaActivity)context;
-//		mGameMode = GAME_MODE_HUMAN;
 
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
@@ -61,8 +56,6 @@ public class BoxerGame {
 
 	public BoxerGame(Context context, int computerDifficulty) {
 		mArena = (ArenaActivity)context;
-//		mGameMode = GAME_MODE_COMPUTER;
-//		mComputerDifficulty = computerDifficulty;
 
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
@@ -74,32 +67,6 @@ public class BoxerGame {
 	public void startGame() {
 		mRemote.start();
 	}
-
-//	// T ODO: reconsider the use of this
-//	public void newGame(boolean pvp) {
-//		mLocal = new LocalPlayer(this);
-//
-//		if (mGameMode == GAME_MODE_HUMAN) {
-//			mRemote = new HumanPlayer(this);
-//
-//		} else {
-//			// T ODO: Fix this hardcoded Difficulty Easy
-//			mRemote = new ComputerPlayer(this, mComputerDifficulty);
-//		}
-//	}
-//
-//	public void playGame() {
-//		// not sure on this game loop yet
-//		if (mGameMode == GAME_MODE_COMPUTER) {
-//			// start ai computer game
-//		} else {
-//			// receive foreign moves from server
-//		}
-//	}
-//
-//	public void pauseGame() {
-//
-//	}
 
 	private void printHealth() {
 		// Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
@@ -255,6 +222,8 @@ public class BoxerGame {
 	/* ********************* */
 	/* REMOTE PLAYER ACTIONS */
 	/* ********************* */
+	
+	// TODO: Move the startActionDelays into the computer player to keep the responsibility on the remote
 
 	public void remoteLeftJab() {
 		if (mRemote.getLeftActionsAllowed()) {
@@ -347,5 +316,14 @@ public class BoxerGame {
 			mLocal.startLeftActionDelay(BLOCKING_COOLDOWN);
 			mLocal.startRightActionDelay(BLOCKING_COOLDOWN);
 		}
+	}
+
+	/**
+	 * Tell Players to close Firebase connections
+	 */
+	public void destroy() {
+		// TODO: destroy firebase connections
+		mLocal.end();
+		mRemote.end();
 	}
 }
