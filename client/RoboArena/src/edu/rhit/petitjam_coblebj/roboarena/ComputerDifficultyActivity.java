@@ -9,7 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Toast;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
 import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
