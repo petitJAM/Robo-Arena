@@ -153,7 +153,7 @@ public class BoxerGame {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Hook");
 			
-			mLocal.rightJab(); // tell the local it punched
+			mLocal.rightHook(); // tell the local it punched
 
 			mArena.r_hook.setBackgroundColor(Color.CYAN);
 			mArena.AnimateLocalRightHook();
