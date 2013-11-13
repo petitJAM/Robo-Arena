@@ -67,10 +67,6 @@ public class BoxerGame {
 	public void startGame() {
 		mRemote.start();
 	}
-
-	private void printHealth() {
-		// Log.d(BG, "Local HP: " + this.local.getHealth() + " Remote HP: " + this.remote.getHealth());
-	}
 	
 	public void updateHealth(){
 		int p1hp = this.mLocal.getHealth();
