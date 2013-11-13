@@ -17,9 +17,11 @@ import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
 public class ArenaActivity extends Activity {
 
-	public static final String KEY_GAME_MODE = "key_game_mode";
-	public static final String KEY_GAME_ID = "key_firebase_ref";
+	protected static final String KEY_GAME_MODE = "key_game_mode";
+	protected static final String KEY_COMPUTER_DIFFICULTY = "key_computer_difficulty";
+	protected static final String KEY_GAME_ID = "key_firebase_ref";
 	protected static final String KEY_PLAYER_ID = "key_player_id";
+	protected static final String KEY_GAME_WINNER_ID = "key_game_winner_id";
 	
 	// Fields
 	private GestureDetector mDetector;
@@ -40,6 +42,12 @@ public class ArenaActivity extends Activity {
 	
 	public TextView player1_hp_textview;
 	public TextView player2_hp_textview;
+	
+	private int mGameMode;
+	private int mComputerDifficulty;
+	
+	private String mGameId;
+	private String mPlayerId;
 
 	// Actions
 	private static final float jab_distance = -15;
@@ -72,22 +80,19 @@ public class ArenaActivity extends Activity {
 		rightGlove = (ImageView) findViewById(R.id.right_glove);
 		leftGlove = (ImageView) findViewById(R.id.left_glove);
 
-		int gameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE,
-				BoxerGame.GAME_MODE_COMPUTER);
-		int computerDifficulty = getIntent().getIntExtra(
-				ComputerPlayer.KEY_COMPUTER_DIFFICULTY,
-				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
+		mGameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
+		mComputerDifficulty = getIntent().getIntExtra(KEY_COMPUTER_DIFFICULTY, ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
 		
-		String gameId = getIntent().getStringExtra(KEY_GAME_ID);
-		String playerId = getIntent().getStringExtra(KEY_PLAYER_ID);
+		mGameId = getIntent().getStringExtra(KEY_GAME_ID);
+		mPlayerId = getIntent().getStringExtra(KEY_PLAYER_ID);
 
-		if (gameMode == BoxerGame.GAME_MODE_HUMAN) {
+		if (mGameMode == BoxerGame.GAME_MODE_HUMAN) {
 			Log.d("RA", "Creating BoxerGame vs HUMAN");
-			mGame = new BoxerGame(this, gameId, playerId);
+			mGame = new BoxerGame(this, mGameId, mPlayerId);
 			
-		} else if (gameMode == BoxerGame.GAME_MODE_COMPUTER) {
+		} else if (mGameMode == BoxerGame.GAME_MODE_COMPUTER) {
 			Log.d("RA", "Creating BoxerGame vs COMPUTER");
-			mGame = new BoxerGame(this, computerDifficulty);
+			mGame = new BoxerGame(this, mComputerDifficulty);
 		}
 
 		
@@ -116,11 +121,26 @@ public class ArenaActivity extends Activity {
 
 	}
 
-	public void GameOver() {
-
+	public void gameOver(boolean localDidWin) {
 		Intent endScreenIntent = new Intent(this, MatchDetailsActivity.class);
+		
+		String gameWinnerId;
+		
+		if (localDidWin) {
+			gameWinnerId = mPlayerId;
+		} else {
+			gameWinnerId = mPlayerId.equals(getString(R.string.fb_game_player_joiner)) ? getString(R.string.fb_game_player_creator)
+					: getString(R.string.fb_game_player_joiner);
+		}
+		
+		endScreenIntent.putExtra(KEY_GAME_WINNER_ID, gameWinnerId);
+		endScreenIntent.putExtra(KEY_GAME_MODE, mGameMode);
+		endScreenIntent.putExtra(KEY_COMPUTER_DIFFICULTY, mComputerDifficulty);
+		endScreenIntent.putExtra(KEY_GAME_ID, mGameId);
+		endScreenIntent.putExtra(KEY_PLAYER_ID, mPlayerId);
+		
 		startActivity(endScreenIntent);
-
+		finish();
 	}
 	
 	@Override

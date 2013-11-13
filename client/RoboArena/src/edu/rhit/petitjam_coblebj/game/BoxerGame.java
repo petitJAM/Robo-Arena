@@ -76,7 +76,7 @@ public class BoxerGame {
 		
 		// if either player < 0, end game
 		if(p1hp == 0 || p2hp == 0){
-			mArena.GameOver(); // check time as well, and winners
+			mArena.gameOver(p2hp == 0); // check time as well, and winners
 			this.destroy();
 		}
 	}
