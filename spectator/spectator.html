@@ -1,0 +1,70 @@
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Robo Arena Spectator!</title>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/foundation.css" />
+
+    <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+    <!-- Foundation -->
+    <script>
+        document.write('<script src=' + ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') + '.js><\/script>')
+    </script>
+    <script src="js/foundation/foundation.js"></script>
+    <script src="js/foundation/foundation.dropdown.js"></script>
+    <script src="js/foundation/foundation.reveal.js"></script>
+    <script>$(document).foundation();</script>
+    <!-- -->
+
+    <script type="text/javascript" src="spectator.js"></script>
+
+</head>
+<body>
+
+    <hr>
+    <hr>
+
+    <div class="row">
+        <div class="large-6 columns">
+            <p>Hello! This is the spectator view for Robo Arena!</p>
+        </div>
+        <div class="large-6 columns">
+            <a href="#" data-dropdown="game-select-dd" data-options="is_hover:true">Select a game</a>
+            <ul id="game-select-dd" class="f-dropdown" data-dropdown-content></ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="game-spectate-view" class="row" style="visibility: hidden;">
+        <div class="large-12 columns">
+            <p id="title">Spectating __unknown_game__</p>
+            <canvas id="game-canvas" width="800", height="600"></canvas>
+        </div>
+
+        <div class="large-12 columns">
+            <a id="p1_left_jab_btn"       href="#" class="small button">Left Jab</a>
+            <a id="p1_left_hook_btn"      href="#" class="small button">Left Hook</a>
+            <a id="p1_left_uppercut_btn"  href="#" class="small button">Left Uppercut</a>
+
+            <a id="p1_right_jab_btn"      href="#" class="small button">Right Jab</a>
+            <a id="p1_right_hook_btn"     href="#" class="small button">Right Hook</a>
+            <a id="p1_right_uppercut_btn" href="#" class="small button">Right Uppercut</a>
+        </div>
+
+        <div class="large-12 columns">
+            <a id="p2_left_jab_btn"       href="#" class="small alert button">Left Jab</a>
+            <a id="p2_left_hook_btn"      href="#" class="small alert button">Left Hook</a>
+            <a id="p2_left_uppercut_btn"  href="#" class="small alert button">Left Uppercut</a>
+
+            <a id="p2_right_jab_btn"      href="#" class="small alert button">Right Jab</a>
+            <a id="p2_right_hook_btn"     href="#" class="small alert button">Right Hook</a>
+            <a id="p2_right_uppercut_btn" href="#" class="small alert button">Right Uppercut</a>
+        </div>
+    </div>
+
+</body>
