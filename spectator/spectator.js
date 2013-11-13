@@ -447,9 +447,50 @@ $(function() {
         console.log("Start spectating " + name);
         $("#game-spectate-view").css("visibility", "");
         $("#title").html("Spectating " + name);
-        start_anim();
 
         gameRef = gamesRootRef.child(name);
+        p1Ref = gameRef.child('player_creator');
+        p2Ref = gameRef.child('player_joiner');
+
+        /** P1 **/
+        p1Ref.child('left_jab').on(      'value', function() { p1_left_jab();        });
+        p1Ref.child('left_hook').on(     'value', function() { p1_left_hook();       });
+        p1Ref.child('left_uppercut').on( 'value', function() { p1_left_uppercut();   });
+
+        p1Ref.child('right_jab').on(     'value', function() { p1_right_jab();       });
+        p1Ref.child('right_hook').on(    'value', function() { p1_right_hook();      });
+        p1Ref.child('right_uppercut').on('value', function() { p1_right_uppercut();  });
+
+
+        /** P2 **/
+        p2Ref.child('left_jab').on(      'value', function() { p2_left_jab();        });
+        p2Ref.child('left_hook').on(     'value', function() { p2_left_hook();       });
+        p2Ref.child('left_uppercut').on( 'value', function() { p2_left_uppercut();   });
+
+        p2Ref.child('right_jab').on(     'value', function() { p2_right_jab();       });
+        p2Ref.child('right_hook').on(    'value', function() { p2_right_hook();      });
+        p2Ref.child('right_uppercut').on('value', function() { p2_right_uppercut();  });
+
+        setTimeout(function() {
+            start_anim();
+            reset();
+        }, 500);
+    }
+
+    function reset() {
+        p1_L.x = p1_L.start_x;
+        p1_L.y = p1_L.start_y;
+
+        p1_R.x = p1_R.start_x;
+        p1_R.y = p1_R.start_y;
+
+        p2_L.x = p2_L.start_x;
+        p2_L.y = p2_L.start_y;
+
+        p2_R.x = p2_R.start_x;
+        p2_R.y = p2_R.start_y;
+
+        re_draw_everything();
     }
 
 });
