@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+// Come here after a match or from match history
+
 public class MatchDetailsActivity extends Activity implements OnClickListener {
 
 	@Override

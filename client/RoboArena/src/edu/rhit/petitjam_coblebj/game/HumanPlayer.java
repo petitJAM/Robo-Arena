@@ -8,7 +8,11 @@ import com.firebase.client.ValueEventListener;
 
 import edu.rhit.petitjam_coblebj.roboarena.MainMenuActivity;
 import edu.rhit.petitjam_coblebj.roboarena.R;
-
+/*
+ * This remote player listens for value events on actions & actions_allowed
+ * 
+ * It does NOT listen for changes in its own health. The BoxerGame on this client will set its health.
+ */
 public class HumanPlayer extends RemotePlayer {
 
 	private Firebase mFb;
@@ -34,8 +38,46 @@ public class HumanPlayer extends RemotePlayer {
 		/* **************** */
 		/* ACTION LISTENERS */
 		/* **************** */
+				
+		// actions allowed
 		
-		// TODO: players' healths are not syncing correctly, flickers around a lot
+		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_left_actions_allowed))
+		.addValueEventListener(new ValueEventListener() {
+
+			@Override
+			public void onDataChange(DataSnapshot snap) {
+				setLeftActionsAllowed((Boolean)snap.getValue());
+			}
+
+			@Override
+			public void onCancelled() {}
+		});
+		
+		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_right_actions_allowed))
+		.addValueEventListener(new ValueEventListener() {
+
+			@Override
+			public void onDataChange(DataSnapshot snap) {
+				setRightActionsAllowed((Boolean)snap.getValue());
+			}
+
+			@Override
+			public void onCancelled() {}
+		});
+		
+		// blocking
+		
+		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_blocking))
+		.addValueEventListener(new ValueEventListener() {
+
+			@Override
+			public void onDataChange(DataSnapshot snap) {
+				setBlocking((Boolean)snap.getValue());
+			}
+
+			@Override
+			public void onCancelled() {}
+		});
 		
 		// left
 		
@@ -149,60 +191,6 @@ public class HumanPlayer extends RemotePlayer {
 					getGame().remoteBlock();
 					Log.d("RA", "RemotePlayer used block - " + mBlockCounter);
 				}
-			}
-
-			@Override
-			public void onCancelled() {}
-		});
-		
-		// actions allowed
-		
-		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_left_actions_allowed))
-		.addValueEventListener(new ValueEventListener() {
-
-			@Override
-			public void onDataChange(DataSnapshot snap) {
-				setLeftActionsAllowed((Boolean)snap.getValue());
-			}
-
-			@Override
-			public void onCancelled() {}
-		});
-		
-		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_right_actions_allowed))
-		.addValueEventListener(new ValueEventListener() {
-
-			@Override
-			public void onDataChange(DataSnapshot snap) {
-				setRightActionsAllowed((Boolean)snap.getValue());
-			}
-
-			@Override
-			public void onCancelled() {}
-		});
-		
-		// blocking
-		
-		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_blocking))
-		.addValueEventListener(new ValueEventListener() {
-
-			@Override
-			public void onDataChange(DataSnapshot snap) {
-				setBlocking((Boolean)snap.getValue());
-			}
-
-			@Override
-			public void onCancelled() {}
-		});
-		
-		// health
-		
-		mFb.child(MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_health))
-		.addValueEventListener(new ValueEventListener() {
-
-			@Override
-			public void onDataChange(DataSnapshot snap) {
-				setHealth(((Long)snap.getValue()).intValue());
 			}
 
 			@Override

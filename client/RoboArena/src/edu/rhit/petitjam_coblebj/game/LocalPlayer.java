@@ -2,7 +2,9 @@ package edu.rhit.petitjam_coblebj.game;
 
 import android.util.Log;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.ValueEventListener;
 
 import edu.rhit.petitjam_coblebj.roboarena.R;
 
@@ -30,19 +32,19 @@ public class LocalPlayer extends Player {
 	@Override
 	public void setHealth(int health) {
 		super.setHealthHelper(health);
-		mFbHandler.setHealth(health);
+//		mFbHandler.setHealth(getHealth());
 	}
 	
 	@Override
 	public void decrementHealth(int damage) {
 		super.setHealthHelper(getHealth() - damage);
-		mFbHandler.setHealth(getHealth());
+//		mFbHandler.setHealth(getHealth());
 	}
 	
 	@Override
 	public void incrementHealth(int damage) {
 		super.setHealthHelper(getHealth() + damage);
-		mFbHandler.setHealth(getHealth());
+//		mFbHandler.setHealth(getHealth());
 	}
 	
 	@Override
@@ -179,6 +181,17 @@ public class LocalPlayer extends Player {
 
 			mBlockFB = mFb.child(getString(R.string.fb_game_player_block));
 			mBlockingFB = mFb.child(getString(R.string.fb_game_player_blocking));
+			
+			// update our health from FB
+			mHealthFB.addValueEventListener(new ValueEventListener() {
+				@Override
+				public void onDataChange(DataSnapshot snap) {
+					LocalPlayer.this.setHealth(((Long)snap.getValue()).intValue());
+				}
+				
+				@Override
+				public void onCancelled() {}
+			});
 		}
 
 		@Override
