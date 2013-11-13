@@ -28,6 +28,8 @@ public class ArenaActivity extends Activity {
 	// Images
 	public ImageView rightGlove;
 	public ImageView leftGlove;
+	public ImageView enemyRightGlove;
+	public ImageView enemyLeftGlove;
 
 	// TextView
 	public TextView l_jab;
@@ -71,6 +73,9 @@ public class ArenaActivity extends Activity {
 
 		rightGlove = (ImageView) findViewById(R.id.right_glove);
 		leftGlove = (ImageView) findViewById(R.id.left_glove);
+		
+		enemyRightGlove = (ImageView) findViewById(R.id.robo_right_glove);
+		enemyLeftGlove = (ImageView) findViewById(R.id.robo_left_glove);
 
 		int gameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE,
 				BoxerGame.GAME_MODE_COMPUTER);
@@ -134,7 +139,7 @@ public class ArenaActivity extends Activity {
 		return mDetector.onTouchEvent(event);
 	}
 
-	public void AnimateRightJab() {
+	public void AnimateLocalRightJab() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(rightGlove, "translationY", jab_distance);
@@ -147,7 +152,7 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	public void AnimateLeftJab() {
+	public void AnimateLocalLeftJab() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(leftGlove, "translationY", jab_distance);
@@ -160,7 +165,7 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	public void AnimateRightHook() {
+	public void AnimateLocalRightHook() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(rightGlove, "translationX", hook_distance);
@@ -173,7 +178,7 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	public void AnimateLeftHook() {
+	public void AnimateLocalLeftHook() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", -hook_distance);
@@ -186,7 +191,7 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	public void AnimateRightUppercut() {
+	public void AnimateLocalRightUppercut() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(rightGlove, "translationY",
@@ -201,20 +206,55 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	public void AnimateLeftUppercut() {
+	public void AnimateLocalLeftUppercut() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(leftGlove, "translationY",
 				uppercut_distance);
-		a1.setDuration(750);
+		a1.setDuration(uppercut_cooldown);
 
 		a2 = ObjectAnimator.ofFloat(leftGlove, "translationY",
 				-uppercut_distance);
-		a2.setDuration(750);
+		a2.setDuration(uppercut_cooldown);
 
 		aSet.playSequentially(a1, a2);
 		aSet.start();
 	}
+	
+	public void AnimateRemoteRightJab() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1, a2;
+		a1 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY", -jab_distance);
+		a1.setDuration(jab_cooldown);
+
+		a2 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY", jab_distance);
+		a2.setDuration(jab_cooldown);
+
+		aSet.playSequentially(a1, a2);
+		aSet.start();
+	}
+	
+	public void AnimateRemoteLeftJab(){
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1, a2;
+		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY", -jab_distance);
+		a1.setDuration(jab_cooldown);
+
+		a2 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY", jab_distance);
+		a2.setDuration(jab_cooldown);
+
+		aSet.playSequentially(a1, a2);
+		aSet.start();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	private class PlayerGestureDetector extends
 			GestureDetector.SimpleOnGestureListener {
