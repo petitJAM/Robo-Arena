@@ -82,15 +82,6 @@ public class BoxerGame {
 			this.remote = new ComputerPlayer(this, ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
 		}
 	}
-
-	public void playGame() {
-		// not sure on this game loop yet
-		if (PVP){
-			// start ai computer game
-		} else {
-			// receive foreign moves from server
-		}
-	}
 	
 	public void pauseGame() {
 		
@@ -107,6 +98,9 @@ public class BoxerGame {
 		player2_hp_textview.setText(Integer.toString(p2hp));
 		
 		// if either player < 0, end game
+		if(p1hp == 0 || p2hp == 0){
+			mArena.GameOver();
+		}
 	}	
 	
 	/* LOCAL PLAYER ACTIONS */
@@ -316,4 +310,5 @@ public class BoxerGame {
 			local.startRightActionDelay(BLOCKING_COOLDOWN);
 		}
 	}
+
 }
