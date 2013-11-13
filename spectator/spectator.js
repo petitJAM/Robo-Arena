@@ -12,7 +12,6 @@ $(function() {
         if (snap.val() === null) {
             alert("nothing here");
         } else {
-            console.log("Found a game " + snap.name());
 
             if (snap.child('info').child('allow_spectators').val()) {
                 var li = $("<li>").append(snap.name());
@@ -20,10 +19,7 @@ $(function() {
                     spectate_game(snap.name());
                 });
                 $("#game-select-dd").append(li)
-                console.log("new game added to dropdown");
                 
-            } else { 
-                console.log("not added :( " + snap.child('info').child('allow_spectators').val());
             }
         }
     });
@@ -254,7 +250,6 @@ $(function() {
     }
 
     function p1_right_hook() {
-        console.log("p1 R hook");
         var n_frames = 8,
             x_speed  = 30,
             y_speed  = -10;
@@ -287,7 +282,6 @@ $(function() {
     }
 
     function p2_right_hook() {
-        console.log("p2 R hook");
         var n_frames = 8,
             x_speed  = -30,
             y_speed  = 10;
@@ -309,7 +303,6 @@ $(function() {
                 direction = -1;
             }
 
-            console.log("moving " + y_speed * direction);
             p2_R.y += y_speed * direction
 
             if (frame < n_frames) {
@@ -433,11 +426,26 @@ $(function() {
     /*********************** HEALTH ************************/
 
     function p1_update_health(hp) {
-        $("#p1_health").html("" + hp);
+        $("#p1_health").html("Player 1: " + hp);
+
+        if (hp <= 0) {
+            $("#game-canvas").css("visibility", "hidden");
+            $("#victory").css("visibility", "").html("Player 2 Wins!");
+
+            $("#p1_health").removeClass("success").addClass("alert");
+            $("#p2_health").removeClass("alert").addClass("success");
+        }
     }
 
     function p2_update_health(hp) {
-        $("#p2_health").html("" + hp);
+        $("#p2_health").html("Player 2: " + hp);
+
+        if (hp <= 0) {
+            $("#game-canvas").css("visibility", "hidden");
+            $("#victory").css("visibility", "").html("Player 1 Wins!");
+            $("#p1_health").removeClass("alert").addClass("success");
+            $("#p2_health").removeClass("success").addClass("alert");
+        }
     }
 
     /*******************************************************/
@@ -524,8 +532,11 @@ $(function() {
     var gameRef = null;
 
     function spectate_game(name) {
-        console.log("Start spectating " + name);
+        
         $("#game-spectate-view").css("visibility", "");
+        $("#game-canvas").css("visibility", "");
+        $("#victory").css("visibility", "hidden");
+
         $("#title").html("Spectating " + name);
 
         gameRef = gamesRootRef.child(name);

@@ -42,13 +42,14 @@
 
     <div id="game-spectate-view" class="row" style="visibility: hidden;">
 
-        <div class="large-12 columns">
+        <div class="large-11 columns">
             <p id="title">Spectating __unknown_game__</p>
-            <p id="p1_health" class="left">100</p>
-            <p id="p2_health" class="right">100</p>
+            <p id="p1_health" class="label left">Player: 100</p>
+            <p id="p2_health" class="label right">Player: 100</p>
         </div>
 
         <div class="large-12 columns">
+            <p id="victory" style="visibility: hidden">Somebody Won</p>
             <canvas id="game-canvas" width="800", height="600"></canvas>
         </div>
 
