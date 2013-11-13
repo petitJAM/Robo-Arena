@@ -15,33 +15,6 @@
         android:text="@string/arena_title"
         android:textSize="@dimen/title_text_size" />
 
-    <ImageView
-        android:id="@+id/opponent_boxer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/arena_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
-        android:src="@drawable/opponent_boxer" />
-
-    <ImageView
-        android:id="@+id/left_glove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/opponent_boxer"
-        android:layout_toLeftOf="@+id/opponent_boxer"
-        android:layout_marginLeft="43dp"
-        android:src="@drawable/boxing_glove_left" />
-    
-    <ImageView
-        android:id="@+id/right_glove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/opponent_boxer"
-        android:layout_toRightOf="@+id/opponent_boxer"
-        android:layout_marginRight="43dp"
-        android:src="@drawable/boxing_glove_right" />
-
     <!-- Temp views for hits -->
     
     <!-- Left -->
@@ -118,5 +91,53 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="@string/max_health"/>
+
+    <ImageView
+        android:id="@+id/opponent_boxer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r_up_tv"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/robo_body" />
+
+    <ImageView
+        android:id="@+id/right_glove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/opponent_boxer"
+        android:layout_alignRight="@+id/arena_title"
+        android:src="@drawable/wii_glove_right_blue" />
+
+    <ImageView
+        android:id="@+id/left_glove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/opponent_boxer"
+        android:layout_alignLeft="@+id/arena_title"
+        android:src="@drawable/wii_glove_left_blue" />
+
+    <ImageView
+        android:id="@+id/robo_right_glove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/opponent_boxer"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@+id/opponent_boxer"
+        android:src="@drawable/remote_right_glove" />
+
+    <ImageView
+        android:id="@+id/robo_left_glove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/robo_right_glove"
+        android:layout_toRightOf="@+id/opponent_boxer"
+        android:src="@drawable/remote_left_glove" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" >
+    </FrameLayout>
 
 </RelativeLayout>
