@@ -80,7 +80,8 @@ public class BoxerGame {
 		
 		// if either player < 0, end game
 		if(p1hp == 0 || p2hp == 0){
-			mArena.GameOver();
+			mArena.GameOver(); // check time as well, and winners
+			this.destroy();
 		}
 	}
 
@@ -99,13 +100,13 @@ public class BoxerGame {
 			mLocal.leftJab(); // tell the local it punched
 
 			mArena.l_jab.setBackgroundColor(Color.CYAN);
+			mArena.AnimateLeftJab();
 
 			// TODO: TRACK -- move was attempted
 			// Tell gameView to update with a Ljab
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(JAB_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			} else {
 				// TODO: TRACK -- move was blocked
@@ -121,12 +122,12 @@ public class BoxerGame {
 			mLocal.rightJab(); // tell the local it punched
 
 			mArena.r_jab.setBackgroundColor(Color.CYAN);
-
+			mArena.AnimateRightJab();
+			
 			// Tell gameView to update with a Ljab
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(JAB_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mLocal.startRightActionDelay(JAB_COOLDOWN);
@@ -140,12 +141,12 @@ public class BoxerGame {
 			mLocal.leftHook(); // tell the local it punched
 
 			mArena.l_hook.setBackgroundColor(Color.CYAN);
+			mArena.AnimateLeftHook();
 
 			// Tell gameView to update with a Ljab
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(HOOK_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mLocal.startLeftActionDelay(HOOK_COOLDOWN);
@@ -159,12 +160,12 @@ public class BoxerGame {
 			mLocal.rightJab(); // tell the local it punched
 
 			mArena.r_hook.setBackgroundColor(Color.CYAN);
+			mArena.AnimateRightHook();
 
 			// Tell gameView to update with a Ljab
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(HOOK_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mLocal.startRightActionDelay(HOOK_COOLDOWN);
@@ -178,12 +179,12 @@ public class BoxerGame {
 			mLocal.leftUppercut(); // tell the local it punched
 
 			mArena.l_up.setBackgroundColor(Color.CYAN);
+			mArena.AnimateLeftUppercut();
 
 			// Tell gameView to update with a Ljab
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(UPPERCUT_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mLocal.startLeftActionDelay(UPPERCUT_COOLDOWN);
@@ -197,12 +198,12 @@ public class BoxerGame {
 			mLocal.rightUppercut(); // tell the local it punched
 
 			mArena.r_up.setBackgroundColor(Color.CYAN);
+			mArena.AnimateRightUppercut();
 
 			// Tell gameView to update with a Ljab
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(UPPERCUT_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mLocal.startRightActionDelay(UPPERCUT_COOLDOWN);
@@ -234,7 +235,6 @@ public class BoxerGame {
 			if (!mLocal.isBlocking()) {
 				mLocal.decrementHealth(JAB_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mRemote.startLeftActionDelay(JAB_COOLDOWN);
@@ -248,7 +248,6 @@ public class BoxerGame {
 			if (!mLocal.isBlocking()) {
 				mLocal.decrementHealth(JAB_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mRemote.startRightActionDelay(JAB_COOLDOWN);
@@ -262,7 +261,6 @@ public class BoxerGame {
 			if (!mLocal.isBlocking()) {
 				mLocal.decrementHealth(HOOK_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mRemote.startLeftActionDelay(HOOK_COOLDOWN);
@@ -276,7 +274,6 @@ public class BoxerGame {
 			if (!mLocal.isBlocking()) {
 				mLocal.decrementHealth(HOOK_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mRemote.startRightActionDelay(HOOK_COOLDOWN);
@@ -290,7 +287,6 @@ public class BoxerGame {
 			if (!mLocal.isBlocking()) {
 				mLocal.decrementHealth(UPPERCUT_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mRemote.startLeftActionDelay(UPPERCUT_COOLDOWN);
@@ -304,7 +300,6 @@ public class BoxerGame {
 			if (!mLocal.isBlocking()) {
 				mLocal.decrementHealth(UPPERCUT_DMG);
 				// update players' health bars
-				printHealth();
 				updateHealth();
 			}
 			mRemote.startRightActionDelay(UPPERCUT_COOLDOWN);

@@ -238,12 +238,10 @@ public class ArenaActivity extends Activity {
 			if (x >= CENTER_X) {
 				Log.d(PGL, "right jab");
 				mGame.localRightJab();
-				AnimateRightJab();
 
 			} else {
 				Log.d(PGL, "left jab");
 				mGame.localLeftJab();
-				AnimateLeftJab();
 			}
 
 			return true;
@@ -274,7 +272,6 @@ public class ArenaActivity extends Activity {
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "right uppercut");
 						mGame.localRightUppercut();
-						AnimateRightUppercut();
 						
 					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
 						Log.d(PGL, "block (right)");
@@ -283,7 +280,6 @@ public class ArenaActivity extends Activity {
 					} else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");
 						mGame.localRightHook();
-						AnimateRightHook();
 						
 					} else {
 						Log.d(PGL, "right nothing");
@@ -294,7 +290,6 @@ public class ArenaActivity extends Activity {
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "left uppercut");
 						mGame.localLeftUppercut();
-						AnimateLeftUppercut();
 						
 					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
 						Log.d(PGL, "block (left)");
@@ -303,7 +298,6 @@ public class ArenaActivity extends Activity {
 					} else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe r->l
 						Log.d(PGL, "left hook");
 						mGame.localLeftHook();
-						AnimateLeftHook();
 						
 					} else {
 						Log.d(PGL, "left nothing");
