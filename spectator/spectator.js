@@ -254,7 +254,7 @@ $(function() {
     }
 
     function p1_right_hook() {
-
+        console.log("p1 R hook");
         var n_frames = 8,
             x_speed  = 30,
             y_speed  = -10;
@@ -287,7 +287,7 @@ $(function() {
     }
 
     function p2_right_hook() {
-
+        console.log("p2 R hook");
         var n_frames = 8,
             x_speed  = -30,
             y_speed  = 10;
@@ -309,6 +309,7 @@ $(function() {
                 direction = -1;
             }
 
+            console.log("moving " + y_speed * direction);
             p2_R.y += y_speed * direction
 
             if (frame < n_frames) {
@@ -363,7 +364,83 @@ $(function() {
         p2_right_uppercut_h(1);
     }
 
-    /************************************************/
+    /*********************** BLOCK *************************/
+
+    function p1_block() {
+        var n_frames = 20,
+            y_speed  = 5;
+
+        p1_L.x = p1_L.start_x;
+        p1_L.y = p1_L.start_y;
+        p1_L.radius = p1_L.start_radius;
+
+        p1_R.x = p1_R.start_x;
+        p1_R.y = p1_R.start_y;
+        p1_R.radius = p1_R.start_radius;
+
+        function p1_block_h(frame) {
+            if (frame < n_frames / 4) {
+                // move hands in
+                p1_L.y +=  y_speed;
+                p1_R.y += -y_speed;
+
+            } else if (frame > 3 * n_frames / 4) {
+                // move hands back
+                p1_L.y += -y_speed;
+                p1_R.y +=  y_speed;
+            }
+
+            if (frame < n_frames) {
+                setTimeout(function() { p1_block_h(frame + 1) }, 50);
+            }
+        }
+
+        p1_block_h(1);
+    }
+
+    function p2_block() {
+        var n_frames = 20,
+            y_speed  = 5;
+
+        p2_L.x = p2_L.start_x;
+        p2_L.y = p2_L.start_y;
+        p2_L.radius = p2_L.start_radius;
+
+        p2_R.x = p2_R.start_x;
+        p2_R.y = p2_R.start_y;
+        p2_R.radius = p2_R.start_radius;
+
+        function p2_block_h(frame) {
+            if (frame < n_frames / 4) {
+                // move hands in
+                p2_L.y += -y_speed;
+                p2_R.y +=  y_speed;
+
+            } else if (frame > 3 * n_frames / 4) {
+                // move hands back
+                p2_L.y +=  y_speed;
+                p2_R.y += -y_speed;
+            }
+
+            if (frame < n_frames) {
+                setTimeout(function() { p2_block_h(frame + 1) }, 50);
+            }
+        }
+
+        p2_block_h(1);
+    }
+
+    /*********************** HEALTH ************************/
+
+    function p1_update_health(hp) {
+        $("#p1_health").html("" + hp);
+    }
+
+    function p2_update_health(hp) {
+        $("#p2_health").html("" + hp);
+    }
+
+    /*******************************************************/
 
     var canvas = document.getElementById('game-canvas');
     var context = canvas.getContext('2d');
@@ -427,6 +504,8 @@ $(function() {
     $("#p1_right_hook_btn").click(p1_right_hook);
     $("#p1_right_uppercut_btn").click(p1_right_uppercut);
 
+    $("#p1_block_btn").click(p1_block);
+
     /** P2 **/
 
     $("#p2_left_jab_btn").click(p2_left_jab);
@@ -436,7 +515,8 @@ $(function() {
     $("#p2_right_jab_btn").click(p2_right_jab);
     $("#p2_right_hook_btn").click(p2_right_hook);
     $("#p2_right_uppercut_btn").click(p2_right_uppercut);
-   
+
+    $("#p2_block_btn").click(p2_block);   
 
 
     // TODO: Add listeners for FB
@@ -461,6 +541,9 @@ $(function() {
         p1Ref.child('right_hook').on(    'value', function() { p1_right_hook();      });
         p1Ref.child('right_uppercut').on('value', function() { p1_right_uppercut();  });
 
+        p1Ref.child('block').on(         'value', function() { p1_block();           });
+        p1Ref.child('health').on(        'value', function(snap) { p1_update_health(snap.val()); });
+
 
         /** P2 **/
         p2Ref.child('left_jab').on(      'value', function() { p2_left_jab();        });
@@ -470,6 +553,9 @@ $(function() {
         p2Ref.child('right_jab').on(     'value', function() { p2_right_jab();       });
         p2Ref.child('right_hook').on(    'value', function() { p2_right_hook();      });
         p2Ref.child('right_uppercut').on('value', function() { p2_right_uppercut();  });
+
+        p2Ref.child('block').on(         'value', function() { p2_block();           });
+        p2Ref.child('health').on(        'value', function(snap) { p2_update_health(snap.val());   });
 
         setTimeout(function() {
             start_anim();
@@ -490,7 +576,7 @@ $(function() {
         p2_R.x = p2_R.start_x;
         p2_R.y = p2_R.start_y;
 
-        re_draw_everything();
+        re_draw_everything(context);
     }
 
 });
