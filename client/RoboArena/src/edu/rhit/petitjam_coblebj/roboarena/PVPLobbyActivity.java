@@ -19,10 +19,14 @@ import edu.rhit.petitjam_coblebj.game.BoxerGame;
 
 /**
  * 
- * <p>When this class starts the LockerRoomActivity, a couple extras are put in place:</p>
+ * <p>
+ * When this class starts the LockerRoomActivity, a couple extras are put in place:
+ * </p>
  * 
- * 	<p>KEY_GAME_ID - the name of this game in Firebase<br/>
- * 	   KEY_PLAYER_ID - the id of the LOCAL player ("player_creator" or "player_joiner")</p>
+ * <p>
+ * KEY_GAME_ID - the name of this game in Firebase<br/>
+ * KEY_PLAYER_ID - the id of the LOCAL player ("player_creator" or "player_joiner")
+ * </p>
  * 
  * @author petitjam
  */
@@ -38,6 +42,8 @@ public class PVPLobbyActivity extends Activity {
 	private EditText mJoinRoomPassword;
 
 	private CheckBox mAllowSpectators;
+
+	private String mLocalPlayerId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,20 +82,20 @@ public class PVPLobbyActivity extends Activity {
 
 				final String gameName = mJoinRoomName.getText().toString();
 				final String gamePassword = mJoinRoomPassword.getText().toString();
-				
+
 				if (gameName.isEmpty()) {
 					Toast.makeText(PVPLobbyActivity.this, R.string.error_game_name_empty, Toast.LENGTH_SHORT).show();
 					return;
 				}
 
 				final Firebase gameRef = mRef.child(gameName);
-				
+
 				Log.d("RA", "clicked join");
 
 				gameRef.addListenerForSingleValueEvent(new ValueEventListener() {
 					@Override
 					public void onDataChange(DataSnapshot snap) {
-						
+
 						Log.d("RA", "checking if game exists");
 
 						if (snap.getValue() == null) {
@@ -106,9 +112,9 @@ public class PVPLobbyActivity extends Activity {
 						passwordRef.addListenerForSingleValueEvent(new ValueEventListener() {
 							@Override
 							public void onDataChange(DataSnapshot snap) {
-								
+
 								Log.d("RA", "checking if password correct");
-								
+
 								String password = (String)snap.getValue();
 
 								if (!password.equals(gamePassword)) {
@@ -117,11 +123,18 @@ public class PVPLobbyActivity extends Activity {
 									mJoinRoomPassword.setText("");
 									return;
 								}
-								
-								Log.d("RA", "this is where we go to the locker room");
+
+								mLocalPlayerId = getString(R.string.fb_game_player_joiner);
 
 								gameRef.child(getString(R.string.fb_game_player_joiner))
 										.child(getString(R.string.fb_game_player_is_connected)).setValue(Boolean.TRUE);
+
+								String username = getSharedPreferences(getString(R.string.preference_file_key),
+										MODE_PRIVATE).getString(getString(R.string.prefs_key_username),
+										getString(R.string.default_username));
+								
+								gameRef.child(getString(R.string.fb_game_player_joiner))
+										.child(getString(R.string.fb_game_player_name)).setValue(username);
 
 								Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
 
@@ -177,12 +190,15 @@ public class PVPLobbyActivity extends Activity {
 							return;
 						}
 
+						mLocalPlayerId = getString(R.string.fb_game_player_creator);
+
 						String gameRefName = createNewGame(gameName, gamePassword, allowSpectators);
 
 						Intent lockerRoomIntent = new Intent(PVPLobbyActivity.this, LockerRoomActivity.class);
-						
+
 						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_HUMAN);
-						lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID, getString(R.string.fb_game_player_creator));
+						lockerRoomIntent.putExtra(ArenaActivity.KEY_PLAYER_ID,
+								getString(R.string.fb_game_player_creator));
 						lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_ID, gameRefName);
 
 						Log.d(MainMenuActivity.RA, "Starting locker room by CREATE game button");
@@ -219,6 +235,12 @@ public class PVPLobbyActivity extends Activity {
 	private void createPlayer(Firebase gameRef, String playerId) {
 		// Make the player
 		Firebase playerRef = gameRef.child(playerId);
+
+		if (playerId.equals(mLocalPlayerId)) {
+			String username = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE).getString(
+					getString(R.string.prefs_key_username), getString(R.string.default_username));
+			playerRef.child(getString(R.string.fb_game_player_name)).setValue(username);
+		}
 
 		// Create player stats / statuses
 		playerRef.child(getString(R.string.fb_game_player_health)).setValue(Integer.valueOf(100));

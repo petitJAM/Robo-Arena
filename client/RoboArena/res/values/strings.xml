@@ -20,6 +20,7 @@
     <string name="fb_game_info_password">password</string>
     <string name="fb_game_info_allow_spectators">allow_spectators</string>
     
+    <string name="fb_game_player_name">name</string>
     <string name="fb_game_player_health">health</string>
     <string name="fb_game_player_is_connected">is_connected</string>
     <string name="fb_game_player_is_ready">is_ready</string>
@@ -93,8 +94,10 @@
     <string name="settings_save">Save</string>
 
     <!-- Stats -->
+    <string name="attempted_hits">Attempted Hits</string>
     <string name="successful_hits">Successful Hits</string>
     <string name="blocked_hits">Blocked Hits</string>
+    <string name="blocks">Blocks</string>
     
     <!-- Action names -->
     <string name="left_jab">Left Jab</string>
@@ -110,10 +113,16 @@
     <!-- Misc -->
     <string name="win">Win</string>
     <string name="lose">Lose</string>
-    <string name="default_opponent_name">Joe Bob</string>
+    <string name="default_username">My Name</string>
+    <string name="default_opponent_name">Default Opponent Name</string>
     <string name="default_date">8/20/1991</string>
     <string name="table_row">Table Row</string>
     <string name="done">Done</string>
     <string name="default_score">0</string>
+    <string name="spectator_not_implemented">Sorry, this feature isn\'t implemented here!</string>
+    
+    <!-- Preferences -->
+    <string name="preference_file_key">edu.rosehulman.petitjam_coblebj.PREF_KEY</string>
+    <string name="prefs_key_username">PREFS_KEY_USERNAME</string>
 
 </resources>

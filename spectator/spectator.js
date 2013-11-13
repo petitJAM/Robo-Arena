@@ -537,7 +537,10 @@ $(function() {
         $("#game-canvas").css("visibility", "");
         $("#victory").css("visibility", "hidden");
 
-        $("#title").html("Spectating " + name);
+        $("#p1_health").removeClass("success").removeClass("alert");
+        $("#p2_health").removeClass("success").removeClass("alert");
+
+        $("#title").html("Spectating: " + name);
 
         gameRef = gamesRootRef.child(name);
         p1Ref = gameRef.child('player_creator');
