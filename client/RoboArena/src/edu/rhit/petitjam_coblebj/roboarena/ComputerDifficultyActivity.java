@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
-import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
 public class ComputerDifficultyActivity extends Activity {
 
@@ -56,7 +55,7 @@ public class ComputerDifficultyActivity extends Activity {
 				
 				Intent arenaIntent = new Intent(ComputerDifficultyActivity.this, ArenaActivity.class);
 				arenaIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
-				arenaIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
+				arenaIntent.putExtra(ArenaActivity.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
 				startActivity(arenaIntent);
 				finish();
 			}
