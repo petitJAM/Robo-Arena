@@ -37,6 +37,7 @@ public class ArenaActivity extends Activity {
 	public TextView r_hook;
 	public TextView r_up;
 	public TextView block;
+	
 	public TextView player1_hp_textview;
 	public TextView player2_hp_textview;
 
@@ -76,12 +77,16 @@ public class ArenaActivity extends Activity {
 		int computerDifficulty = getIntent().getIntExtra(
 				ComputerPlayer.KEY_COMPUTER_DIFFICULTY,
 				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
+		
 		String gameId = getIntent().getStringExtra(KEY_GAME_ID);
+		String playerId = getIntent().getStringExtra(KEY_PLAYER_ID);
 
 		if (gameMode == BoxerGame.GAME_MODE_HUMAN) {
-			mGame = new BoxerGame(this, gameId);
+			Log.d("RA", "Creating BoxerGame vs HUMAN");
+			mGame = new BoxerGame(this, gameId, playerId);
 			
 		} else if (gameMode == BoxerGame.GAME_MODE_COMPUTER) {
+			Log.d("RA", "Creating BoxerGame vs COMPUTER");
 			mGame = new BoxerGame(this, computerDifficulty);
 		}
 
@@ -117,12 +122,15 @@ public class ArenaActivity extends Activity {
 		startActivity(endScreenIntent);
 
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mGame.destroy();
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (event.getPointerCount() > 1) {
-			Log.d("PGL", "two finger event");
-		}
 		return mDetector.onTouchEvent(event);
 	}
 
@@ -267,11 +275,16 @@ public class ArenaActivity extends Activity {
 						Log.d(PGL, "right uppercut");
 						mGame.localRightUppercut();
 						AnimateRightUppercut();
-					} else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe
-																	// r->l
+						
+					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
+						Log.d(PGL, "block (right)");
+						mGame.localBlock();
+						
+					} else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");
 						mGame.localRightHook();
 						AnimateRightHook();
+						
 					} else {
 						Log.d(PGL, "right nothing");
 					}
@@ -282,11 +295,16 @@ public class ArenaActivity extends Activity {
 						Log.d(PGL, "left uppercut");
 						mGame.localLeftUppercut();
 						AnimateLeftUppercut();
-					} else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe
-																	// r->l
+						
+					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
+						Log.d(PGL, "block (left)");
+						mGame.localBlock();
+						
+					} else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe r->l
 						Log.d(PGL, "left hook");
 						mGame.localLeftHook();
 						AnimateLeftHook();
+						
 					} else {
 						Log.d(PGL, "left nothing");
 					}

@@ -9,7 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Toast;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
 import edu.rhit.petitjam_coblebj.game.ComputerPlayer;
 
@@ -34,8 +33,7 @@ public class ComputerDifficultyActivity extends Activity {
 			// TODO - finish the correct logic for this function
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				Toast.makeText(ComputerDifficultyActivity.this, "Delta change: " + selectedDifficulty,
-						Toast.LENGTH_SHORT).show();
+				Log.d("RA", "Set computer difficulty to " + selectedDifficulty);
 			}
 
 			@Override
@@ -56,10 +54,11 @@ public class ComputerDifficultyActivity extends Activity {
 			public void onClick(View v) {
 				Log.d(MainMenuActivity.RA, "Starting locker room from computer difficulty with " + selectedDifficulty);
 				
-				Intent lockerRoomIntent = new Intent(ComputerDifficultyActivity.this, LockerRoomActivity.class);
-				lockerRoomIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
-				lockerRoomIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
-				startActivity(lockerRoomIntent);
+				Intent arenaIntent = new Intent(ComputerDifficultyActivity.this, ArenaActivity.class);
+				arenaIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
+				arenaIntent.putExtra(ComputerPlayer.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
+				startActivity(arenaIntent);
+				finish();
 			}
 		});
 	}

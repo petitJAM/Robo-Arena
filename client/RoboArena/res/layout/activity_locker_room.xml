@@ -14,63 +14,6 @@
         android:text="@string/locker_room"
         android:textSize="@dimen/title_text_size" />
 
-    <TextView
-        android:id="@+id/r_hook_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/l_hook_tv"
-        android:layout_alignBottom="@+id/l_hook_tv"
-        android:layout_alignRight="@+id/locker_room_title"
-        android:text="@string/connected" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/r_jab_tv"
-        android:layout_alignBottom="@+id/r_jab_tv"
-        android:layout_alignLeft="@+id/r_up_tv"
-        android:text="@string/connected" />
-
-    <CheckBox
-        android:id="@+id/l_hook_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/l_up_tv"
-        android:layout_below="@+id/locker_room_title"
-        android:layout_marginTop="26dp"
-        android:checked="true"
-        android:text="@string/player1" />
-
-    <CheckBox
-        android:id="@+id/l_up_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/r_jab_tv"
-        android:layout_below="@+id/l_hook_tv"
-        android:layout_marginTop="30dp"
-        android:text="@string/player2" />
-
-    <CheckBox
-        android:id="@+id/r_jab_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/l_up_tv"
-        android:layout_marginRight="66dp"
-        android:layout_marginTop="21dp"
-        android:layout_toLeftOf="@+id/textView6"
-        android:checked="true"
-        android:text="@string/spec1" />
-
-    <TextView
-        android:id="@+id/r_up_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/l_up_tv"
-        android:layout_alignBottom="@+id/l_up_tv"
-        android:layout_alignLeft="@+id/r_hook_tv"
-        android:text="@string/connected" />
-
     <Button
         android:id="@+id/ready_button"
         android:layout_width="wrap_content"
@@ -78,5 +21,42 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="@string/ready" />
+
+    <CheckBox
+        android:id="@+id/player_one_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/locker_room_title"
+        android:layout_below="@+id/locker_room_title"
+        android:layout_marginTop="25dp"
+        android:text="@string/player1" />
+    
+    <CheckBox
+        android:id="@+id/player_two_check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/player_one_check_box"
+        android:layout_below="@+id/player_one_check_box"
+        android:layout_marginTop="26dp"
+        android:text="@string/player2" />
+
+    <TextView
+        android:id="@+id/player_one_connected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/player_one_check_box"
+        android:layout_alignBottom="@+id/player_one_check_box"
+        android:layout_alignRight="@+id/locker_room_title"
+        android:text="@string/not_connected" />
+
+    <TextView
+        android:id="@+id/player_two_connected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/player_two_check_box"
+        android:layout_alignBottom="@+id/player_two_check_box"
+        android:layout_alignRight="@+id/locker_room_title"
+        android:text="@string/not_connected" />
+
 
 </RelativeLayout>

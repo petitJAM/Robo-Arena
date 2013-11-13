@@ -12,18 +12,22 @@
     
     <!-- Firebase Strings -->
     <string name="fb_game_info">info</string>
+    <string name="fb_game_player_creator">player_creator</string>
+    <string name="fb_game_player_joiner">player_joiner</string>
+    
+    <string name="fb_game_info_active">active</string>
     <string name="fb_game_info_game_running">game_running</string>
     <string name="fb_game_info_password">password</string>
     <string name="fb_game_info_allow_spectators">allow_spectators</string>
     
-    <string name="fb_game_player_creator">player_creator</string>
-    <string name="fb_game_player_joiner">player_joiner</string>
     <string name="fb_game_player_health">health</string>
     <string name="fb_game_player_is_connected">is_connected</string>
     <string name="fb_game_player_is_ready">is_ready</string>
-    <string name="fb_game_player_actions_allowed">actions_allowed</string>
+    <string name="fb_game_player_left_actions_allowed">left_actions_allowed</string>
+    <string name="fb_game_player_right_actions_allowed">right_actions_allowed</string>
     
     <string name="fb_game_player_block">block</string>
+    <string name="fb_game_player_blocking">blocking</string>
     <string name="fb_game_player_left_jab">left_jab</string>
     <string name="fb_game_player_left_hook">left_hook</string>
     <string name="fb_game_player_left_uppercut">left_uppercut</string>
@@ -69,6 +73,7 @@
     <string name="player2">Player 2</string>
     <string name="spec1">Spectator 1</string>
     <string name="connected">Connected</string>
+    <string name="not_connected">Not Connected</string>
     <string name="ready">Ready</string>
 
     <!-- Locate matches -->
@@ -90,6 +95,17 @@
     <!-- Stats -->
     <string name="successful_hits">Successful Hits</string>
     <string name="blocked_hits">Blocked Hits</string>
+    
+    <!-- Action names -->
+    <string name="left_jab">Left Jab</string>
+    <string name="left_hook">Left Hook</string>
+    <string name="left_uppercut">Left Uppercut</string>
+    
+    <string name="right_jab">Right Jab</string>
+    <string name="right_hook">Right Hook</string>
+    <string name="right_uppercut">Right Uppercut</string>
+    
+    <string name="block">Block</string>
     
     <!-- Misc -->
     <string name="win">Win</string>
