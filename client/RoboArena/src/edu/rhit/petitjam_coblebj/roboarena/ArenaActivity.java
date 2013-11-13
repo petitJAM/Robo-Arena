@@ -270,20 +270,19 @@ public class ArenaActivity extends Activity {
 																	// enough
 
 				if (e1_x >= CENTER_X) { // Right hits
-
-					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
-						Log.d(PGL, "right uppercut");
-						mGame.localRightUppercut();
-						AnimateRightUppercut();
+					if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
+						Log.d(PGL, "right hook");
+						mGame.localRightHook();
+						AnimateRightHook();
 						
 					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
 						Log.d(PGL, "block (right)");
 						mGame.localBlock();
 						
-					} else if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
-						Log.d(PGL, "right hook");
-						mGame.localRightHook();
-						AnimateRightHook();
+					} else if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
+						Log.d(PGL, "right uppercut");
+						mGame.localRightUppercut();
+						AnimateRightUppercut();
 						
 					} else {
 						Log.d(PGL, "right nothing");
