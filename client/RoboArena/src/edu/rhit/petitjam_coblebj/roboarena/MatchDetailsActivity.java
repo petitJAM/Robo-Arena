@@ -28,8 +28,6 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_match_details);
 		
-//		(TextView)findViewById(R.id.opponent_name);
-		
 		mAttemptedHitsValueTextView = (TextView)findViewById(R.id.attempted_hits_value);
 		mBlocksValueTextView = (TextView)findViewById(R.id.blocks_value);
 
@@ -47,24 +45,10 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 
 			// base game FB
 			Firebase fb = new Firebase(getString(R.string.roboarena_firebase_games)).child(gameId);
-
-			String remotePlayerId = playerId.equals(getString(R.string.fb_game_player_joiner)) ? getString(R.string.fb_game_player_creator)
-					: getString(R.string.fb_game_player_joiner);
-
+			
 			Firebase localPlayerFB = fb.child(playerId);
-			Firebase remotePlayerFB = fb.child(remotePlayerId);
 			
 			// TODO: get everything we need from FB
-
-			localPlayerFB.child(getString(R.string.fb_game_player_health)).addListenerForSingleValueEvent(new ValueEventListener() {
-				@Override
-				public void onDataChange(DataSnapshot snap) {
-					
-				}
-				
-				@Override
-				public void onCancelled() {}
-			});
 
 			localPlayerFB.child(getString(R.string.fb_game_player_left_jab)).addListenerForSingleValueEvent(new AddToLocalPlayerHitsAttemptedListener());
 			localPlayerFB.child(getString(R.string.fb_game_player_left_hook)).addListenerForSingleValueEvent(new AddToLocalPlayerHitsAttemptedListener());
@@ -80,6 +64,22 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 				public void onDataChange(DataSnapshot snap) {
 					mLocalPlayerBlocks = ((Long)snap.getValue()).intValue();
 					mBlocksValueTextView.setText("" + mLocalPlayerBlocks);
+				}
+				
+				@Override
+				public void onCancelled() {}
+			});
+			
+
+			String remotePlayerId = playerId.equals(getString(R.string.fb_game_player_joiner)) ? getString(R.string.fb_game_player_creator)
+					: getString(R.string.fb_game_player_joiner);
+			Firebase remotePlayerFB = fb.child(remotePlayerId);
+			
+			remotePlayerFB.child(getString(R.string.fb_game_player_name)).addListenerForSingleValueEvent(new ValueEventListener() {
+				
+				@Override
+				public void onDataChange(DataSnapshot snap) {
+					((TextView)findViewById(R.id.opponent_name)).setText((String)snap.getValue());
 				}
 				
 				@Override

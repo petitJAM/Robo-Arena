@@ -63,6 +63,10 @@ public class BoxerGame {
 		mLocal = new LocalPlayer(this);
 		mRemote = new ComputerPlayer(this, computerDifficulty);
 	}
+	
+	public Context getContext() {
+		return mArena;
+	}
 
 	public void startGame() {
 		mRemote.start();
@@ -79,6 +83,15 @@ public class BoxerGame {
 			mArena.gameOver(p2hp == 0); // check time as well, and winners
 			this.destroy();
 		}
+	}
+
+	/**
+	 * Tell Players to close Firebase connections
+	 */
+	public void destroy() {
+		// TODO: destroy firebase connections
+		mLocal.end();
+		mRemote.end();
 	}
 
 
@@ -311,14 +324,5 @@ public class BoxerGame {
 			mLocal.startLeftActionDelay(BLOCKING_COOLDOWN);
 			mLocal.startRightActionDelay(BLOCKING_COOLDOWN);
 		}
-	}
-
-	/**
-	 * Tell Players to close Firebase connections
-	 */
-	public void destroy() {
-		// TODO: destroy firebase connections
-		mLocal.end();
-		mRemote.end();
 	}
 }

@@ -33,6 +33,8 @@ public abstract class Player {
 		mRightActionsAllowed = true;
 	}
 	
+	public abstract String getUsername();
+	
 	public abstract void end();
 
 	public BoxerGame getGame() {

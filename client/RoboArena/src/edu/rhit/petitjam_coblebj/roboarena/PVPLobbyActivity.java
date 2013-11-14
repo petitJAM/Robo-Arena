@@ -3,6 +3,7 @@ package edu.rhit.petitjam_coblebj.roboarena;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -224,6 +225,9 @@ public class PVPLobbyActivity extends Activity {
 		infoRef.child(getString(R.string.fb_game_info_game_running)).setValue(Boolean.FALSE);
 		infoRef.child(getString(R.string.fb_game_info_allow_spectators)).setValue(allowSpectators);
 		infoRef.child(getString(R.string.fb_game_info_password)).setValue(gamePassword);
+		Time now = new Time();
+		now.setToNow();
+		infoRef.child(getString(R.string.fb_game_info_date)).setValue(now.format("%D"));
 		Log.d(GAME_SETUP, "Info object created at " + infoRef.getName());
 
 		createPlayer(gameRef, getString(R.string.fb_game_player_creator));

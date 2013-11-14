@@ -2,6 +2,7 @@ package edu.rhit.petitjam_coblebj.game;
 
 import java.util.Random;
 
+import edu.rhit.petitjam_coblebj.roboarena.R;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.util.Log;
@@ -19,6 +20,11 @@ public class ComputerPlayer extends RemotePlayer {
 	public ComputerPlayer(BoxerGame game, int difficulty) {
 		super(game);
 		mDifficulty = difficulty; 
+	}
+
+	@Override
+	public String getUsername() {
+		return getString(R.string.ai_opponent_name);
 	}
 
 	@Override
@@ -45,7 +51,6 @@ public class ComputerPlayer extends RemotePlayer {
 
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
 		mAITask.cancel(true);
 	}
 	
@@ -76,7 +81,8 @@ public class ComputerPlayer extends RemotePlayer {
 	}
 	
 	/**
-	 * Class for dumb AI that just throws random hits
+	 * Class for a dumb AI that just throws random hits
+	 * 
 	 * @author petitjam
 	 */
 	private class ThrowRandomHitsTask extends AsyncTask<Void, Integer, Void> {
@@ -94,7 +100,7 @@ public class ComputerPlayer extends RemotePlayer {
 				}
 				int next = gen.nextInt() % NUMBER_OF_ACTIONS; // number of actions
 				publishProgress(new Integer[] { next });
-				SystemClock.sleep((3 - mDifficulty) * 1000); // time between throws is different by level
+				SystemClock.sleep(((3 - mDifficulty) * 1000) - (200 * mDifficulty)); // time between throws is different by level
 			}
 		}
 		

@@ -19,6 +19,7 @@
     <string name="fb_game_info_game_running">game_running</string>
     <string name="fb_game_info_password">password</string>
     <string name="fb_game_info_allow_spectators">allow_spectators</string>
+    <string name="fb_game_info_date">date</string>
     
     <string name="fb_game_player_name">name</string>
     <string name="fb_game_player_health">health</string>
@@ -115,6 +116,7 @@
     <string name="lose">Lose</string>
     <string name="default_username">My Name</string>
     <string name="default_opponent_name">Default Opponent Name</string>
+    <string name="ai_opponent_name">Super Robot Boxer Lord</string>
     <string name="default_date">8/20/1991</string>
     <string name="table_row">Table Row</string>
     <string name="done">Done</string>

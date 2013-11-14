@@ -1,5 +1,6 @@
 package edu.rhit.petitjam_coblebj.game;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
@@ -22,6 +23,14 @@ public class LocalPlayer extends Player {
 	public LocalPlayer(BoxerGame game, String gameId, String playerId) {
 		super(game);
 		mFbHandler = new PVPFirebaseIOHandler(gameId, playerId);
+	}
+
+	@Override
+	public String getUsername() {
+		Context c = getGame().getContext();
+		return c.getSharedPreferences(getString(R.string.preference_file_key),
+				Context.MODE_PRIVATE).getString(getString(R.string.prefs_key_username),
+				getString(R.string.default_username));
 	}
 	
 	@Override
