@@ -22,7 +22,7 @@ public class ArenaActivity extends Activity {
 	protected static final String KEY_GAME_ID = "key_firebase_ref";
 	protected static final String KEY_PLAYER_ID = "key_player_id";
 	protected static final String KEY_GAME_WINNER_ID = "key_game_winner_id";
-	
+
 	// Fields
 	private GestureDetector mDetector;
 	private BoxerGame mGame;
@@ -41,25 +41,28 @@ public class ArenaActivity extends Activity {
 	public TextView r_hook;
 	public TextView r_up;
 	public TextView block;
-	
+
 	public TextView player1_hp_textview;
 	public TextView player2_hp_textview;
-	
+
 	private int mGameMode;
 	private int mComputerDifficulty;
-	
+
 	private String mGameId;
 	private String mPlayerId;
 
 	// Actions
-	private static final float jab_distance = -15;
+	private static final float jab_distance = -20;
 	private static final float hook_distance = -30;
 	private static final float uppercut_distance = -50;
+	private static final float block_distance = -40;
 
-	// Cooldown - half what the boxer game has because each animation is a two part action
-	private static final int jab_cooldown = 500;
-	private static final int hook_cooldown = 600;
-	private static final int uppercut_cooldown = 1000;
+	// Cooldown - half what the boxer game has because each animation is a two
+	// part action
+	private static final int jab_speed = 1000;
+	private static final int hook_speed = 1200;
+	private static final int uppercut_speed = 2000;
+	private static final int block_speed = 1000;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,27 +84,28 @@ public class ArenaActivity extends Activity {
 
 		rightGlove = (ImageView) findViewById(R.id.right_glove);
 		leftGlove = (ImageView) findViewById(R.id.left_glove);
-		
+
 		enemyRightGlove = (ImageView) findViewById(R.id.robo_right_glove);
 		enemyLeftGlove = (ImageView) findViewById(R.id.robo_left_glove);
 
-		mGameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
-		mComputerDifficulty = getIntent().getIntExtra(KEY_COMPUTER_DIFFICULTY, ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
-		
+		mGameMode = getIntent().getIntExtra(ArenaActivity.KEY_GAME_MODE,
+				BoxerGame.GAME_MODE_COMPUTER);
+		mComputerDifficulty = getIntent().getIntExtra(KEY_COMPUTER_DIFFICULTY,
+				ComputerPlayer.COMPUTER_PLAYER_DIFFICULTY_EASY);
+
 		mGameId = getIntent().getStringExtra(KEY_GAME_ID);
 		mPlayerId = getIntent().getStringExtra(KEY_PLAYER_ID);
 
 		if (mGameMode == BoxerGame.GAME_MODE_HUMAN) {
 			Log.d("RA", "Creating BoxerGame vs HUMAN");
 			mGame = new BoxerGame(this, mGameId, mPlayerId);
-			
+
 		} else if (mGameMode == BoxerGame.GAME_MODE_COMPUTER) {
 			Log.d("RA", "Creating BoxerGame vs COMPUTER");
 			mGame = new BoxerGame(this, mComputerDifficulty);
 		}
 
-		
-		////////
+		// //////
 		// Erases the background of the textviews every 2 seconds
 		final Handler handler = new Handler();
 		final Runnable r = new Runnable() {
@@ -118,7 +122,7 @@ public class ArenaActivity extends Activity {
 			}
 		};
 		handler.postDelayed(r, 2000);
-		////////
+		// //////
 
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
 
@@ -128,26 +132,27 @@ public class ArenaActivity extends Activity {
 
 	public void gameOver(boolean localDidWin) {
 		Intent endScreenIntent = new Intent(this, MatchDetailsActivity.class);
-		
+
 		String gameWinnerId;
-		
+
 		if (localDidWin) {
 			gameWinnerId = mPlayerId;
 		} else {
-			gameWinnerId = mPlayerId.equals(getString(R.string.fb_game_player_joiner)) ? getString(R.string.fb_game_player_creator)
+			gameWinnerId = mPlayerId
+					.equals(getString(R.string.fb_game_player_joiner)) ? getString(R.string.fb_game_player_creator)
 					: getString(R.string.fb_game_player_joiner);
 		}
-		
+
 		endScreenIntent.putExtra(KEY_GAME_WINNER_ID, gameWinnerId);
 		endScreenIntent.putExtra(KEY_GAME_MODE, mGameMode);
 		endScreenIntent.putExtra(KEY_COMPUTER_DIFFICULTY, mComputerDifficulty);
 		endScreenIntent.putExtra(KEY_GAME_ID, mGameId);
 		endScreenIntent.putExtra(KEY_PLAYER_ID, mPlayerId);
-		
+
 		startActivity(endScreenIntent);
 		finish();
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -159,122 +164,178 @@ public class ArenaActivity extends Activity {
 		return mDetector.onTouchEvent(event);
 	}
 
+	/*
+	 * LOCAL ANIMATIONS
+	 */
+
 	public void AnimateLocalRightJab() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(rightGlove, "translationY", jab_distance);
-		a1.setDuration(jab_cooldown);
-
-		a2 = ObjectAnimator.ofFloat(rightGlove, "translationY", -jab_distance);
-		a2.setDuration(jab_cooldown);
-
-		aSet.playSequentially(a1, a2);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(rightGlove, "translationY", 0,
+				jab_distance, 0);
+		a1.setDuration(jab_speed);
+		aSet.play(a1);
 		aSet.start();
 	}
 
 	public void AnimateLocalLeftJab() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(leftGlove, "translationY", jab_distance);
-		a1.setDuration(jab_cooldown);
-
-		a2 = ObjectAnimator.ofFloat(leftGlove, "translationY", -jab_distance);
-		a2.setDuration(jab_cooldown);
-
-		aSet.playSequentially(a1, a2);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(leftGlove, "translationY", 0, jab_distance,
+				0);
+		a1.setDuration(jab_speed);
+		aSet.play(a1);
 		aSet.start();
 	}
 
 	public void AnimateLocalRightHook() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(rightGlove, "translationX", hook_distance);
-		a1.setDuration(hook_cooldown);
-
-		a2 = ObjectAnimator.ofFloat(rightGlove, "translationX", -hook_distance);
-		a2.setDuration(hook_cooldown);
-
-		aSet.playSequentially(a1, a2);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(rightGlove, "translationX", 0,
+				hook_distance, 0);
+		a1.setDuration(hook_speed);
+		aSet.play(a1);
 		aSet.start();
 	}
 
 	public void AnimateLocalLeftHook() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", -hook_distance);
-		a1.setDuration(hook_cooldown);
-
-		a2 = ObjectAnimator.ofFloat(leftGlove, "translationX", hook_distance);
-		a2.setDuration(hook_cooldown);
-
-		aSet.playSequentially(a1, a2);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", 0,
+				-hook_distance, 0);
+		a1.setDuration(hook_speed);
+		aSet.play(a1);
 		aSet.start();
 	}
 
 	public void AnimateLocalRightUppercut() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(rightGlove, "translationY",
-				uppercut_distance);
-		a1.setDuration(uppercut_cooldown);
-
-		a2 = ObjectAnimator.ofFloat(rightGlove, "translationY",
-				-uppercut_distance);
-		a2.setDuration(uppercut_cooldown);
-
-		aSet.playSequentially(a1, a2);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(rightGlove, "translationY", 0,
+				uppercut_distance, 0);
+		a1.setDuration(uppercut_speed);
+		aSet.play(a1);
 		aSet.start();
 	}
 
 	public void AnimateLocalLeftUppercut() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(leftGlove, "translationY",
-				uppercut_distance);
-		a1.setDuration(uppercut_cooldown);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(leftGlove, "translationY", 0,
+				uppercut_distance, 0);
+		a1.setDuration(uppercut_speed);
+		aSet.play(a1);
+		aSet.start();
+	}
 
-		a2 = ObjectAnimator.ofFloat(leftGlove, "translationY",
-				-uppercut_distance);
-		a2.setDuration(uppercut_cooldown);
+	// TODO - fix blocking
+	public void AnimateLocalStartBlocking() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1, a2;
+		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", block_distance);
+		a1.setDuration(block_speed);
+		a2 = ObjectAnimator
+				.ofFloat(rightGlove, "translationX", -block_distance);
+		a2.setDuration(block_speed);
 
 		aSet.playSequentially(a1, a2);
 		aSet.start();
 	}
-	
+
+
+	/*
+	 * REMOTE ANIMATIONS
+	 */
+
 	public void AnimateRemoteRightJab() {
 		AnimatorSet aSet = new AnimatorSet();
-		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY", -jab_distance);
-		a1.setDuration(jab_cooldown);
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY", 0,
+				-jab_distance, 0);
+		a1.setDuration(jab_speed);
+		aSet.play(a1);
+		aSet.start();
 
-		a2 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY", jab_distance);
-		a2.setDuration(jab_cooldown);
+	}
 
-		aSet.playSequentially(a1, a2);
+	public void AnimateRemoteLeftJab() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY",
+				0, -jab_distance, 0);
+		a1.setDuration(jab_speed);
+		aSet.play(a1);
 		aSet.start();
 	}
-	
-	public void AnimateRemoteLeftJab(){
+
+	public void AnimateRemoteRightHook() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(enemyRightGlove, "translationX",
+				0, -hook_distance / 2, 0);
+		a1.setDuration(hook_speed);
+		aSet.play(a1);
+		aSet.start();
+	}
+
+	public void AnimateRemoteLeftHook() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1;
+		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationX",
+				0, hook_distance / 2, 0);
+		a1.setDuration(hook_speed);
+		aSet.play(a1);
+		aSet.start();
+	}
+
+	public void AnimateRemoteRightUppercut() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY", -jab_distance);
-		a1.setDuration(jab_cooldown);
+		a1 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY",
+				0, uppercut_distance / 2, 0);
+		a1.setDuration(uppercut_speed);
+		a2 = ObjectAnimator.ofFloat(enemyRightGlove, "translationY",
+				-uppercut_distance / 2);
+		a2.setDuration(uppercut_speed);
 
-		a2 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY", jab_distance);
-		a2.setDuration(jab_cooldown);
+//		aSet.playSequentially(a1, a2);
+		aSet.play(a1);
+		aSet.start();
+	}
+
+	public void AnimateRemoteLeftUppercut() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1, a2;
+		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY",
+				0, uppercut_distance / 2, 0);
+		a1.setDuration(uppercut_speed);
+		a2 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationY",
+				-uppercut_distance / 2);
+		a2.setDuration(uppercut_speed);
+
+//		aSet.playSequentially(a1, a2);
+		aSet.play(a1);
+		aSet.start();
+	}
+
+	// TODO: fix blocking
+	public void AnimateRemoteStartBlock() {
+		AnimatorSet aSet = new AnimatorSet();
+		ObjectAnimator a1, a2;
+		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationX",
+				block_distance / 2);
+		a1.setDuration(block_speed);
+		a2 = ObjectAnimator.ofFloat(enemyRightGlove, "translationX",
+				-block_distance / 2);
+		a2.setDuration(block_speed);
 
 		aSet.playSequentially(a1, a2);
 		aSet.start();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	/*
+	 * Private gesture detector class
+	 */
 
 	private class PlayerGestureDetector extends
 			GestureDetector.SimpleOnGestureListener {
@@ -331,15 +392,15 @@ public class ArenaActivity extends Activity {
 					if (dy < SWIPE_MAX_OFF_PATH && dx < 0) { // swipe r->l
 						Log.d(PGL, "right hook");
 						mGame.localRightHook();
-						
+
 					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
 						Log.d(PGL, "block (right)");
 						mGame.localBlock();
-						
+
 					} else if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "right uppercut");
 						mGame.localRightUppercut();
-						
+
 					} else {
 						Log.d(PGL, "right nothing");
 					}
@@ -349,15 +410,16 @@ public class ArenaActivity extends Activity {
 					if (dx < SWIPE_MAX_OFF_PATH && dy < 0) { // swipe up
 						Log.d(PGL, "left uppercut");
 						mGame.localLeftUppercut();
-						
+
 					} else if (dx < SWIPE_MAX_OFF_PATH && dy > 0) {
 						Log.d(PGL, "block (left)");
 						mGame.localBlock();
-						
-					} else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe r->l
+
+					} else if (dy < SWIPE_MAX_OFF_PATH && dx > 0) { // swipe
+																	// r->l
 						Log.d(PGL, "left hook");
 						mGame.localLeftHook();
-						
+
 					} else {
 						Log.d(PGL, "left nothing");
 					}

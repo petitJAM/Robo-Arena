@@ -56,6 +56,7 @@ public class ComputerDifficultyActivity extends Activity {
 				Intent arenaIntent = new Intent(ComputerDifficultyActivity.this, ArenaActivity.class);
 				arenaIntent.putExtra(ArenaActivity.KEY_GAME_MODE, BoxerGame.GAME_MODE_COMPUTER);
 				arenaIntent.putExtra(ArenaActivity.KEY_COMPUTER_DIFFICULTY, selectedDifficulty);
+				arenaIntent.putExtra(ArenaActivity.KEY_PLAYER_ID, getString(R.string.fb_game_player_joiner));
 				startActivity(arenaIntent);
 				finish();
 			}
