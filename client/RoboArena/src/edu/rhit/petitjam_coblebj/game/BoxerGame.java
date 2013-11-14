@@ -1,7 +1,6 @@
 package edu.rhit.petitjam_coblebj.game;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.roboarena.ArenaActivity;
@@ -111,20 +110,12 @@ public class BoxerGame {
 			Log.d(BG_L, "Local Left Jab");
 			
 			mLocal.leftJab(); // tell the local it punched
-
-			mArena.l_jab.setBackgroundColor(Color.CYAN);
 			mLocal.startLeftActionDelay(JAB_COOLDOWN);
 			mArena.AnimateLocalLeftJab();
-
-			// TODO: TRACK -- move was attempted
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(JAB_DMG);
-				// update players' health bars
 				updateHealth();
-			} else {
-				// TODO: TRACK -- move was blocked
 			}
-			
 		}
 	}
 
@@ -134,16 +125,12 @@ public class BoxerGame {
 			
 			mLocal.rightJab(); // tell the local it punched
 
-			mArena.r_jab.setBackgroundColor(Color.CYAN);
 			mLocal.startRightActionDelay(JAB_COOLDOWN);
 			mArena.AnimateLocalRightJab();
-			
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(JAB_DMG);
-				// update players' health bars
 				updateHealth();
 			}
-			
 		}
 	}
 
@@ -152,17 +139,13 @@ public class BoxerGame {
 			Log.d(BG_L, "Local Left Hook");
 			
 			mLocal.leftHook(); // tell the local it punched
-
-			mArena.l_hook.setBackgroundColor(Color.CYAN);
 			mLocal.startLeftActionDelay(HOOK_COOLDOWN);
 			mArena.AnimateLocalLeftHook();
 
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(HOOK_DMG);
-				// update players' health bars
 				updateHealth();
 			}
-			
 		}
 	}
 
@@ -171,17 +154,13 @@ public class BoxerGame {
 			Log.d(BG_L, "Local Right Hook");
 			
 			mLocal.rightHook(); // tell the local it punched
-
-			mArena.r_hook.setBackgroundColor(Color.CYAN);
 			mLocal.startRightActionDelay(HOOK_COOLDOWN);
 			mArena.AnimateLocalRightHook();
 
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(HOOK_DMG);
-				// update players' health bars
 				updateHealth();
 			}
-			
 		}
 	}
 
@@ -190,17 +169,13 @@ public class BoxerGame {
 			Log.d(BG_L, "Local Left Uppercut");
 			
 			mLocal.leftUppercut(); // tell the local it punched
-
-			mArena.l_up.setBackgroundColor(Color.CYAN);
 			mLocal.startLeftActionDelay(UPPERCUT_COOLDOWN);
 			mArena.AnimateLocalLeftUppercut();
 
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(UPPERCUT_DMG);
-				// update players' health bars
 				updateHealth();
 			}
-			
 		}
 	}
 
@@ -209,17 +184,13 @@ public class BoxerGame {
 			Log.d(BG_L, "Local Right Uppercut");
 			
 			mLocal.rightUppercut(); // tell the local it punched
-
-			mArena.r_up.setBackgroundColor(Color.CYAN);
 			mLocal.startRightActionDelay(UPPERCUT_COOLDOWN);
 			mArena.AnimateLocalRightUppercut();
 
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(UPPERCUT_DMG);
-				// update players' health bars
 				updateHealth();
 			}
-			
 		}
 	}
 
