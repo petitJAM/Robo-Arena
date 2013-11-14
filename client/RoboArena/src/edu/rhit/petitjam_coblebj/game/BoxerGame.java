@@ -1,5 +1,9 @@
 package edu.rhit.petitjam_coblebj.game;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.ValueEventListener;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -21,7 +25,7 @@ public class BoxerGame {
 
 	private LocalPlayer mLocal;
 	private RemotePlayer mRemote;
-	
+
 	// TODO: Use the game_running in /games/gameId/info
 
 	// Damage associate with each punch
@@ -44,7 +48,7 @@ public class BoxerGame {
 
 		player1_hp_textview = mArena.player1_hp_textview;
 		player2_hp_textview = mArena.player2_hp_textview;
-		
+
 		// Set the remote player's ID
 		String creatorId = MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_creator);
 		String joinerId = MainMenuActivity.getContext().getResources().getString(R.string.fb_game_player_joiner);
@@ -52,6 +56,26 @@ public class BoxerGame {
 
 		mLocal = new LocalPlayer(this, gameId, localPlayerId);
 		mRemote = new HumanPlayer(this, gameId, remotePlayerId);
+
+		// This is last minute hacky code, I know it's a bad place for this
+		final String username = mArena.getSharedPreferences(mArena.getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(
+				mArena.getString(R.string.prefs_key_username), mArena.getString(R.string.default_username));
+
+		Firebase remotePlayerNameFB = new Firebase(mArena.getString(R.string.roboarena_firebase_games) + "/" + gameId
+				+ "/" + remotePlayerId + "/" + mArena.getString(R.string.fb_game_player_name));
+		
+		remotePlayerNameFB.addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot snap) {
+				((TextView)mArena.findViewById(R.id.arena_title)).setText(mArena.getString(R.string.arena_pvp_vs_title, username, (String)snap.getValue()));
+			}
+			
+			@Override
+			public void onCancelled() {}
+		});
+
+		// String username = getSharedPreferences(mArena.getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(
+		// getString(R.string.prefs_key_username), getString(R.string.default_username));
 	}
 
 	public BoxerGame(Context context, int computerDifficulty) {
@@ -63,7 +87,7 @@ public class BoxerGame {
 		mLocal = new LocalPlayer(this);
 		mRemote = new ComputerPlayer(this, computerDifficulty);
 	}
-	
+
 	public Context getContext() {
 		return mArena;
 	}
@@ -71,15 +95,15 @@ public class BoxerGame {
 	public void startGame() {
 		mRemote.start();
 	}
-	
-	public void updateHealth(){
+
+	public void updateHealth() {
 		int p1hp = this.mLocal.getHealth();
 		int p2hp = this.mRemote.getHealth();
 		player1_hp_textview.setText(Integer.toString(p1hp));
 		player2_hp_textview.setText(Integer.toString(p2hp));
-		
+
 		// if either player < 0 or time is out, end game
-		if(p1hp <= 0 || p2hp <= 0){
+		if (p1hp <= 0 || p2hp <= 0) {
 			mLocal.setLeftActionsAllowed(false);
 			mLocal.setRightActionsAllowed(false);
 			mRemote.setLeftActionsAllowed(false);
@@ -100,16 +124,16 @@ public class BoxerGame {
 
 
 	/* ********************* */
-	/* LOCAL PLAYER ACTIONS  */
+	/* LOCAL PLAYER ACTIONS */
 	/* ********************* */
-	
+
 	// TODO: Track stats
-	// 			including 
+	// including
 
 	public void localLeftJab() {
 		if (mLocal.getLeftActionsAllowed()) {
 			Log.d(BG_L, "Local Left Jab");
-			
+
 			mLocal.leftJab(); // tell the local it punched
 
 			mArena.l_jab.setBackgroundColor(Color.CYAN);
@@ -124,33 +148,33 @@ public class BoxerGame {
 			} else {
 				// TODO: TRACK -- move was blocked
 			}
-			
+
 		}
 	}
 
 	public void localRightJab() {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Jab");
-			
+
 			mLocal.rightJab(); // tell the local it punched
 
 			mArena.r_jab.setBackgroundColor(Color.CYAN);
 			mLocal.startRightActionDelay(JAB_COOLDOWN);
 			mArena.AnimateLocalRightJab();
-			
+
 			if (!mRemote.isBlocking()) {
 				mRemote.decrementHealth(JAB_DMG);
 				// update players' health bars
 				updateHealth();
 			}
-			
+
 		}
 	}
 
 	public void localLeftHook() {
 		if (mLocal.getLeftActionsAllowed()) {
 			Log.d(BG_L, "Local Left Hook");
-			
+
 			mLocal.leftHook(); // tell the local it punched
 
 			mArena.l_hook.setBackgroundColor(Color.CYAN);
@@ -162,14 +186,14 @@ public class BoxerGame {
 				// update players' health bars
 				updateHealth();
 			}
-			
+
 		}
 	}
 
 	public void localRightHook() {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Hook");
-			
+
 			mLocal.rightHook(); // tell the local it punched
 
 			mArena.r_hook.setBackgroundColor(Color.CYAN);
@@ -181,14 +205,14 @@ public class BoxerGame {
 				// update players' health bars
 				updateHealth();
 			}
-			
+
 		}
 	}
 
 	public void localLeftUppercut() {
 		if (mLocal.getLeftActionsAllowed()) {
 			Log.d(BG_L, "Local Left Uppercut");
-			
+
 			mLocal.leftUppercut(); // tell the local it punched
 
 			mArena.l_up.setBackgroundColor(Color.CYAN);
@@ -200,14 +224,14 @@ public class BoxerGame {
 				// update players' health bars
 				updateHealth();
 			}
-			
+
 		}
 	}
 
 	public void localRightUppercut() {
 		if (mLocal.getRightActionsAllowed()) {
 			Log.d(BG_L, "Local Right Uppercut");
-			
+
 			mLocal.rightUppercut(); // tell the local it punched
 
 			mArena.r_up.setBackgroundColor(Color.CYAN);
@@ -219,15 +243,15 @@ public class BoxerGame {
 				// update players' health bars
 				updateHealth();
 			}
-			
+
 		}
 	}
 
 	public void localBlock() {
 		if (!mLocal.isBlocking()) {
 			Log.d(BG_L, "Local Block");
-			
-			mLocal.block(); 
+
+			mLocal.block();
 			mArena.AnimateLocalBlocking();
 			mLocal.setBlocking(true);
 			mLocal.startLeftActionDelay(BLOCKING_COOLDOWN);
@@ -240,7 +264,7 @@ public class BoxerGame {
 	/* ********************* */
 	/* REMOTE PLAYER ACTIONS */
 	/* ********************* */
-	
+
 	// TODO: Move the startActionDelays into the computer player to keep the responsibility on the remote
 
 	public void remoteLeftJab() {

@@ -98,11 +98,15 @@ public class ArenaActivity extends Activity {
 
 		if (mGameMode == BoxerGame.GAME_MODE_HUMAN) {
 			Log.d("RA", "Creating BoxerGame vs HUMAN");
-			mGame = new BoxerGame(this, mGameId, mPlayerId);
+			mGame = new BoxerGame(this, mGameId, mPlayerId);			
 
 		} else if (mGameMode == BoxerGame.GAME_MODE_COMPUTER) {
 			Log.d("RA", "Creating BoxerGame vs COMPUTER");
 			mGame = new BoxerGame(this, mComputerDifficulty);
+			
+			String username = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE).getString(
+					getString(R.string.prefs_key_username), getString(R.string.default_username));
+			((TextView)findViewById(R.id.arena_title)).setText(getString(R.string.arena_pvai_vs_title, username));
 		}
 
 		// //////
