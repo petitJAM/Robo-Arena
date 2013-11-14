@@ -62,7 +62,7 @@ public class ArenaActivity extends Activity {
 	private static final int jab_speed = 1000;
 	private static final int hook_speed = 1200;
 	private static final int uppercut_speed = 2000;
-	private static final int block_speed = 1000;
+	private static final int block_speed = 4000;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -228,17 +228,16 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	// TODO - fix blocking
-	public void AnimateLocalStartBlocking() {
+	public void AnimateLocalBlocking() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
-		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", block_distance);
+		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", 0, -block_distance * 2, 0);
 		a1.setDuration(block_speed);
 		a2 = ObjectAnimator
-				.ofFloat(rightGlove, "translationX", -block_distance);
+				.ofFloat(rightGlove, "translationX", 0, block_distance * 2, 0);
 		a2.setDuration(block_speed);
 
-		aSet.playSequentially(a1, a2);
+		aSet.playTogether(a1, a2);
 		aSet.start();
 	}
 
@@ -318,18 +317,17 @@ public class ArenaActivity extends Activity {
 		aSet.start();
 	}
 
-	// TODO: fix blocking
-	public void AnimateRemoteStartBlock() {
+	public void AnimateRemoteBlocking() {
 		AnimatorSet aSet = new AnimatorSet();
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(enemyLeftGlove, "translationX",
-				block_distance / 2);
+				0, block_distance / 2, 0);
 		a1.setDuration(block_speed);
 		a2 = ObjectAnimator.ofFloat(enemyRightGlove, "translationX",
-				-block_distance / 2);
+				0, -block_distance / 2, 0);
 		a2.setDuration(block_speed);
 
-		aSet.playSequentially(a1, a2);
+		aSet.playTogether(a1, a2);
 		aSet.start();
 	}
 

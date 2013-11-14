@@ -24,12 +24,10 @@ public class SettingsActivity extends Activity {
 		
 		final SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
 		
-		String username = sharedPref.getString(getString(R.string.prefs_key_username), "Joe");
+		String username = sharedPref.getString(getString(R.string.prefs_key_username), "Player 1");
 		
 		mUsernameEditText.setText(username);
-		
-		//
-		
+				
 		/////
 		
 		findViewById(R.id.cancel_button).setOnClickListener(new OnClickListener() {

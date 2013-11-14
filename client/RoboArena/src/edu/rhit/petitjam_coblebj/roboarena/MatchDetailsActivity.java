@@ -35,6 +35,9 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 		int computerDifficulty = getIntent().getIntExtra(ArenaActivity.KEY_COMPUTER_DIFFICULTY, -1);
 		String gameId = getIntent().getStringExtra(ArenaActivity.KEY_GAME_ID);
 		String playerId = getIntent().getStringExtra(ArenaActivity.KEY_PLAYER_ID);
+		String winnerId = getIntent().getStringExtra(ArenaActivity.KEY_GAME_WINNER_ID);
+		
+		String game_outcome = (playerId.equals(winnerId)) ? "Win" : "Lose";
 
 		if (gameMode == BoxerGame.GAME_MODE_COMPUTER) {
 			// oops, we don't save these :(
@@ -88,6 +91,8 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 		}
 
 		findViewById(R.id.done_button).setOnClickListener(this);
+		TextView outcome_view = (TextView) findViewById(R.id.outcome);
+		outcome_view.setText(game_outcome);
 
 		// TODO: Save link to this FB game to a DB or something
 	}

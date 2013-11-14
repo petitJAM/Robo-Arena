@@ -30,7 +30,7 @@ public class BoxerGame {
 	private static final int UPPERCUT_DMG = 10;
 
 	// Cooldowns for each punch
-	private static final int BLOCKING_COOLDOWN = 1000;
+	private static final int BLOCKING_COOLDOWN = 4000;
 	private static final int JAB_COOLDOWN = 1000;
 	private static final int HOOK_COOLDOWN = 1200;
 	private static final int UPPERCUT_COOLDOWN = 2000;
@@ -80,6 +80,10 @@ public class BoxerGame {
 		
 		// if either player < 0 or time is out, end game
 		if(p1hp <= 0 || p2hp <= 0){
+			mLocal.setLeftActionsAllowed(false);
+			mLocal.setRightActionsAllowed(false);
+			mRemote.setLeftActionsAllowed(false);
+			mRemote.setRightActionsAllowed(false);
 			mArena.gameOver(p2hp <= 0); // check winners
 			this.destroy();
 		}
@@ -224,7 +228,7 @@ public class BoxerGame {
 			Log.d(BG_L, "Local Block");
 			
 			mLocal.block(); 
-			mArena.AnimateLocalStartBlocking();
+			mArena.AnimateLocalBlocking();
 			mLocal.setBlocking(true);
 			mLocal.startLeftActionDelay(BLOCKING_COOLDOWN);
 			mLocal.startRightActionDelay(BLOCKING_COOLDOWN);
@@ -321,7 +325,7 @@ public class BoxerGame {
 		// start blocking
 		if (!mRemote.isBlocking()) {
 			Log.d(BG_R, "Remote Block");
-			mArena.AnimateRemoteStartBlock();
+			mArena.AnimateRemoteBlocking();
 			mRemote.setBlocking(true);
 			mLocal.startLeftActionDelay(BLOCKING_COOLDOWN);
 			mLocal.startRightActionDelay(BLOCKING_COOLDOWN);

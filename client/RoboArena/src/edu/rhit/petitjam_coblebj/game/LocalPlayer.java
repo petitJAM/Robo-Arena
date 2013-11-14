@@ -46,7 +46,8 @@ public class LocalPlayer extends Player {
 	
 	@Override
 	public void decrementHealth(int damage) {
-		super.setHealthHelper(getHealth() - damage);
+		int newHP = getHealth() - damage;
+		super.setHealthHelper(newHP < 0 ? 0 : newHP);
 //		mFbHandler.setHealth(getHealth());
 	}
 	
