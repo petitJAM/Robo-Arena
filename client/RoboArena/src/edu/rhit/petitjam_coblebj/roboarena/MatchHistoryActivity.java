@@ -111,7 +111,7 @@ public class MatchHistoryActivity extends Activity {
 				
 				mOutcome = (TextView)findViewById(R.id.outcome);
 				mOpponent = (TextView)findViewById(R.id.opponent);
-				mDate = (TextView)findViewById(R.id.date);
+				mDate = (TextView)findViewById(R.id.date_tv);
 			}
 			
 			public void setOutcome(boolean didWin) { // TODO: doesn't do draws

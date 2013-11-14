@@ -2,6 +2,7 @@ package edu.rhit.petitjam_coblebj.roboarena;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,11 +38,16 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 		String playerId = getIntent().getStringExtra(ArenaActivity.KEY_PLAYER_ID);
 		String winnerId = getIntent().getStringExtra(ArenaActivity.KEY_GAME_WINNER_ID);
 		
-		String game_outcome = (playerId.equals(winnerId)) ? "Win" : "Lose";
+		String game_outcome = (playerId.equals(winnerId)) ? getString(R.string.win) : getString(R.string.lose);
+		((TextView)findViewById(R.id.outcome)).setText(game_outcome);
 
 		if (gameMode == BoxerGame.GAME_MODE_COMPUTER) {
 			// oops, we don't save these :(
 			Log.d("RA", "Computer game against AI level " + computerDifficulty);
+			((TextView)findViewById(R.id.opponent_name)).setText(getString(R.string.ai_opponent_name));
+			Time now = new Time();
+			now.setToNow();
+			((TextView)findViewById(R.id.date_tv)).setText(now.format("%D"));
 
 		} else if (gameMode == BoxerGame.GAME_MODE_HUMAN) {
 			// TODO: get from Firebase
@@ -49,10 +55,22 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 			// base game FB
 			Firebase fb = new Firebase(getString(R.string.roboarena_firebase_games)).child(gameId);
 			
+			Firebase infoFB = fb.child(getString(R.string.fb_game_info));
+			
+			infoFB.child(getString(R.string.fb_game_info_date)).addListenerForSingleValueEvent(new ValueEventListener() {
+				
+				@Override
+				public void onDataChange(DataSnapshot snap) {
+					Log.d("RA", "Setting date to " + (String)snap.getValue());
+					((TextView)findViewById(R.id.date_tv)).setText((String)snap.getValue());
+				}
+				
+				@Override
+				public void onCancelled() {}
+			});
+			
 			Firebase localPlayerFB = fb.child(playerId);
 			
-			// TODO: get everything we need from FB
-
 			localPlayerFB.child(getString(R.string.fb_game_player_left_jab)).addListenerForSingleValueEvent(new AddToLocalPlayerHitsAttemptedListener());
 			localPlayerFB.child(getString(R.string.fb_game_player_left_hook)).addListenerForSingleValueEvent(new AddToLocalPlayerHitsAttemptedListener());
 			localPlayerFB.child(getString(R.string.fb_game_player_left_uppercut)).addListenerForSingleValueEvent(new AddToLocalPlayerHitsAttemptedListener());
@@ -65,6 +83,7 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 				
 				@Override
 				public void onDataChange(DataSnapshot snap) {
+					Log.d("RA", "Setting blocks textview to " + ((Long)snap.getValue()).intValue());
 					mLocalPlayerBlocks = ((Long)snap.getValue()).intValue();
 					mBlocksValueTextView.setText("" + mLocalPlayerBlocks);
 				}
@@ -82,6 +101,7 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 				
 				@Override
 				public void onDataChange(DataSnapshot snap) {
+					Log.d("RA", "Setting opponent name to " + (String)snap.getValue());
 					((TextView)findViewById(R.id.opponent_name)).setText((String)snap.getValue());
 				}
 				
@@ -91,8 +111,6 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 		}
 
 		findViewById(R.id.done_button).setOnClickListener(this);
-		TextView outcome_view = (TextView) findViewById(R.id.outcome);
-		outcome_view.setText(game_outcome);
 
 		// TODO: Save link to this FB game to a DB or something
 	}
@@ -106,6 +124,7 @@ public class MatchDetailsActivity extends Activity implements OnClickListener {
 
 		@Override
 		public void onDataChange(DataSnapshot snap) {
+			Log.d("RA", "Setting hits attempted to " + ((Long)snap.getValue()).intValue());
 			mLocalPlayerHitsAttempted += ((Long)snap.getValue()).intValue();
 			mAttemptedHitsValueTextView.setText("" + mLocalPlayerHitsAttempted);
 		}

@@ -112,8 +112,8 @@
     <string name="block">Block</string>
     
     <!-- Misc -->
-    <string name="win">Win</string>
-    <string name="lose">Lose</string>
+    <string name="win">You WIN against</string>
+    <string name="lose">You LOSE against</string>
     <string name="default_username">My Name</string>
     <string name="default_opponent_name">Default Opponent Name</string>
     <string name="ai_opponent_name">Super Robot Boxer Lord</string>

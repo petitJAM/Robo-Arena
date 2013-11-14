@@ -15,10 +15,10 @@
 
     <TableLayout
         android:id="@+id/match_stats_table_layout"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
         <TableRow
             android:id="@+id/attempted_hits_line"
             android:layout_height="wrap_content" >
@@ -75,8 +75,8 @@
                 android:layout_gravity="right"
                 android:text="@string/default_score" />
         </TableRow>
-        
-		<TableRow
+
+        <TableRow
             android:id="@+id/blocks_line"
             android:layout_height="wrap_content" >
 
@@ -94,37 +94,30 @@
                 android:layout_gravity="right"
                 android:text="@string/default_score" />
         </TableRow>
-        
+
         <!-- TODO: More stat rows here.  Add a scroll view around the table layout if we have enough stats -->
-        
+
     </TableLayout>
 
     <TextView
-        android:id="@+id/opponent_name"
+        android:id="@+id/date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="18dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/default_opponent_name" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="18dp"
         android:layout_alignRight="@+id/match_stats_table_layout"
-        android:text="@string/default_date" />
+        android:layout_below="@+id/title"
+        android:layout_marginTop="18dp"
+        android:text="@string/default_date"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/outcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/match_stats_table_layout"
         android:layout_below="@+id/title"
         android:layout_marginTop="18dp"
-        android:layout_alignLeft="@+id/match_stats_table_layout"
-        android:text="@string/win" />
+        android:text="@string/win"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/done_button"
@@ -135,5 +128,14 @@
         android:layout_marginBottom="12dp"
         android:layout_marginRight="12dp"
         android:text="@string/done" />
+
+    <TextView
+        android:id="@+id/opponent_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/outcome"
+        android:layout_centerHorizontal="true"
+        android:text="@string/default_opponent_name"
+        android:textSize="20sp" />
 
 </RelativeLayout>
