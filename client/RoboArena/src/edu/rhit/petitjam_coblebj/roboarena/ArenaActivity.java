@@ -4,9 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -34,14 +32,6 @@ public class ArenaActivity extends Activity {
 	public ImageView enemyLeftGlove;
 
 	// TextView
-	public TextView l_jab;
-	public TextView l_hook;
-	public TextView l_up;
-	public TextView r_jab;
-	public TextView r_hook;
-	public TextView r_up;
-	public TextView block;
-
 	public TextView player1_hp_textview;
 	public TextView player2_hp_textview;
 
@@ -57,8 +47,7 @@ public class ArenaActivity extends Activity {
 	private static final float uppercut_distance = -50;
 	private static final float block_distance = -40;
 
-	// Cooldown - half what the boxer game has because each animation is a two
-	// part action
+	// Speed to animate - matches the associated punch's cooldown
 	private static final int jab_speed = 1000;
 	private static final int hook_speed = 1200;
 	private static final int uppercut_speed = 2000;
@@ -68,16 +57,6 @@ public class ArenaActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_arena);
-
-		/* TEMP TEXTVIEWS */
-		l_jab = (TextView) findViewById(R.id.l_jab_tv);
-		l_hook = (TextView) findViewById(R.id.l_hook_tv);
-		l_up = (TextView) findViewById(R.id.l_up_tv);
-		r_jab = (TextView) findViewById(R.id.r_jab_tv);
-		r_hook = (TextView) findViewById(R.id.r_hook_tv);
-		r_up = (TextView) findViewById(R.id.r_up_tv);
-		// block = (TextView)findViewById(R.id.);
-		/* ************** */
 
 		player1_hp_textview = (TextView) findViewById(R.id.player1_hp);
 		player2_hp_textview = (TextView) findViewById(R.id.player2_hp);
@@ -108,25 +87,6 @@ public class ArenaActivity extends Activity {
 					getString(R.string.prefs_key_username), getString(R.string.default_username));
 			((TextView)findViewById(R.id.arena_title)).setText(getString(R.string.arena_pvai_vs_title, username));
 		}
-
-		// //////
-		// Erases the background of the textviews every 2 seconds
-		final Handler handler = new Handler();
-		final Runnable r = new Runnable() {
-			@Override
-			public void run() {
-				l_jab.setBackgroundColor(Color.WHITE);
-				l_hook.setBackgroundColor(Color.WHITE);
-				l_up.setBackgroundColor(Color.WHITE);
-				r_jab.setBackgroundColor(Color.WHITE);
-				r_hook.setBackgroundColor(Color.WHITE);
-				r_up.setBackgroundColor(Color.WHITE);
-
-				handler.postDelayed(this, 2000);
-			}
-		};
-		handler.postDelayed(r, 2000);
-		// //////
 
 		mDetector = new GestureDetector(this, new PlayerGestureDetector());
 
@@ -237,10 +197,8 @@ public class ArenaActivity extends Activity {
 		ObjectAnimator a1, a2;
 		a1 = ObjectAnimator.ofFloat(leftGlove, "translationX", 0, -block_distance * 2, 0);
 		a1.setDuration(block_speed);
-		a2 = ObjectAnimator
-				.ofFloat(rightGlove, "translationX", 0, block_distance * 2, 0);
+		a2 = ObjectAnimator.ofFloat(rightGlove, "translationX", 0, block_distance * 2, 0);
 		a2.setDuration(block_speed);
-
 		aSet.playTogether(a1, a2);
 		aSet.start();
 	}

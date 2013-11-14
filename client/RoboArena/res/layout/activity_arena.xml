@@ -16,91 +16,16 @@
         android:textSize="@dimen/title_text_size" />
 
     <!-- Temp views for hits -->
-    
+
+
     <!-- Left -->
-    
-    <TextView
-        android:id="@+id/l_jab_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/left_glove"
-        android:layout_below="@+id/arena_title"
-        android:text="@string/left_jab" />
-    
-    <TextView
-        android:id="@+id/l_hook_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/l_jab_tv"
-        android:layout_below="@+id/l_jab_tv"
-        android:text="@string/left_hook" />
-    
-    <TextView
-        android:id="@+id/l_up_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/l_hook_tv"
-        android:layout_below="@+id/l_hook_tv"
-        android:text="@string/left_uppercut" />
 
     <!-- Right -->
-    
-    <TextView
-        android:id="@+id/r_jab_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/right_glove"
-        android:layout_below="@+id/arena_title"
-        android:text="@string/right_jab" />
 
-    <TextView
-        android:id="@+id/r_hook_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/l_hook_tv"
-        android:layout_alignBottom="@+id/l_hook_tv"
-        android:layout_alignRight="@+id/r_jab_tv"
-        android:text="@string/right_hook" />
-
-    <TextView
-        android:id="@+id/r_up_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/l_up_tv"
-        android:layout_alignBottom="@+id/l_up_tv"
-        android:layout_alignRight="@+id/r_hook_tv"
-        android:text="@string/right_uppercut" />
-    
     <!-- - - - - - -->
-    
-    
+
+
     <!-- HP views -->
-
-    <TextView
-        android:id="@+id/player1_hp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/max_health"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/player2_hp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/max_health"
-        android:textSize="30sp" />
-
-    <ImageView
-        android:id="@+id/opponent_boxer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/r_up_tv"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/robo_body" />
 
     <ImageView
         android:id="@+id/right_glove"
@@ -141,5 +66,33 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" >
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/opponent_boxer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arena_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:src="@drawable/robo_body" />
+
+    <TextView
+        android:id="@+id/player2_hp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/arena_title"
+        android:layout_below="@+id/arena_title"
+        android:text="@string/max_health"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/player1_hp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/player2_hp"
+        android:layout_alignBottom="@+id/player2_hp"
+        android:layout_alignLeft="@+id/arena_title"
+        android:text="@string/max_health"
+        android:textSize="30sp" />
 
 </RelativeLayout>
