@@ -10,17 +10,15 @@ Play against human controlled robots (intelligence not guaranteed)!
 TODO Items
 ==========
 
- - Graphics!
- - Game communication
-
+ - Match History
 
 The Devs
 ========
-Alex Petitjean, Ben Coble
+[Alex Petitjean](http://github.com/petitJAM), [Ben Coble](http://github.com/bcoble)
 
 The Project
 ===========
 
 Project for Android Application Development, CSSE490-01
 
-We are using [Firebase](http://firebase.com) to handle all communication between clients.
+We are using [Firebase](http://firebase.com) to handle all communication between clients and to save match history.
