@@ -16,13 +16,13 @@ public class SpectatorLobbyActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_spectator_lobby);
 		
-		Button join_button = (Button)findViewById(R.id.join_button);
-		join_button.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				Intent spectatorArenaIntent = new Intent(SpectatorLobbyActivity.this, SpectatorArenaActivity.class);
-				startActivity(spectatorArenaIntent);				
-			}
-		});
+//		Button join_button = (Button)findViewById(R.id.join_button);
+//		join_button.setOnClickListener(new OnClickListener(){
+//			@Override
+//			public void onClick(View v) {
+//				Intent spectatorArenaIntent = new Intent(SpectatorLobbyActivity.this, SpectatorArenaActivity.class);
+//				startActivity(spectatorArenaIntent);				
+//			}
+//		});
 	}
 }

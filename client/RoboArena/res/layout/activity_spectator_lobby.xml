@@ -14,42 +14,13 @@
         android:text="@string/spectate"
         android:textSize="@dimen/title_text_size" />
 
-    <Button
-        android:id="@+id/join_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spec_title"
-        android:layout_toLeftOf="@+id/spec_title"
-        android:text="@string/join" />
-
-    <EditText
-        android:id="@+id/room_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/join_button"
-        android:layout_alignLeft="@+id/spec_title"
-        android:ems="10"
-        android:hint="@string/room_name" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/room_name"
-        android:layout_below="@+id/room_name"
-        android:ems="10"
-        android:hint="@string/password" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/spec_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="49dp"
         android:text="@string/spectator_not_implemented" />
 
 </RelativeLayout>
