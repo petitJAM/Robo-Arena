@@ -1,3 +1,9 @@
+Development (Dr. B read this!)
+===========
+To open this project in Eclipse, you will need to be in Robo-Arena/client/RoboArena/
+
+The server folder is empty because Firebase requires no backend code.
+
 Robo-Arena
 ==========
 
@@ -7,10 +13,6 @@ Play against advanced super smart computer controlled robots!
 
 Play against human controlled robots (intelligence not guaranteed)!
 
-TODO Items
-==========
-
- - Match History
 
 The Devs
 ========
