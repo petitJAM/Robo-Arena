@@ -5,9 +5,11 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import edu.rhit.petitjam_coblebj.game.BoxerGame;
@@ -52,6 +54,10 @@ public class ArenaActivity extends Activity {
 	private static final int hook_speed = 1200;
 	private static final int uppercut_speed = 2000;
 	private static final int block_speed = 4000;
+	
+	private Handler handler;
+	private TextView clockView;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +80,12 @@ public class ArenaActivity extends Activity {
 
 		mGameId = getIntent().getStringExtra(KEY_GAME_ID);
 		mPlayerId = getIntent().getStringExtra(KEY_PLAYER_ID);
+		
+		// New timer for 10 minutes, starts after initialization
+		handler = new Handler();
+		clockView = (TextView)findViewById(R.id.clockView);
+		startClock(clockView);
+		
 
 		if (mGameMode == BoxerGame.GAME_MODE_HUMAN) {
 			Log.d("RA", "Creating BoxerGame vs HUMAN");
@@ -94,6 +106,34 @@ public class ArenaActivity extends Activity {
 
 	}
 
+	private void startClock(View view){
+		new Thread(new Task()).start();
+	}
+
+	private class Task implements Runnable {
+		@Override
+		public void run() {
+			for (int i = 60; i >= 0; i--) {
+				final int value = i;
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						clockView.setText(Integer.toString(value));
+					}
+				});
+			}
+			int h1 = mGame.getP1HP();
+			int h2 = mGame.getP2HP();
+			boolean localWin = h1 > h2 ? true : false;
+			gameOver(localWin);
+		}
+	}
+	
 	public void gameOver(boolean localDidWin) {
 		Intent endScreenIntent = new Intent(this, MatchDetailsActivity.class);
 

@@ -128,5 +128,7 @@
     <!-- Preferences -->
     <string name="preference_file_key">edu.rosehulman.petitjam_coblebj.PREF_KEY</string>
     <string name="prefs_key_username">PREFS_KEY_USERNAME</string>
+    
+    <string name="clock_start">60</string>
 
 </resources>

@@ -94,6 +94,14 @@ public class BoxerGame {
 	public void startGame() {
 		mRemote.start();
 	}
+	
+	public int getP1HP(){
+		return this.mLocal.getHealth();
+	}
+	
+	public int getP2HP(){
+		return this.mRemote.getHealth();
+	}
 
 	public void updateHealth() {
 		int p1hp = this.mLocal.getHealth();
