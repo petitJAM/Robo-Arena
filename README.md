@@ -1,8 +1,10 @@
 Development (Dr. B read this!)
 ===========
-To open this project in Eclipse, you will need to be in Robo-Arena/client/RoboArena/
+To open this project in Eclipse, you will need to be in "Robo-Arena/client/RoboArena/"
 
-The server folder is empty because Firebase requires no backend code.
+The server folder is empty because Firebase required no backend code.
+
+The spectator web view is in "Robo-Arena/spectator"
 
 Robo-Arena
 ==========
